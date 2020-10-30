@@ -1,0 +1,38 @@
+info for minishell
+
+cmd: export 'variable'='value'
+# add variable to environment
+
+cmd: env
+# print list of env var
+
+cmd: unset 'variable'
+# destroy var from environment
+
+env: $PATH
+# list of path to try to lauch prog like all env var
+
+env: $?
+# contain last return command
+
+env $'variable'
+# replace with the value of var
+
+synt: ";"
+# separator cmd (ex : echo 42;ls)
+
+synt: "|"
+# use the last return for next cmd (ex: cat ex.txt | grep "to find")
+
+shortcut : crtl-d
+# delete character on cursor & exit when nothing on cmd
+
+shortcut : crtl-c
+# kill
+
+shortcut : crtl-\
+
+
+synt: " and '
+# close when find other
+# '' ignore ennv var 
