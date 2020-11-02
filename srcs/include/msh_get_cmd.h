@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 15:24:17 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/02 15:29:14 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/02 16:29:47 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 # include "./minishell.h"
 
-typedef struct	s_args
+typedef struct	s_arg
 {
 	char			*ptr;
 
-	struct s_args	*next
-}				t_args;
+	struct s_arg	*next;
+}				t_arg;
 
 char		**msh_get_cmd(char	*ptr);
 
