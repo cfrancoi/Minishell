@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 16:10:23 by user42            #+#    #+#             */
-/*   Updated: 2020/11/02 17:31:41 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/02 17:41:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int		get_cmd_lst(char **s, t_cmd **dst)
 {
 	t_cmd	*first;
 
-	bl = 0;
 	if (!(*dst = malloc (sizeof(t_cmd))))
 		return (-1);
 	first = *dst;
@@ -41,11 +40,11 @@ int		get_cmd_lst(char **s, t_cmd **dst)
 				(*dst)->sep = SEMI;
 			if (**s == '>')
 			{
-				if ((*s + 1) && (*s + 1) == '>')
+				if (*((*s) + 1) && *((*s) + 1) == '>')
 				{
 					(*dst)->sep = DRGT;
 					**s = 0;
-					*s++;
+					(*s)++;
 				}
 				else
 					(*dst)->sep = RGT;
@@ -61,16 +60,16 @@ int		get_cmd_lst(char **s, t_cmd **dst)
 			if (!(*s = pass_quotes(*s, **s)))
 				return (-1);
 		}
-		*s++;
+		(*s)++;
 	}
-	(*dst)->next == NULL;
+	(*dst)->next = NULL;
 	*dst = first;
 	return (0);
 }
 
 int main(void)
 {
-	char 	*test = "Bonjour je veux | separer < cette > string >> en plusieurs ; morceaux"
+	char 	*test = "Bonjour je veux | separer < cette > string >> en plusieurs ; morceaux";
 	t_cmd	*cmd;
 
 	get_cmd_lst(&test, &cmd);
