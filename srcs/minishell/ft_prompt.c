@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_var.c                                       :+:      :+:    :+:   */
+/*   ft_prompt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/09 17:16:30 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/10/14 15:31:50 by cfrancoi         ###   ########lyon.fr   */
+/*   Created: 2020/11/02 14:01:14 by cfrancoi          #+#    #+#             */
+/*   Updated: 2020/11/02 14:15:31 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../include/env.h"
-#include <stdlib.h>
+#include "../include/minishell.h"
+#include <stdio.h>
 
-t_var		*create_var(char *name, char *content)
+int		ft_prompt(void)
 {
-	t_var	*new;
+	int		ret;
+	char	*line;
 
-	new = NULL;
-	if(name != NULL)
+	ret = 1;
+	line = NULL;
+	while (ret)
 	{
-		if (!(new = malloc(sizeof(t_var))))
-			return (NULL);
-		if (name != NULL)
-			new->name = strdup(name);
-		if (content != NULL)
-			new->content = strdup(content);
-		new->next = NULL;
+		ret = get_next_line(0, &line);
 
+		ret = msh_parsing(line);
+		printf("[%s]\n", line);
+		free(line);
 	}
-	return (new);
+
+	return(ret);
 }

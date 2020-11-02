@@ -1,4 +1,3 @@
-#include "../Lib/libft.h"
 #include "../include/minishell.h"
 #include "../include/env.h"
 #include <string.h>

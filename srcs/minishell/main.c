@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls_var.c                                           :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/07 14:08:29 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/10/14 16:03:41 by cfrancoi         ###   ########lyon.fr   */
+/*   Created: 2020/11/02 13:52:04 by cfrancoi          #+#    #+#             */
+/*   Updated: 2020/11/02 14:10:52 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../include/env.h"
+#include "../include/minishell.h"
 
-int		ls_var(t_var **lst)
+#include <stdio.h>
+
+int		main(int ac, char **av, char **envp)
 {
-	t_var *tmp;
+	int ret;
 
-	tmp = *lst;
-	if (tmp == NULL)
-		return (0);
-	else
-	{
-		while (tmp != NULL)
-		{
-			print_var(tmp);
-			tmp = tmp->next;
-		}
-	}
-	return (0);
+	/* pars envp */
+	/*			*/
+
+	/* get currrent dir */
+
+	/* start prompt */
+	ret = ft_prompt();
+
+	return (ret);
 }
