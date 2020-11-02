@@ -3,7 +3,7 @@ NAME		= Minishell
 SRCS		= main.c
 SRCS		+= ft_prompt.c
 SRCS		+= msh_parsing.c
-SRCS		+= try_line.c
+SRCS		+= msh_get_cmd.c
 
 OBJ_DIR		= ./srcs/objects/
 MSH_DIR		= ./srcs/minishell/
