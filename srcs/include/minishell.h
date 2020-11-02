@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:26:16 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/02 14:28:37 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/02 15:55:52 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include	<unistd.h>
 # include	"../libft/libft.h"
 # include	"./env.h"
+# include	"./cfrancoi.h"
+# include	"./lfourage.h"
 
 int			ft_prompt(void);
 int			msh_parsing(char *line);
