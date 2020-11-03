@@ -4,6 +4,7 @@ SRCS		= main.c
 SRCS		+= ft_prompt.c
 SRCS		+= msh_parsing.c
 SRCS		+= msh_get_cmd.c
+SRCS		+= get_cmd_lst.c
 
 OBJ_DIR		= ./srcs/objects/
 MSH_DIR		= ./srcs/minishell/
@@ -26,7 +27,7 @@ $(OBJ_DIR)%.o:$(MSH_DIR)%.c $(INC_DIR)*.h
 	$(CC) -c $< -o $@
 
 $(NAME):$(OBJ) $(INC_DIR) $(LIBFT_A)
-	$(CC) -g $(OBJ) $(LIBFT_A) -o $(NAME)
+	$(CC) -g $(OBJ) $(MSH_DIR)env.a $(LIBFT_A)  -o $(NAME)
 
 clean:
 	$(RM_DIR) $(OBJ_DIR)

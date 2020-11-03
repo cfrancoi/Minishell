@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   msh_get_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 15:29:50 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/02 17:26:03 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/03 15:44:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/msh_get_cmd.h"
+#include "../include/minishell.h"
 
  /* Part 1 */
 static void		*add_args(char *ptr, t_arg **lst)
@@ -265,6 +265,7 @@ char			**msh_get_cmd(char *ptr)
 	return (av);
 }
 
+/*
 int main(int ac, char **av)
 {
 	char **lol = msh_get_cmd(av[1]);
@@ -277,3 +278,4 @@ int main(int ac, char **av)
 		i++;
 	}
 }
+*/

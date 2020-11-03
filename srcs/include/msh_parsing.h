@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   msh_get_cmd.h                                      :+:      :+:    :+:   */
+/*   msh_parsing.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/02 15:24:17 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/02 16:29:47 by cfrancoi         ###   ########lyon.fr   */
+/*   Created: 2020/11/03 15:35:25 by user42            #+#    #+#             */
+/*   Updated: 2020/11/03 15:38:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,30 @@
 
 # include "./minishell.h"
 
-typedef struct	s_arg
+# define EOF	0
+# define PIPE	1
+# define SEMI	2
+# define LFT	3
+# define RGT	4
+# define DRGT	5
+
+typedef	struct		s_cmd
+{
+	int				sep;
+	char			*str;
+	char			**av;
+	struct s_cmd	*next;
+}					t_cmd;
+
+typedef struct		s_arg
 {
 	char			*ptr;
 
 	struct s_arg	*next;
-}				t_arg;
+}					t_arg;
 
+int			msh_parsing(char *line);
+int			get_cmd_lst(char *str, t_cmd **src);
 char		**msh_get_cmd(char	*ptr);
 
 #endif
