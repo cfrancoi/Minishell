@@ -6,12 +6,13 @@
 /*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 13:52:44 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/10/26 18:02:07 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/03 17:34:30 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENV_H
-#define ENV_H
+# define ENV_H
+# include "../libft/libft.h"
 # include <string.h>
 
 typedef struct	s_var

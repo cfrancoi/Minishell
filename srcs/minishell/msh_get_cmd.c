@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 15:29:50 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/03 15:44:58 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/03 16:14:33 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ static int		get_args_ptr(char *ptr, t_arg **lst)
 
 	i = 0;
 	under = 0;
-	if (add_args(&ptr[i], lst) == NULL)
-		return (-1);
+	if (ptr[i] != ' ')
+		if (add_args(&ptr[i], lst) == NULL)
+			return (-1);
 	while (ptr[i])
 	{
 		if (ptr[i] == '"' || ptr[i] == 39 )
@@ -206,7 +207,6 @@ static	void	get_args_lst(t_arg *lst)
 	while (lst)
 	{
 		len = get_final_len(lst->ptr);
-		printf("len, %i\n", len);
 		lst->ptr = get_final_arg(lst->ptr, len);
 		printf("el %i: |%s|\n", i, lst->ptr);
 		++i;
