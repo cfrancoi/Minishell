@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 13:52:44 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/03 17:34:30 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/03 18:08:09 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int		print_var(t_var *ptr);
 int		ls_var(t_var **lst);
 t_var	*create_var(char *name, char *content);
 void	free_lst_var(t_var *lst);
+int		get_envp(char **envp);
 
 #endif
