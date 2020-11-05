@@ -6,6 +6,7 @@ SRCS		+= msh_parsing.c
 SRCS		+= msh_get_cmd.c
 SRCS		+= get_cmd_lst.c
 SRCS		+= msh_execve.c
+SRCS		+= msh_exit.c
 
 OBJ_DIR		= ./srcs/objects/
 MSH_DIR		= ./srcs/minishell/
