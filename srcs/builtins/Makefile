@@ -14,16 +14,16 @@ all:
 	make -C $(UNSET_DIR)
 
 clean:
-	$(MAKE) clean -C $(CD_DIR)
 	$(MAKE) clean -C $(ECHO_DIR)
+	$(MAKE) clean -C $(CD_DIR)
 	$(MAKE) clean -C $(ENV_DIR)
 	$(MAKE) clean -C $(EXPORT_DIR)
 	$(MAKE) clean -C $(PWD_DIR)
 	$(MAKE) clean -C $(UNSET_DIR)
 
 fclean:
-	$(MAKE) fclean -C $(CD_DIR)
 	$(MAKE) fclean -C $(ECHO_DIR)
+	$(MAKE) fclean -C $(CD_DIR)
 	$(MAKE) fclean -C $(ENV_DIR)
 	$(MAKE) fclean -C $(EXPORT_DIR)
 	$(MAKE) fclean -C $(PWD_DIR)

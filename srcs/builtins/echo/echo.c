@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:47:39 by user42            #+#    #+#             */
-/*   Updated: 2020/11/04 16:50:28 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/05 17:01:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int	main(int ac, char **av)
 			n = 1;
 			i++;
 		}
-		ft_putstr_fd(1, av[i])
+		ft_putstr_fd(av[i], 1);
 		if (i + 1 != ac)
-			ft_putchar_fd(1, ' ');
+			ft_putchar_fd(' ', 1);
 	}
 	if (n == 0)
-		ft_putchar_fd(1, '\n');
+		ft_putchar_fd('\n', 1);
 	return (0);
 }

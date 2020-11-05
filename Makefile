@@ -13,6 +13,7 @@ MSH_DIR		= ./srcs/minishell/
 LIBFT_DIR	= ./srcs/libft/
 ENV_DIR		= ./srcs/env/
 INC_DIR		= ./srcs/include/
+BUILT_DIR	= ./srcs/builtins
 LIBFT_A		= $(addprefix $(LIBFT_DIR), libft.a)
 ENV_A		= $(addprefix $(ENV_DIR), env.a)
 OBJ			= $(addprefix $(OBJ_DIR),$(SRCS:.c=.o))
@@ -26,6 +27,7 @@ all:
 	mkdir -p $(OBJ_DIR)
 	make -C $(LIBFT_DIR)
 	make -C $(ENV_DIR)
+	make -C $(BUILT_DIR)
 	$(MAKE) $(NAME) --no-print-directory
 
 $(OBJ_DIR)%.o:$(MSH_DIR)%.c $(INC_DIR)*.h
@@ -38,12 +40,14 @@ clean:
 	$(RM_DIR) $(OBJ_DIR)
 	$(MAKE) clean -C $(LIBFT_DIR)
 	$(MAKE) clean -C $(ENV_DIR)
+	$(MAKE) clean -C $(BUILT_DIR)
 
 fclean:
 	$(RM_DIR) $(OBJ_DIR)
 	$(RM) $(NAME)
 	$(MAKE) fclean -C $(LIBFT_DIR)
 	$(MAKE) fclean -C $(ENV_DIR)
+	$(MAKE) fclean -C $(BUILT_DIR)
 
 re:fclean all
 
