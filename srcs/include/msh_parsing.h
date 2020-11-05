@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 15:35:25 by user42            #+#    #+#             */
-/*   Updated: 2020/11/03 15:38:32 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/05 16:01:46 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct		s_arg
 	struct s_arg	*next;
 }					t_arg;
 
-int			msh_parsing(char *line);
+int			msh_parsing(char *line, t_cmd **ptr);
 int			get_cmd_lst(char *str, t_cmd **src);
 char		**msh_get_cmd(char	*ptr);
 

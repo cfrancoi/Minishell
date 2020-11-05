@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   msh_parsing.c                                      :+:      :+:    :+:   */
+/*   msh_execve.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/02 14:15:46 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/05 16:01:10 by cfrancoi         ###   ########lyon.fr   */
+/*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
+/*   Updated: 2020/11/05 16:14:30 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int		msh_parsing(char *line, t_cmd	**ptr)
+int		msh_execve(char **av, t_cmd **ptr)
 {
-	t_cmd	*first;
-	t_cmd	*cmd;
+	pid_t	pid;
+	int		status; // to check and maybe add to stuct
 
-	if (get_cmd_lst(line, &cmd) == -1)
-		return (-1);
-	first = cmd;
-
-	/* remplacement des $env */
-
-	while (cmd)
+	ptr = ptr;
+	if ((pid = fork()) == -1)
 	{
-		if (!(cmd->av = msh_get_cmd(cmd->str)))
-			return (-1);
-		cmd = cmd->next;
+		/* fail */
+		return (-1);
 	}
-	*ptr = first;
-	return (1);
+	else if (pid == 0)
+	{
+		/* fils */
+		execve(av[0], av, NULL);
+		/* if fail*/ 
+		return (-1);
+	}
+	else
+	{
+		/* pere */
+		wait(&status);
+	}
+	return (0);
 }
