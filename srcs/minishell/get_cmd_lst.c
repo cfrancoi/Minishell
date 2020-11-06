@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 16:10:23 by user42            #+#    #+#             */
-/*   Updated: 2020/11/03 15:23:23 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/06 16:55:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@ static char	*pass_quotes(char *str, int type)
 	return (str);
 }
 
-static t_cmd	*edit_cmd(char *s, t_cmd *dst)
+static t_cmd	*edit_cmd(char **src, t_cmd *dst)
 {
+	char	*s;
+
+	s = *src
 	if (*s == '|')
 		dst->sep = PIPE;
 	if (*s == '<')
@@ -44,6 +47,7 @@ static t_cmd	*edit_cmd(char *s, t_cmd *dst)
 		return (NULL);
 	dst = dst->next;
 	dst->str = s + 1;
+	*src = s;
 	return (dst);
 }
 
@@ -55,12 +59,11 @@ int		get_cmd_lst(char *s, t_cmd **dst)
 		return (-1);
 	first = *dst;
 	(*dst)->str = s;
-	int i = 0;
 	while (*s)
 	{
 		if (*s == '|' || *s == '>' || *s == '<' || *s == ';')
 		{
-			if (!((*dst) = edit_cmd(s, *dst)))
+			if (!((*dst) = edit_cmd(&s, *dst)))
 				return (-1);
 		}
 		else if (*s == '\'' || *s == '\"')
