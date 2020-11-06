@@ -13,5 +13,6 @@
 #include <fcntl.h>
 
 int		msh_execve(char **av, t_cmd **ptr);
+int		msh_dup_fd(t_cmd *ptr);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/05 16:14:30 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/06 16:23:49 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int		msh_execve(char **av, t_cmd **ptr)
 	else if (pid == 0)
 	{
 		/* fils */
+		msh_dup_fd(*ptr);
 		execve(av[0], av, NULL);
 		/* if fail*/ 
 		return (-1);
