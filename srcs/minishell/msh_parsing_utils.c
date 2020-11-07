@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   msh_parsing.c                                      :+:      :+:    :+:   */
+/*   msh_parsing_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/02 14:15:46 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/07 13:56:50 by user42           ###   ########.fr       */
+/*   Created: 2020/11/07 15:39:10 by user42            #+#    #+#             */
+/*   Updated: 2020/11/07 19:50:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "../include/minishell.h"
 
-int		msh_parsing(char *line, t_cmd **ptr)
+int		pass_quotes(char *str, int type)
 {
-	t_cmd	*first;
-	t_cmd	*cmd;
+	int r;
 
-	if (get_cmd_lst(line, &cmd) == -1)
-		return (-1);
-	first = cmd;
+	r = 1;
+	while (str[r] && str[r] != type)
+		r++;
+	return (r);
+}
 
-	/* remplacement des $env */
+t_var	*variable(char *ptr, int *i, int *len)
+{
+	char	*tmp;
+	t_var	*var;
 
-	while (cmd)
-	{
-		if (!(cmd->av = msh_get_cmd(cmd->str)))
-			return (-1);
-		cmd = cmd->next;
-	}
-	*ptr = first;
-	return (1);
+	if (!(tmp = get_str_var(&ptr[*i])))
+		return (NULL);
+	*i += ft_strlen(tmp);
+	if (!(var = get_var(g_list, tmp)))
+		return (NULL);
+	*len += ft_strlen(var->content);
+	free(tmp);
+	return (var);
 }

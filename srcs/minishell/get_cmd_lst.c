@@ -6,19 +6,11 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 16:10:23 by user42            #+#    #+#             */
-/*   Updated: 2020/11/06 16:58:45 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/07 16:03:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-static char	*pass_quotes(char *str, int type)
-{
-	str++;
-	while (*str && *str != type)
-		str++;
-	return (str);
-}
 
 static t_cmd	*edit_cmd(char **src, t_cmd *dst)
 {
@@ -54,6 +46,7 @@ static t_cmd	*edit_cmd(char **src, t_cmd *dst)
 int		get_cmd_lst(char *s, t_cmd **dst)
 {
 	t_cmd	*first;
+	int		i;
 
 	if (!(*dst = malloc (sizeof(t_cmd))))
 		return (-1);
@@ -68,7 +61,9 @@ int		get_cmd_lst(char *s, t_cmd **dst)
 		}
 		else if (*s == '\'' || *s == '\"')
 		{
-			if (!(s = pass_quotes(s, *s)))
+			i = (pass_quotes(s, *s));
+			s += i;
+			if (!(*s))
 				return (-1);
 		}
 		s++;

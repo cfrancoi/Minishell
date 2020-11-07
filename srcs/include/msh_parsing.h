@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 15:35:25 by user42            #+#    #+#             */
-/*   Updated: 2020/11/05 16:01:46 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/07 19:51:34 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,9 @@ typedef struct		s_arg
 int			msh_parsing(char *line, t_cmd **ptr);
 int			get_cmd_lst(char *str, t_cmd **src);
 char		**msh_get_cmd(char	*ptr);
+int			pass_quotes(char *str, int type);
+t_var		*variable(char *ptr, int *i, int *len);
+int			get_args_ptr(char *ptr, t_arg **lst);
+void		get_args_lst(t_arg *lst);
 
 #endif
