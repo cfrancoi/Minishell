@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 13:52:44 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/03 18:08:09 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/09 15:36:27 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct	s_var
 	struct s_var	*next;
 }				t_var;
 
+int		g_qm;
 t_var	*g_list;
 
 

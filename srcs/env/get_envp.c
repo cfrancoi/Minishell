@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_envp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 17:49:41 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/04 15:17:15 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/09 17:37:31 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ int		get_envp(char **envp)
 	i = 0;
 	y = 0;
 
+	if (!(tmp = create_var("?", "0")))
+		return (-1);
+	add_var(&g_list, tmp);
 	while (envp[i] != NULL)
 	{
 		while(envp[i][y] != '=')

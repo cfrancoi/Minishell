@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 12:07:53 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/03/08 12:07:54 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/09 16:00:03 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char			*ft_itoa_base(long long int nb, char *base)
 	neg = (nb < 0) ? -1 : 1;
 	len = ft_strlen(base);
 	blen += buflen((long int)(nb * neg), len);
-	if ((buffer = (char *)calloc(sizeof(char), (blen + 1))))
+	if ((buffer = (char *)ft_calloc(sizeof(char), (blen + 1))))
 	{
 		buffer[blen] = '\0';
 		(nb < 0) ? buffer[0] = '-' : 0;
