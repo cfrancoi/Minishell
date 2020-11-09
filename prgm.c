@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_prompt.c                                        :+:      :+:    :+:   */
+/*   prgm.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/02 14:01:14 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/09 16:09:58 by cfrancoi         ###   ########lyon.fr   */
+/*   Created: 2020/11/09 17:13:30 by cfrancoi          #+#    #+#             */
+/*   Updated: 2020/11/09 17:19:39 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
-#include <stdio.h>
 
-int		ft_prompt(void)
+
+#include <unistd.h>
+#include <string.h>
+
+int main()
 {
-	int		ret;
-	char	*line;
-	t_cmd	*ptr;
+	char buf [1024];
 
-	ret = 1;
-	ptr = NULL;
-	line = NULL;
-	while (ret)
+	bzero(buf, 1024);
+
+	while (read(0, buf, 1024))
 	{
-		ret = get_next_line(0, &line);
-
-		ret = msh_parsing(line, &ptr);
-
-		msh_push_cmd(&ptr);
-		free(line);
+		write(1, buf, strlen(buf));
+		write(1, buf, strlen(buf));
 	}
-
-	return(ret);
 }
