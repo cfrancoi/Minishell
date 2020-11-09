@@ -1,6 +1,7 @@
 NAME		= Minishell
 
 SRCS		= main.c
+SRCS		+= edit_qmrk.c
 SRCS		+= ft_prompt.c
 SRCS		+= msh_parsing.c
 SRCS		+= msh_parsing_utils.c

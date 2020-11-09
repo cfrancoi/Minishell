@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_prompt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:01:14 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/09 16:09:58 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/09 17:53:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 int		ft_prompt(void)
 {
 	int		ret;
+	int		err;
 	char	*line;
 	t_cmd	*ptr;
 
@@ -28,7 +29,7 @@ int		ft_prompt(void)
 
 		ret = msh_parsing(line, &ptr);
 
-		msh_push_cmd(&ptr);
+		err = edit_qmrk(msh_push_cmd(&ptr), ptr->av[0]);
 		free(line);
 	}
 
