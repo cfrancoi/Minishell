@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_prompt.c                                        :+:      :+:    :+:   */
+/*   get_builtin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/02 14:01:14 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/10 14:19:51 by user42           ###   ########.fr       */
+/*   Created: 2020/11/10 16:29:53 by user42            #+#    #+#             */
+/*   Updated: 2020/11/10 16:34:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-#include <stdio.h>
 
-int		ft_prompt(void)
+int		get_builtin(char *cmd, t_built *built, void **f)
 {
-	int		ret;
-	int		err;
-	char	*line;
-	t_cmd	*ptr;
-
-	ret = 1;
-	ptr = NULL;
-	line = NULL;
-	while (ret)
+	while (built->next)
 	{
-		ret = get_next_line(0, &line);
-
-		ret = msh_parsing(line, &ptr);
-
-		err = edit_qmrk(msh_push_cmd(&ptr), ptr->av[0]);
-		free(line);
+		if (strncmp(cmd, built->name, ft_strlen(built->name) == 0))
+		{
+			*f = built->f;
+			return (0);
+		}
+		built = built->next;
 	}
-
-	return(ret);
+	*f = NULL;
+	return (-1);
 }

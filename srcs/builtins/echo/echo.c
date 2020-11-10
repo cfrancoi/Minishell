@@ -6,13 +6,13 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:47:39 by user42            #+#    #+#             */
-/*   Updated: 2020/11/05 17:01:22 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/10 16:19:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../include/builtins.h"
 
-int	main(int ac, char **av)
+int	echo(int ac, char **av)
 {
 	int	i;
 	int n;
