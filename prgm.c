@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 17:13:30 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/09 17:19:39 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/09 18:08:22 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ int main()
 
 	bzero(buf, 1024);
 
-	while (read(0, buf, 1024))
-	{
+	read(0, buf, 1024);
 		write(1, buf, strlen(buf));
 		write(1, buf, strlen(buf));
-	}
 }
