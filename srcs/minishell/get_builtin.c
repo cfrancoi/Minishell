@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.h                                         :+:      :+:    :+:   */
+/*   get_builtin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/04 15:12:33 by user42            #+#    #+#             */
-/*   Updated: 2020/11/10 16:38:00 by user42           ###   ########.fr       */
+/*   Created: 2020/11/10 16:29:53 by user42            #+#    #+#             */
+/*   Updated: 2020/11/10 16:34:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTINS_H
-# define BUILTINS_H
+#include "../include/minishell.h"
 
-# include "minishell.h"
-
-typedef	struct			s_builtins
+int		get_builtin(char *cmd, t_built *built, void **f)
 {
-	void				*f;
-	char				*name;
-	struct s_builtins	*next;
-}						t_built;
-
-t_built					*builtins_alloc(t_built *first, char *name);
-int						get_builtin(char *cmd, t_built *built, void **f);
-
-#endif
+	while (built->next)
+	{
+		if (strncmp(cmd, built->name, ft_strlen(built->name) == 0))
+		{
+			*f = built->f;
+			return (0);
+		}
+		built = built->next;
+	}
+	*f = NULL;
+	return (-1);
+}

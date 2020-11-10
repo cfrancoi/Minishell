@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 13:52:04 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/04 15:18:48 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/10 16:48:34 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@
 
 int		main(int ac, char **av, char **envp)
 {
-	int ret;
+	int		ret;
+	t_built	*built;
 
 	/* pars envp */
+	if (!(built = builtins_alloc(built, "echo", &echo)))
+		return (-1)
 	get_envp(envp);
 	/*			*/
 
