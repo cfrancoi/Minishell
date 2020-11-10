@@ -1,4 +1,4 @@
-NAME		= echo
+NAME		= echo.a
 
 SRCS		= echo.c
 
@@ -22,8 +22,8 @@ all:
 $(OBJ_DIR)%.o:$(MSH_DIR)%.c $(INC_DIR)*.h
 	$(CC) -c $< -o $@
 
-$(NAME):$(OBJ) $(INC_DIR) $(ENV_A) $(LIBFT_A)
-	$(CC) -g $(OBJ) $(ENV_A) $(LIBFT_A) -o $(NAME)
+$(NAME):$(OBJ) $(INC_DIR)
+	ar rc  $(NAME) $(OBJ)
 
 clean:
 	$(RM_DIR) $(OBJ_DIR)

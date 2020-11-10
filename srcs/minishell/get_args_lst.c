@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 19:48:24 by user42            #+#    #+#             */
-/*   Updated: 2020/11/09 14:50:54 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/10 18:58:38 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void			get_args_lst(t_arg *lst)
 		len = get_final_len(lst->ptr);
 		lst->ptr = get_final_arg(lst->ptr, len, 0);
 		//
-		printf("el %i: |%s|\n", i, lst->ptr);
 		++i;
 		//
 		lst = lst->next;

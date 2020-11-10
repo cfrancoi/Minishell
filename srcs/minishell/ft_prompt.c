@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:01:14 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/10 14:19:51 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/10 18:56:30 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ int		ft_prompt(void)
 	while (ret)
 	{
 		ret = get_next_line(0, &line);
-
 		ret = msh_parsing(line, &ptr);
+		
+		err = msh_push_cmd(&ptr);
 
-		err = edit_qmrk(msh_push_cmd(&ptr), ptr->av[0]);
+		err = edit_qmrk(err ,ptr->av[0]);
 		free(line);
 	}
 

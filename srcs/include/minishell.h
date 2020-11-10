@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:26:16 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/04 15:25:08 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/10 17:50:49 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include	"../libft/libft.h"
 # include	"./env.h"
 # include	"./msh_parsing.h"
+# include	"./builtins.h"
 # include	"./cfrancoi.h"
 # include	"./lfourage.h"
 

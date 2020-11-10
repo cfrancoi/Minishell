@@ -13,13 +13,18 @@ SRCS		+= msh_execve.c
 SRCS		+= msh_exit.c
 SRCS		+= msh_dup_fd.c
 SRCS		+= msh_push_cmd.c
+SRCS		+= builtins_alloc.c
+SRCS		+= get_builtin.c
+SRCS		+= msh_get_path.c
+
 
 OBJ_DIR		= ./srcs/objects/
 MSH_DIR		= ./srcs/minishell/
 LIBFT_DIR	= ./srcs/libft/
 ENV_DIR		= ./srcs/env/
 INC_DIR		= ./srcs/include/
-BUILT_DIR	= ./srcs/builtins
+BUILT_DIR	= ./srcs/builtins/
+ECHO_A		= $(addprefix $(BUILT_DIR), echo/echo.a)
 LIBFT_A		= $(addprefix $(LIBFT_DIR), libft.a)
 ENV_A		= $(addprefix $(ENV_DIR), env.a)
 OBJ			= $(addprefix $(OBJ_DIR),$(SRCS:.c=.o))
@@ -39,8 +44,8 @@ all:
 $(OBJ_DIR)%.o:$(MSH_DIR)%.c $(INC_DIR)*.h
 	$(CC) -c $< -o $@
 
-$(NAME):$(OBJ) $(INC_DIR) $(LIBFT_A)
-	$(CC) -g $(OBJ) $(ENV_A) $(LIBFT_A)  -o $(NAME)
+$(NAME):$(OBJ) $(INC_DIR) $(LIBFT_A) $(ECHO_A)
+	$(CC) -g $(OBJ) $(ENV_A) $(LIBFT_A) $(ECHO_A) -o $(NAME)
 
 clean:
 	$(RM_DIR) $(OBJ_DIR)

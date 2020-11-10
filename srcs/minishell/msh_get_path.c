@@ -6,17 +6,18 @@
 /*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 16:07:47 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/10 16:49:20 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/10 18:54:48 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static char		*get_next_path(char **prgm)
+static char		*get_next_path(char **pgrm)
 {
 	char	*tmp;
+	char	*ptr;
 
-	tmp = ft_strccopy(*prgm, ':');
+	tmp = ft_strccpy(*pgrm, ':');
 	if (ft_strlen(tmp) == 0)
 	{
 		free(tmp);
@@ -24,43 +25,52 @@ static char		*get_next_path(char **prgm)
 	}
 	else
 	{
-		while(**pgrm && **prgm != ':')
+		ptr = *pgrm;
+		while(*ptr != '\0' && *ptr != ':')
 		{
-			*prgm++;
+			ptr++;
 		}
-		if (**pgrm == ':')
-			*pgrm++;
+		if (*ptr == ':')
+			*ptr++;
+		*pgrm = ptr;
 		return (tmp);
 	}
 }
 
 int			msh_get_path(char *prgm, char **path)
 {
-	t_var	*ptr;
+	void	*ptr;
 	char	*tmp;
 	int		fd;
+	char	*to_free;
 
 	fd = 0;
 	*path = NULL;
 	tmp = NULL;
+
 	if ((ptr = get_var(g_list, "PATH")) == NULL)
 		return (-1);
-	while((tmp = get_next_path(&prm)) != NULL)
+	ptr = ft_strdup(((t_var *)ptr)->content);
+	to_free = ptr;
+	while((tmp = get_next_path(&ptr)) != NULL)
 	{
-		tmp = ft_join(tmp, prgm, 1);
-		if ((fd = open(tmp, RD_ONLY)) == -1)
+		tmp = ft_strjoinf(tmp, "/", 1);
+		tmp = ft_strjoinf(tmp, prgm, 1);
+		if ((fd = open(tmp, O_RDONLY)) == -1)
 		{
 			free(tmp);
 			tmp = NULL;
 		}
 		else
 		{
-			*path = tmp
+			*path = tmp;
 			close (fd);
+			free(to_free);
 			return(0);
 		}
 	}
 	if (tmp != NULL)
 		free(tmp);
+	free(to_free);
 	return (-1);
 }

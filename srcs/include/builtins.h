@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:12:33 by user42            #+#    #+#             */
-/*   Updated: 2020/11/10 16:38:00 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/10 17:52:49 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ typedef	struct			s_builtins
 	struct s_builtins	*next;
 }						t_built;
 
-t_built					*builtins_alloc(t_built *first, char *name);
+t_built					*builtins_alloc(t_built *first, char *name, void *f);
 int						get_builtin(char *cmd, t_built *built, void **f);
+
+int						echo(int ac, char **argv);
 
 #endif
