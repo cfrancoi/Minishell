@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/11 13:32:44 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/11 15:21:49 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ static int	pathfinder(char **av)
 	{
 		path = av[0];
 	}
-	return (execve(path, av, NULL));
+	else
+		return (execve(path, av, NULL));
+	exit(-1);
 }
 
 int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd, t_built *built)
@@ -53,12 +55,16 @@ int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd, t_built *built)
 		if (get_builtin(ptr->av[0], built, &f) == 1)
 			return ((*f)(ft_array_len(ptr->av), ptr->av));
 		else
-			return (pathfinder(ptr->av));
+		{
+			if (pathfinder(ptr->av) == -1);
+				exit(-1);
+		}
 	}
 	else
 	{
 		/* pere */
 		wait(&status);
+		printf("fork stop !\n");
 	}
 	return (0);
 }

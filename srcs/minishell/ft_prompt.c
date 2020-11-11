@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:01:14 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/11 13:01:16 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/11 14:59:56 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int		ft_prompt(t_built *built)
 	line = NULL;
 	while (ret)
 	{
+		printf("Minishell : \n");
 		ret = get_next_line(0, &line);
 		ret = msh_parsing(line, &ptr);
 		
