@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/11 15:46:39 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/11 17:54:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd, t_built *built)
 		/* fils */
 		do_pipe(p_fd, p_rd);
 		msh_dup_fd(ptr);
-		if (get_builtin(ptr->av[0], built, &f) == 1)
+		if (get_builtin(ptr->av[0], built, &f, ptr) == 1)
 			exit((*f)(ft_array_len(ptr->av), ptr->av));
 		else
 		{
@@ -64,7 +64,9 @@ int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd, t_built *built)
 	{
 		/* pere */
 		wait(&status);
-		printf("fork stop !\n");
+		if (status == 8 * 256)
+			exit (0);
+		printf("status : %i \n", status);
 	}
 	return (0);
 }

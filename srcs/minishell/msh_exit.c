@@ -6,16 +6,36 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:57:17 by user42            #+#    #+#             */
-/*   Updated: 2020/11/05 16:36:25 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/11 17:53:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void		msh_exit(t_cmd *cmd, t_arg *arg, int ret)
+static int		need_pipe(t_cmd *cmd)
+{
+	int sep;
+
+	sep = 0;
+	while (cmd != NULL)
+	{
+		sep = cmd->sep;
+		if (sep == LFT || sep ==  RGT || sep == DRGT)
+			cmd = cmd->next;
+		else if (sep == PIPE)
+			return (1);
+		else if (sep == SEMI || sep == EOF)
+			return (0);
+	}
+	return (0);
+}
+
+int		msh_exit(t_cmd *cmd, t_built *built, int ret)
 {
 	void	*tofree;
 
+	if (need_pipe(cmd))
+		return (0);
 	while (cmd)
 	{
 		if (cmd->str)
@@ -25,13 +45,15 @@ void		msh_exit(t_cmd *cmd, t_arg *arg, int ret)
 		cmd = cmd->next;
 		free(tofree);
 	}
-	while (arg)
+	while (built)
 	{
-		if (arg->ptr)
-			free(arg->ptr);
-		tofree = (void *)arg;
-		arg = arg->next;
+		if (built->name)
+			free(built->name);
+		tofree = (void *)built;
+		built = built->next;
 		free(tofree);
 	}
-	exit (ret);
+	free_lst_var(g_list);
+	ft_putstr_fd("exit\n", 2);
+	exit (8);
 }
