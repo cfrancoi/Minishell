@@ -6,14 +6,14 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:01:14 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/10 18:56:30 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/11 13:01:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 #include <stdio.h>
 
-int		ft_prompt(void)
+int		ft_prompt(t_built *built)
 {
 	int		ret;
 	int		err;
@@ -28,7 +28,7 @@ int		ft_prompt(void)
 		ret = get_next_line(0, &line);
 		ret = msh_parsing(line, &ptr);
 		
-		err = msh_push_cmd(&ptr);
+		err = msh_push_cmd(&ptr, built);
 
 		err = edit_qmrk(err ,ptr->av[0]);
 		free(line);

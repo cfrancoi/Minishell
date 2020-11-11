@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   msh_execve.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/10 18:59:34 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/11 13:32:44 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-
 
 static int	do_pipe(int *p_fd, int *p_rd)
 {
@@ -25,10 +23,22 @@ static int	do_pipe(int *p_fd, int *p_rd)
 	return (0);
 }
 
-int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd)
+static int	pathfinder(char **av)
+{
+	char	*path;
+
+	if (msh_get_path(av[0], &path) != 0)
+	{
+		path = av[0];
+	}
+	return (execve(path, av, NULL));
+}
+
+int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd, t_built *built)
 {
 	pid_t	pid;
 	int		status; // to check and maybe add to stuct
+	int		(*f)();
 
 	if ((pid = fork()) == -1)
 	{
@@ -37,20 +47,13 @@ int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd)
 	}
 	else if (pid == 0)
 	{
-		/*		*/
-		char *path;
-		if (msh_get_path(ptr->av[0], &path) != 0)
-		{
-			path = ptr->av[0];
-		}
-			
-		/*		*/
 		/* fils */
 		do_pipe(p_fd, p_rd);
 		msh_dup_fd(ptr);
-		execve(path, ptr->av, NULL);
-		/* if fail*/
-		return (-1);
+		if (get_builtin(ptr->av[0], built, &f) == 1)
+			return ((*f)(ft_array_len(ptr->av), ptr->av));
+		else
+			return (pathfinder(ptr->av));
 	}
 	else
 	{

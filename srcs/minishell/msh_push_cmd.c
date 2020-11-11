@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_push_cmd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:48:44 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/10 19:00:49 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/11 12:55:09 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int		need_pipe(t_cmd *cmd)
 	return (0);
 }
 
-int			msh_push_cmd(t_cmd	**ptr)
+int			msh_push_cmd(t_cmd	**ptr, t_built	*built)
 {
 	t_cmd	*cmd;
 	int		p_fd[2];
@@ -66,7 +66,7 @@ int			msh_push_cmd(t_cmd	**ptr)
 	while (cmd != NULL)
 	{
 		p_rd[1] = need_pipe(cmd);
-		msh_execve(cmd, p_fd, p_rd);
+		msh_execve(cmd, p_fd, p_rd, built);
 		
 		p_rd[0] = need_pipe(cmd);
 		cmd = get_next_cmd(cmd);

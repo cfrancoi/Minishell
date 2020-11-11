@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_builtin.c                                      :+:      :+:    :+:   */
+/*   msh_execve.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/10 16:29:53 by user42            #+#    #+#             */
-/*   Updated: 2020/11/11 13:38:31 by user42           ###   ########.fr       */
+/*   Created: 2020/11/11 12:58:42 by user42            #+#    #+#             */
+/*   Updated: 2020/11/11 13:06:07 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#ifndef MSH_EXECVE_H
+#define MSH_EXECVE_H
 
-int		get_builtin(char *cmd, t_built *built, int (**f)())
-{
-	while (built->next)
-	{
-		if (strncmp(cmd, built->name, ft_strlen(built->name) == 0))
-		{
-			*f = built->f;
-			return (0);
-		}
-		built = built->next;
-	}
-	*f = NULL;
-	return (1);
-}
+#include "minishell.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/wait.h>
+#include <fcntl.h>
+
+int		msh_push_cmd(t_cmd **ptr, t_built *built);
+int		msh_execve(t_cmd *ptr, int *p_fd, int *p_rd, t_built *built);
+int		msh_dup_fd(t_cmd *ptr);
+int		msh_get_path(char *prgm, char **path);
+#endif

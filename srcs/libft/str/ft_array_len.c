@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_builtin.c                                      :+:      :+:    :+:   */
+/*   ft_array_len.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/10 16:29:53 by user42            #+#    #+#             */
-/*   Updated: 2020/11/11 13:38:31 by user42           ###   ########.fr       */
+/*   Created: 2020/11/11 12:50:29 by user42            #+#    #+#             */
+/*   Updated: 2020/11/11 12:50:39 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../libft.h"
 
-int		get_builtin(char *cmd, t_built *built, int (**f)())
+size_t        ft_array_len(char **ptr)
 {
-	while (built->next)
-	{
-		if (strncmp(cmd, built->name, ft_strlen(built->name) == 0))
-		{
-			*f = built->f;
-			return (0);
-		}
-		built = built->next;
-	}
-	*f = NULL;
-	return (1);
+    int i;
+
+    i = 1;
+    if (ptr == NULL)
+        return (0);
+    while(ptr[i] != NULL)
+        i++;
+    return (i);
+
 }

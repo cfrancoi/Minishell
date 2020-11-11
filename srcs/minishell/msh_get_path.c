@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_get_path.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 16:07:47 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/10 18:54:48 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/11 13:40:44 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			msh_get_path(char *prgm, char **path)
 		return (-1);
 	ptr = ft_strdup(((t_var *)ptr)->content);
 	to_free = ptr;
-	while((tmp = get_next_path(&ptr)) != NULL)
+	while((tmp = get_next_path((char **)(&ptr))) != NULL)
 	{
 		tmp = ft_strjoinf(tmp, "/", 1);
 		tmp = ft_strjoinf(tmp, prgm, 1);

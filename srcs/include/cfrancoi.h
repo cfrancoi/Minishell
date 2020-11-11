@@ -12,9 +12,4 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 
-int		msh_push_cmd(t_cmd **ptr);
-int		msh_execve(t_cmd *ptr, int *p_fd, int *p_rd);
-int		msh_dup_fd(t_cmd *ptr);
-
-int			msh_get_path(char *prgm, char **path);
 #endif

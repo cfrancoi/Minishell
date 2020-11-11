@@ -15,6 +15,7 @@ SRC =	mem/ft_memset.c \
 		check/ft_isascii.c \
 		check/ft_isprint.c \
 		\
+		str/ft_array_len.c \
 		str/ft_strlen.c \
 		str/ft_toupper.c \
 		str/ft_tolower.c \

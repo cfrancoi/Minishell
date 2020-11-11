@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 19:48:24 by user42            #+#    #+#             */
-/*   Updated: 2020/11/10 18:58:38 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/11 13:08:04 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int				get_final_len(char *ptr)
 		else if (ptr[i] == '$' && qte != '\'' && ft_isalnum(ptr[i + 1]))
 		{
 			if (!(var = variable(ptr, &i, &len)))
-				return (NULL);
+				return (-1);
 		}
 		else
 			len++;

@@ -6,13 +6,13 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 16:15:35 by user42            #+#    #+#             */
-/*   Updated: 2020/11/10 16:48:39 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/11 13:37:36 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-t_built		*builtins_alloc(t_built *first, char *name, void *f)
+t_built		*builtins_alloc(t_built *first, char *name, int (*f)())
 {
 	t_built	*ret;
 
@@ -38,7 +38,7 @@ t_built		*builtins_alloc(t_built *first, char *name, void *f)
 	}
 	*/
 
-	//enlever lorsque les builtins sont integre
+	//enlever lorsque les builtins seront tous integre
 	ret->next = NULL;
 	//
 	
