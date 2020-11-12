@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:01:14 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/11 14:59:56 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/12 16:45:40 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		ft_prompt(t_built *built)
 		
 		err = msh_push_cmd(&ptr, built);
 
-		err = edit_qmrk(err ,ptr->av[0]);
+		err = edit_qmrk(err ,"voici le probleme");
 		free(line);
 	}
 

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 15:29:50 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/07 19:52:10 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/12 15:04:58 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ char		**msh_get_cmd(char *ptr)
 
 	get_args_ptr(ptr, &lst);
 	get_args_lst(lst); /* need to free /!\ */
+	//free(lst);
 	av = lst_to_array(lst);
 
 

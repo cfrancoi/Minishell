@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 19:48:24 by user42            #+#    #+#             */
-/*   Updated: 2020/11/11 13:08:04 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/12 15:17:40 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int				get_final_len(char *ptr)
 	len = 0;
 	while (ptr[i] && !(ptr[i] == ' ' && qte == 0))
 	{
-		if (ptr[i] == '"'|| ptr[i] == '\'' && (qte == 0 || qte == ptr[i]))
+		if (ptr[i] == '"'|| (ptr[i] == '\'' && (qte == 0 || qte == ptr[i])))
 			qte = (qte == ptr[i]) ? 0 : ptr[i];
 		else if (ptr[i] == '$' && qte != '\'' && ft_isalnum(ptr[i + 1]))
 		{
@@ -51,7 +51,7 @@ static char		*get_final_arg(char *ptr, int len, int qte)
 	len = 0;
 	while (ptr[i]  && !(ptr[i] == ' ' && qte == 0 ) )
 	{
-		if (ptr[i] == '"'|| ptr[i] == '\'' && (qte == 0 || qte == ptr[i]))
+		if (ptr[i] == '"'|| (ptr[i] == '\'' && (qte == 0 || qte == ptr[i])))
 			qte = (qte == ptr[i]) ? 0 : ptr[i];
 		else if (ptr[i] == '$' && qte != '\'' && ft_isalnum(ptr[i + 1]))
 		{

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:48:44 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/11 12:55:09 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/12 16:40:56 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,22 @@ static t_cmd	*get_next_cmd(t_cmd *ptr)
 	{
 		sep = cmd->sep;
 		if (sep == EOF)
+		{
+			ft_array_free(cmd->av);
+			free(cmd);
 			return (NULL);
+		}
 		else if (sep == PIPE || sep == SEMI)
 			return (cmd->next);
 		else if (sep == LFT || sep ==  RGT || sep == DRGT)
-			cmd = cmd->next;
+		{
+			ptr = cmd->next;
+			ft_array_free(cmd->av);
+			free(cmd);
+			cmd = ptr;
+		}
 	}
+	return (NULL);
 }
 
 static int		need_pipe(t_cmd *cmd)

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:15:46 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/07 13:56:50 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/12 14:38:45 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int		msh_parsing(char *line, t_cmd **ptr)
 	t_cmd	*first;
 	t_cmd	*cmd;
 
+	first = NULL;
+	cmd = NULL;
 	if (get_cmd_lst(line, &cmd) == -1)
 		return (-1);
 	first = cmd;

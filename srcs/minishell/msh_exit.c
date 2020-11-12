@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:57:17 by user42            #+#    #+#             */
-/*   Updated: 2020/11/11 17:53:32 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/12 15:39:06 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,5 @@ int		msh_exit(t_cmd *cmd, t_built *built, int ret)
 	}
 	free_lst_var(g_list);
 	ft_putstr_fd("exit\n", 2);
-	exit (8);
+	exit (ret);
 }

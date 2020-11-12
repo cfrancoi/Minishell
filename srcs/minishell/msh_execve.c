@@ -6,11 +6,12 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/11 17:54:56 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/12 16:20:42 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+#include <stdio.h>
 
 static int	do_pipe(int *p_fd, int *p_rd)
 {
@@ -32,7 +33,9 @@ static int	pathfinder(char **av)
 		path = av[0];
 	}
 	else
+	{
 		return (execve(path, av, NULL));
+	}
 	exit(-1);
 }
 
@@ -56,7 +59,7 @@ int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd, t_built *built)
 			exit((*f)(ft_array_len(ptr->av), ptr->av));
 		else
 		{
-			if (pathfinder(ptr->av) == -1);
+			if (pathfinder(ptr->av) == -1)
 				exit(-1);
 		}
 	}
@@ -65,7 +68,10 @@ int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd, t_built *built)
 		/* pere */
 		wait(&status);
 		if (status == 8 * 256)
-			exit (0);
+		{
+			msh_exit(ptr, built, 0);
+			//exit (0);
+		}
 		printf("status : %i \n", status);
 	}
 	return (0);

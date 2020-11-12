@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 15:37:21 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/06 16:30:37 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/12 15:21:46 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,18 @@ static int		redirect_fd(const char *path, int flags, int fd)
 
 int		msh_dup_fd(t_cmd *ptr)
 {
-	int ret;
-
 	while (ptr)
 	{
-		if (ptr->sep == LFT | ptr->sep == RGT | ptr->sep == DRGT)
+		if (ptr->sep == LFT || ptr->sep == RGT || ptr->sep == DRGT)
 		{
 			if (ptr->next)
 			{
 				if (ptr->sep == LFT)
-					redirect_fd(ptr->next->av[0], (O_RDWR) , 0);
+					redirect_fd(ptr->next->av[0], O_RDWR, 0);
 				else if (ptr->sep == RGT)
-					redirect_fd(ptr->next->av[0], (O_RDWR | O_CREAT | O_TRUNC) , 1);
+					redirect_fd(ptr->next->av[0], O_RDWR | O_CREAT | O_TRUNC, 1);
 				else if (ptr->sep == DRGT)
-					redirect_fd(ptr->next->av[0], (O_RDWR | O_CREAT | O_APPEND ) ,  1);
+					redirect_fd(ptr->next->av[0], O_RDWR | O_CREAT | O_APPEND,  1);
 			}
 		}
 		else

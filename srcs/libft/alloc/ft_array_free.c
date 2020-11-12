@@ -6,7 +6,7 @@
 /*   By: cfrancoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 12:07:38 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/03/08 12:07:40 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/12 16:34:48 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	ft_array_free(char **tab)
 {
 	int i;
 
-	i = -1;
+	i = 0;
 	if (tab != NULL)
 	{
-		while (tab[++i] != NULL)
-			free(tab[i]);
+		while (tab[i] != NULL)
+			free(tab[i++]);
 		free(tab);
 	}
 }

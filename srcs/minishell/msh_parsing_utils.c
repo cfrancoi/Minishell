@@ -6,12 +6,13 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:39:10 by user42            #+#    #+#             */
-/*   Updated: 2020/11/09 14:41:17 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/12 15:45:07 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../include/minishell.h"
+#include "../include/env.h"
 
 int		pass_quotes(char *str, int type)
 {

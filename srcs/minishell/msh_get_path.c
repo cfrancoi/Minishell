@@ -6,11 +6,12 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 16:07:47 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/11 13:40:44 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/12 16:24:54 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+#include <stdio.h>
 
 static char		*get_next_path(char **pgrm)
 {
@@ -31,7 +32,7 @@ static char		*get_next_path(char **pgrm)
 			ptr++;
 		}
 		if (*ptr == ':')
-			*ptr++;
+			ptr += 1; 
 		*pgrm = ptr;
 		return (tmp);
 	}
@@ -56,6 +57,7 @@ int			msh_get_path(char *prgm, char **path)
 	{
 		tmp = ft_strjoinf(tmp, "/", 1);
 		tmp = ft_strjoinf(tmp, prgm, 1);
+		printf("path : %s \n", tmp);
 		if ((fd = open(tmp, O_RDONLY)) == -1)
 		{
 			free(tmp);

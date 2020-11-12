@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 13:52:44 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/09 17:43:23 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/12 15:51:09 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ void	free_lst_var(t_var *lst);
 int		get_envp(char **envp);
 int		edit_qmrk(int excode, char *cmd);
 
+# include "./minishell.h"
 #endif

@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 17:16:30 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/03 17:31:57 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/11 18:21:01 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ t_var		*create_var(char *name, char *content)
 		if (!(new = malloc(sizeof(t_var))))
 			return (NULL);
 		if (name != NULL)
-			new->name = strdup(name);
+			new->name = ft_strdup(name);
 		if (content != NULL)
-			new->content = strdup(content);
+			new->content = ft_strdup(content);
 		new->next = NULL;
 
 	}

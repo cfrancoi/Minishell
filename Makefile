@@ -37,15 +37,15 @@ RM_DIR		= rm -rf
 all:
 	mkdir -p $(OBJ_DIR)
 	make -C $(LIBFT_DIR)
-	make -C $(ENV_DIR)
 	make -C $(BUILT_DIR)
+	make -C $(ENV_DIR)
 	$(MAKE) $(NAME) --no-print-directory
 
 $(OBJ_DIR)%.o:$(MSH_DIR)%.c $(INC_DIR)*.h
-	$(CC) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME):$(OBJ) $(INC_DIR) $(LIBFT_A) $(ECHO_A)
-	$(CC) -g $(OBJ) $(ENV_A) $(LIBFT_A) $(ECHO_A) -o $(NAME)
+	$(CC) $(CFLAGS) -g $(OBJ) $(ENV_A) $(ECHO_A) $(LIBFT_A)  -o $(NAME)
 
 clean:
 	$(RM_DIR) $(OBJ_DIR)
