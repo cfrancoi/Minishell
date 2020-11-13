@@ -9,7 +9,8 @@ SRC =	add_var.c \
 		get_str_var.c \
 		print_var.c \
 		free_lst_var.c \
-		get_envp.c
+		get_envp.c \
+		lst_to_envp.c
 
 OBJS = $(SRC:.c=.o)
 

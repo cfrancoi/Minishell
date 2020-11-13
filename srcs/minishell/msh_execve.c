@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/12 16:20:42 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/13 15:43:13 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	do_pipe(int *p_fd, int *p_rd)
 	return (0);
 }
 
-static int	pathfinder(char **av)
+static int	pathfinder(char **av, char *const envp[])
 {
 	char	*path;
 
@@ -34,16 +34,20 @@ static int	pathfinder(char **av)
 	}
 	else
 	{
-		return (execve(path, av, NULL));
+		return (execve(path, av, envp));
 	}
 	exit(-1);
 }
 
 int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd, t_built *built)
 {
-	pid_t	pid;
-	int		status; // to check and maybe add to stuct
-	int		(*f)();
+	pid_t		pid;
+	int			status; // to check and maybe add to stuct
+	int			(*f)();
+	char		**envp;
+
+	if ((envp = lst_to_envp(g_list)) == NULL)
+		return (-1);
 
 	if ((pid = fork()) == -1)
 	{
@@ -59,7 +63,7 @@ int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd, t_built *built)
 			exit((*f)(ft_array_len(ptr->av), ptr->av));
 		else
 		{
-			if (pathfinder(ptr->av) == -1)
+			if (pathfinder(ptr->av, envp) == -1)
 				exit(-1);
 		}
 	}
@@ -67,11 +71,9 @@ int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd, t_built *built)
 	{
 		/* pere */
 		wait(&status);
+		ft_array_free(envp);
 		if (status == 8 * 256)
-		{
 			msh_exit(ptr, built, 0);
-			//exit (0);
-		}
 		printf("status : %i \n", status);
 	}
 	return (0);

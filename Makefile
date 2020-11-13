@@ -44,8 +44,8 @@ all:
 $(OBJ_DIR)%.o:$(MSH_DIR)%.c $(INC_DIR)*.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME):$(OBJ) $(INC_DIR) $(LIBFT_A) $(ECHO_A)
-	$(CC) $(CFLAGS) -g $(OBJ) $(ENV_A) $(ECHO_A) $(LIBFT_A)  -o $(NAME)
+$(NAME):$(OBJ) $(INC_DIR) $(LIBFT_A) $(ENV_A) $(ECHO_A)
+	$(CC) $(CFLAGS) -g  $(OBJ) $(ECHO_A) $(ENV_A)  $(LIBFT_A) -o $(NAME)
 
 clean:
 	$(RM_DIR) $(OBJ_DIR)
