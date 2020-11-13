@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/13 15:43:13 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/13 16:52:10 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	pathfinder(char **av, char *const envp[])
 	{
 		return (execve(path, av, envp));
 	}
-	exit(-1);
+	exit(127);
 }
 
 int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd, t_built *built)
@@ -64,7 +64,7 @@ int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd, t_built *built)
 		else
 		{
 			if (pathfinder(ptr->av, envp) == -1)
-				exit(-1);
+				exit(126);
 		}
 	}
 	else
@@ -72,9 +72,10 @@ int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd, t_built *built)
 		/* pere */
 		wait(&status);
 		ft_array_free(envp);
+		edit_qmrk(status / 256, ptr->av[0]);
 		if (status == 8 * 256)
 			msh_exit(ptr, built, 0);
-		printf("status : %i \n", status);
+		printf("status : %i \n", status / 256);
 	}
 	return (0);
 }

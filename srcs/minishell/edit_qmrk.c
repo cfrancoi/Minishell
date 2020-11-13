@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 17:41:58 by user42            #+#    #+#             */
-/*   Updated: 2020/11/10 14:07:08 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/13 16:36:39 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	edit_errno(int excode, int tmp)
 {
 	if (excode == -1)
 		errno = tmp;
-	return (-1);
+	return (excode);
 }
 
 int			edit_qmrk(int excode, char *cmd)

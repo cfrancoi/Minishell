@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:01:14 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/12 16:45:40 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/13 16:40:41 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 int		ft_prompt(t_built *built)
 {
 	int		ret;
-	int		err;
 	char	*line;
 	t_cmd	*ptr;
 
@@ -29,11 +28,8 @@ int		ft_prompt(t_built *built)
 		ret = get_next_line(0, &line);
 		ret = msh_parsing(line, &ptr);
 		
-		err = msh_push_cmd(&ptr, built);
-
-		err = edit_qmrk(err ,"voici le probleme");
+		msh_push_cmd(&ptr, built);
 		free(line);
 	}
-
 	return(ret);
 }
