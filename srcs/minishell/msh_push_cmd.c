@@ -6,11 +6,12 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:48:44 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/12 16:40:56 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/13 17:23:55 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+#include <stdio.h>
 
 static t_cmd	*get_next_cmd(t_cmd *ptr)
 {
@@ -25,6 +26,7 @@ static t_cmd	*get_next_cmd(t_cmd *ptr)
 		if (sep == EOF)
 		{
 			ft_array_free(cmd->av);
+			cmd->sep = 0;
 			free(cmd);
 			return (NULL);
 		}
@@ -33,6 +35,7 @@ static t_cmd	*get_next_cmd(t_cmd *ptr)
 		else if (sep == LFT || sep ==  RGT || sep == DRGT)
 		{
 			ptr = cmd->next;
+			cmd->sep = 0;
 			ft_array_free(cmd->av);
 			free(cmd);
 			cmd = ptr;
@@ -40,6 +43,7 @@ static t_cmd	*get_next_cmd(t_cmd *ptr)
 	}
 	return (NULL);
 }
+
 
 static int		need_pipe(t_cmd *cmd)
 {
@@ -77,11 +81,8 @@ int			msh_push_cmd(t_cmd	**ptr, t_built	*built)
 	{
 		p_rd[1] = need_pipe(cmd);
 		msh_execve(cmd, p_fd, p_rd, built);
-		
 		p_rd[0] = need_pipe(cmd);
 		cmd = get_next_cmd(cmd);
-
-
 	}
 	dup2(0, fd_in);
 	dup2(1, fd_out);
@@ -90,11 +91,3 @@ int			msh_push_cmd(t_cmd	**ptr, t_built	*built)
 
 	return (0);
 }
-
-/*
-   -1 : n/a						/ start
-	0 : fd[1] -> 1				/ pipe first execve
-	1 : fd[0] -> 0				/ next if no futur pipe
-	2 : fd[1] -> 1 fd[0] -> 0
-
-*/

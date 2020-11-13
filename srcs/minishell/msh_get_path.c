@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 16:07:47 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/12 16:24:54 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/13 17:24:44 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int			msh_get_path(char *prgm, char **path)
 	{
 		tmp = ft_strjoinf(tmp, "/", 1);
 		tmp = ft_strjoinf(tmp, prgm, 1);
-		printf("path : %s \n", tmp);
 		if ((fd = open(tmp, O_RDONLY)) == -1)
 		{
 			free(tmp);
