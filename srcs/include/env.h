@@ -6,14 +6,18 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 13:52:44 by cfrancoi          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/11/17 15:59:48 by user42           ###   ########.fr       */
+=======
+/*   Updated: 2020/11/17 14:57:16 by cfrancoi         ###   ########lyon.fr   */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENV_H
 # define ENV_H
-# include "../libft/libft.h"
 # include <string.h>
+
 
 typedef struct		s_var
 {
@@ -22,9 +26,9 @@ typedef struct		s_var
 	struct s_var	*next;
 }					t_var;
 
-int		g_qm;
 t_var	*g_list;
 
+# include "../libft/libft.h"
 
 int		add_var(t_var **lst, t_var *to_add);
 t_var	*get_var(t_var *lst, char *name);

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 17:49:41 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/11 18:46:03 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/17 14:37:31 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,9 @@ int		get_envp(char **envp)
 			return (-1);
 		add_var(&g_list, tmp);
 		envp[i][y] = '=';
-		//tmp = NULL;
 		y = 0;
 		i++;
 	}
-	printf("el [%i][%li]\n", i, ft_array_len(envp));
-	ls_var(&g_list);
 	return (0);
 }
 

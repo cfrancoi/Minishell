@@ -1,13 +1,9 @@
-NAME		= env
+NAME		= env.a
 
 SRCS		= env.c
 
 OBJ_DIR		= ./objects/
-LIBFT_DIR	= ../../libft/
-ENV_DIR		= ../../env/
 INC_DIR		= ../../include/
-LIBFT_A		= $(addprefix $(LIBFT_DIR), libft.a)
-ENV_A		= $(addprefix $(ENV_DIR), env.a)
 OBJ			= $(addprefix $(OBJ_DIR),$(SRCS:.c=.o))
 
 CC			= gcc
@@ -22,8 +18,8 @@ all:
 $(OBJ_DIR)%.o:$(MSH_DIR)%.c $(INC_DIR)*.h
 	$(CC) -c $< -o $@
 
-$(NAME):$(OBJ) $(INC_DIR) $(ENV_A) $(LIBFT_A)
-	$(CC) -g $(OBJ) $(ENV_A) $(LIBFT_A) -o $(NAME)
+$(NAME):$(OBJ) $(INC_DIR) 
+	ar rc $(NAME) $(OBJ)
 
 clean:
 	$(RM_DIR) $(OBJ_DIR)
