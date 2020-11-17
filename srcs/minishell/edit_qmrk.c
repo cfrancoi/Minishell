@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 17:41:58 by user42            #+#    #+#             */
-/*   Updated: 2020/11/13 16:36:39 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/17 16:24:26 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,12 @@ int			edit_qmrk(int excode, char *cmd)
 	free(var->content);
 	if (!(var->content = ft_itoa_base(excode, "0123456789")))
 		return (edit_errno(-1, tmp));
-	if (excode != 0)
+	if (excode == 127)
 	{
 		ft_putstr_fd(cmd, 2);
-		if (excode == 127)
-			ft_putstr_fd(" : Command not found\n", 2);
-		else if (excode == 126)
-			ft_putstr_fd(" : Command is not an executable\n", 2);
-		else if (excode >= 128)
-			ft_putstr_fd(" : Command failed\n", 2);
-		return (edit_errno(excode, tmp));
+		ft_putstr_fd(" : Command not found\n", 2);
 	}
-	return (0);
+	if (excode != 0 && excode != 10)
+		return (edit_errno(excode, tmp));
+	return (excode);
 }

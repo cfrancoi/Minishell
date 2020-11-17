@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:48:44 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/13 17:23:55 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/17 16:21:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ int			msh_push_cmd(t_cmd	**ptr, t_built	*built)
 	while (cmd != NULL)
 	{
 		p_rd[1] = need_pipe(cmd);
-		msh_execve(cmd, p_fd, p_rd, built);
+		if (msh_execve(cmd, p_fd, p_rd, built) == 10)
+			msh_exit(cmd, built, 0);
 		p_rd[0] = need_pipe(cmd);
 		cmd = get_next_cmd(cmd);
 	}

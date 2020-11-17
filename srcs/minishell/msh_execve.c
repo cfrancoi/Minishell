@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/13 17:23:02 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/17 16:31:15 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,56 +26,56 @@ static int	do_pipe(int *p_fd, int *p_rd)
 
 static int	pathfinder(char **av, char *const envp[])
 {
-	char	*path;
+	int		i;
 
-	if (msh_get_path(av[0], &path) != 0)
+	i = -1;
+	if (ft_strncmp(av[0], "exit", 5) == 0)
+		exit(10);
+	while (av[0][++i])
 	{
-		path = av[0];
+		if (av[0][i] == '/')
+			return (execve(av[0], av, envp));
 	}
+	msh_get_path(av[0], &path);
+	if (path)
+		return (execve(path, av, envp));
+	exit(127);
+}
+
+static int	child(t_cmd *ptr, int *p_fd, int *p_rd, t_built *built)
+{
+	int			(*f)();
+
+	do_pipe(p_fd, p_rd);
+	msh_dup_fd(ptr);
+	if (get_builtin(ptr->av[0], built, &f, ptr) == 1)
+		exit((*f)(ft_array_len(ptr->av), ptr->av));
 	else
 	{
-		return (execve(path, av, envp));
+		if (pathfinder(ptr->av, envp, path) == -1)
+			exit(126);
 	}
-	exit(127);
+	exit(0);
 }
 
 int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd, t_built *built)
 {
-	pid_t		pid;
 	int			status; // to check and maybe add to stuct
-	int			(*f)();
+	pid_t		pid;
 	char		**envp;
+	char		*path;
 
 	if ((envp = lst_to_envp(g_list)) == NULL)
 		return (-1);
-
 	if ((pid = fork()) == -1)
-	{
-		/* fail */
 		return (-1);
-	}
 	else if (pid == 0)
-	{
-		/* fils */
-		do_pipe(p_fd, p_rd);
-		msh_dup_fd(ptr);
-		if (get_builtin(ptr->av[0], built, &f, ptr) == 1)
-			exit((*f)(ft_array_len(ptr->av), ptr->av));
-		else
-		{
-			if (pathfinder(ptr->av, envp) == -1)
-				exit(126);
-		}
-	}
+		child(ptr, p_fd, p_rd, built);
 	else
 	{
-		/* pere */
 		wait(&status);
+		free(path);
 		ft_array_free(envp);
-		edit_qmrk(status / 256, ptr->av[0]);
-		if (status == 8 * 256)
-			msh_exit(ptr, built, 0);
-		printf("status : %i \n", status / 256);
 	}
-	return (0);
+	return (edit_qmrk(status / 256, ptr->av[0]));
 }
