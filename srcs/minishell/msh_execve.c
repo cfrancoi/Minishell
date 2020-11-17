@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/17 16:31:15 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/17 18:05:19 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	do_pipe(int *p_fd, int *p_rd)
 	return (0);
 }
 
-static int	pathfinder(char **av, char *const envp[])
+static int	pathfinder(char **av, char *const envp[], char *path)
 {
 	int		i;
 
@@ -42,13 +42,11 @@ static int	pathfinder(char **av, char *const envp[])
 	exit(127);
 }
 
-static int	child(t_cmd *ptr, int *p_fd, int *p_rd, t_built *built)
+static int	child(t_cmd *ptr, char *path, char **envp)
 {
 	int			(*f)();
 
-	do_pipe(p_fd, p_rd);
-	msh_dup_fd(ptr);
-	if (get_builtin(ptr->av[0], built, &f, ptr) == 1)
+	if (get_builtin(ptr->av[0], &f, ptr) == 1)
 		exit((*f)(ft_array_len(ptr->av), ptr->av));
 	else
 	{
@@ -58,19 +56,24 @@ static int	child(t_cmd *ptr, int *p_fd, int *p_rd, t_built *built)
 	exit(0);
 }
 
-int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd, t_built *built)
+int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd)
 {
 	int			status; // to check and maybe add to stuct
 	pid_t		pid;
 	char		**envp;
 	char		*path;
 
-	if ((envp = lst_to_envp(g_list)) == NULL)
+	path = NULL;
+	if ((envp = lst_to_envp(g_all.var)) == NULL)
 		return (-1);
 	if ((pid = fork()) == -1)
 		return (-1);
 	else if (pid == 0)
-		child(ptr, p_fd, p_rd, built);
+	{
+		do_pipe(p_fd, p_rd);
+		msh_dup_fd(ptr);
+		child(ptr, path, envp);
+	}
 	else
 	{
 		wait(&status);

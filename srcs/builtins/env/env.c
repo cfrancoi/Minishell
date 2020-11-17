@@ -6,14 +6,14 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:47:53 by user42            #+#    #+#             */
-/*   Updated: 2020/11/17 15:49:29 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/17 17:50:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../include/builtins.h"
-#include <stdio.h>
-int						env(int ac, char **argv)
+
+int						env(void)
 {
-	ls_var(&g_list);
+	ls_var(&(g_all.var));
 	return (0);
 }

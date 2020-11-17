@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 17:49:41 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/17 14:37:31 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/17 17:52:11 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,20 @@
 #include <stdio.h>
 
 
-int		get_envp(char **envp)
+t_var		*get_envp(char **envp)
 {
 	int		i;
 	int		y;
+	t_var	*var;
 	t_var	*tmp;
 
 	i = 0;
 	y = 0;
 
-	g_list = NULL;
+	var = NULL;
 	if (!(tmp = create_var("?", "0")))
-		return (-1);
-	add_var(&g_list, tmp);
+		return (NULL);
+	add_var(&var, tmp);
 	tmp = NULL;
 	while (envp[i] != NULL)
 	{
@@ -35,13 +36,13 @@ int		get_envp(char **envp)
 			y++;
 		envp[i][y] = '\0';
 		if ((tmp = create_var(envp[i], &envp[i][y + 1])) == NULL)
-			return (-1);
-		add_var(&g_list, tmp);
+			return (NULL);
+		add_var(&var, tmp);
 		envp[i][y] = '=';
 		y = 0;
 		i++;
 	}
-	return (0);
+	return (var);
 }
 
 

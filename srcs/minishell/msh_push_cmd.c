@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:48:44 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/17 16:21:43 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/17 17:56:23 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,26 +44,7 @@ static t_cmd	*get_next_cmd(t_cmd *ptr)
 	return (NULL);
 }
 
-
-static int		need_pipe(t_cmd *cmd)
-{
-	int sep;
-
-	sep = 0;
-	while (cmd != NULL)
-	{
-		sep = cmd->sep;
-		if (sep == LFT || sep ==  RGT || sep == DRGT)
-			cmd = cmd->next;
-		else if (sep == PIPE)
-			return (1);
-		else if (sep == SEMI || sep == EOF)
-			return (0);
-	}
-	return (0);
-}
-
-int			msh_push_cmd(t_cmd	**ptr, t_built	*built)
+int			msh_push_cmd(t_cmd	**ptr)
 {
 	t_cmd	*cmd;
 	int		p_fd[2];
@@ -80,8 +61,8 @@ int			msh_push_cmd(t_cmd	**ptr, t_built	*built)
 	while (cmd != NULL)
 	{
 		p_rd[1] = need_pipe(cmd);
-		if (msh_execve(cmd, p_fd, p_rd, built) == 10)
-			msh_exit(cmd, built, 0);
+		if (msh_execve(cmd, p_fd, p_rd) == 10)
+			msh_exit(cmd, 0);
 		p_rd[0] = need_pipe(cmd);
 		cmd = get_next_cmd(cmd);
 	}

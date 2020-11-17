@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 17:41:58 by user42            #+#    #+#             */
-/*   Updated: 2020/11/17 16:24:26 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/17 17:55:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ static int	edit_errno(int excode, int tmp)
 
 int			edit_qmrk(int excode, char *cmd)
 {
-	t_var	*var;
 	int		tmp;
 
-	var = g_list;
 	tmp = errno;
-	free(var->content);
-	if (!(var->content = ft_itoa_base(excode, "0123456789")))
+	free(g_all.var->content);
+	if (!(g_all.var->content = ft_itoa_base(excode, "0123456789")))
 		return (edit_errno(-1, tmp));
 	if (excode == 127)
 	{

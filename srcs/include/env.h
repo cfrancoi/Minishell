@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 16:57:37 by user42            #+#    #+#             */
-/*   Updated: 2020/11/17 16:57:39 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/17 17:51:40 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ typedef struct		s_var
 	struct s_var	*next;
 }					t_var;
 
-t_var	*g_list;
-
 # include "../libft/libft.h"
 
 int		add_var(t_var **lst, t_var *to_add);
@@ -33,7 +31,7 @@ int		print_var(t_var *ptr);
 int		ls_var(t_var **lst);
 t_var	*create_var(char *name, char *content);
 void	free_lst_var(t_var *lst);
-int		get_envp(char **envp);
+t_var	*get_envp(char **envp);
 int		edit_qmrk(int excode, char *cmd);
 char	**lst_to_envp(t_var *lst);
 

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:51:21 by user42            #+#    #+#             */
-/*   Updated: 2020/11/17 16:52:05 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/17 17:51:07 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		msh_export(int ac, char **av)
 {
 	while (ac > 1)
 	{
-		add_var(&g_list, add_to_lst(av[ac - 1]));
+		add_var(&(g_all.var), add_to_lst(av[ac - 1]));
 		ac--;
 	}
 	return(0);

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 16:07:47 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/13 17:24:44 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/17 18:06:27 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int			msh_get_path(char *prgm, char **path)
 	*path = NULL;
 	tmp = NULL;
 
-	if ((ptr = get_var(g_list, "PATH")) == NULL)
+	if ((ptr = get_var(g_all.var, "PATH")) == NULL)
 		return (-1);
 	ptr = ft_strdup(((t_var *)ptr)->content);
 	to_free = ptr;
