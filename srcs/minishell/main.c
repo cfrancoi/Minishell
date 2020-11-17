@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 13:52:04 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/12 15:55:55 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/17 16:35:04 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int		main(int ac, char **av, char **envp)
 	get_envp(envp);
 	/*			*/
 	/* get currrent dir */
-
 	/* start prompt */
 	ret = ft_prompt(built);
 

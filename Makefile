@@ -25,6 +25,7 @@ ENV_DIR		= ./srcs/env/
 INC_DIR		= ./srcs/include/
 BUILT_DIR	= ./srcs/builtins/
 ECHO_A		= $(addprefix $(BUILT_DIR), echo/echo.a)
+EXPORT_A	= $(addprefix $(BUILT_DIR), export/export.a)
 LIBFT_A		= $(addprefix $(LIBFT_DIR), libft.a)
 ENV_A		= $(addprefix $(ENV_DIR), env.a)
 OBJ			= $(addprefix $(OBJ_DIR),$(SRCS:.c=.o))
@@ -44,8 +45,8 @@ all:
 $(OBJ_DIR)%.o:$(MSH_DIR)%.c $(INC_DIR)*.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME):$(OBJ) $(INC_DIR) $(LIBFT_A) $(ENV_A) $(ECHO_A)
-	$(CC) $(CFLAGS) -g  $(OBJ) $(ECHO_A) $(ENV_A)  $(LIBFT_A) -o $(NAME)
+$(NAME):$(OBJ) $(INC_DIR) $(LIBFT_A) $(ENV_A) $(ECHO_A) $(EXPORT_A)
+	$(CC) $(CFLAGS) -g $(OBJ) $(ECHO_A) srcs/builtins/env/env.a $(ENV_A) $(EXPORT_A) $(LIBFT_A) -o $(NAME)
 
 clean:
 	$(RM_DIR) $(OBJ_DIR)
