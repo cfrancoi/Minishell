@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/17 18:05:19 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/18 15:02:17 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ static int	pathfinder(char **av, char *const envp[], char *path)
 	int		i;
 
 	i = -1;
-	if (ft_strncmp(av[0], "exit", 5) == 0)
-		exit(10);
 	while (av[0][++i])
 	{
 		if (av[0][i] == '/')
@@ -77,6 +75,7 @@ int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd)
 	else
 	{
 		wait(&status);
+		ls_var(&g_all.var);
 		free(path);
 		ft_array_free(envp);
 	}
