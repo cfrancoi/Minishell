@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/18 15:02:17 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/18 15:33:33 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd)
 	else
 	{
 		wait(&status);
-		ls_var(&g_all.var);
 		free(path);
 		ft_array_free(envp);
 	}
