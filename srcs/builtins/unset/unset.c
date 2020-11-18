@@ -6,8 +6,16 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:51:47 by user42            #+#    #+#             */
-/*   Updated: 2020/11/04 15:51:49 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/18 15:56:24 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../include/builtins.h"
+
+int			unset(int ac, char **argv)
+{
+	write(1, "**unset**\n", 10);
+	ac = ac;
+	argv = argv;
+	return (0);
+}
