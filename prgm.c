@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prgm.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 17:13:30 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/09 18:08:22 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/19 17:05:23 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include <string.h>
 
-int main()
+int main() 
 {
 	char buf [1024];
 
