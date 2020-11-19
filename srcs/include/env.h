@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 16:57:37 by user42            #+#    #+#             */
-/*   Updated: 2020/11/17 17:51:40 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/19 17:32:36 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ char	*get_str_var(char *ptr);
 int		print_var(t_var *ptr);
 int		ls_var(t_var **lst);
 t_var	*create_var(char *name, char *content);
+void	cat_var(t_var *lst);
 void	free_lst_var(t_var *lst);
 t_var	*get_envp(char **envp);
 int		edit_qmrk(int excode, char *cmd);

@@ -8,7 +8,7 @@ SRC =	add_var.c \
 		get_var.c \
 		get_str_var.c \
 		print_var.c \
-		free_lst_var.c \
+		env_utils.c \
 		get_envp.c \
 		lst_to_envp.c
 

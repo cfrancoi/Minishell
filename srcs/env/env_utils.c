@@ -1,32 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_lst_var.c                                     :+:      :+:    :+:   */
+/*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/15 14:14:23 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/11 18:44:12 by cfrancoi         ###   ########lyon.fr   */
+/*   Created: 2020/11/19 17:15:49 by user42            #+#    #+#             */
+/*   Updated: 2020/11/19 17:25:33 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/env.h"
-#include <stdio.h>
 
-void	free_lst_var(t_var *lst)
+static void	del_var(t_var *lst)
+{
+	if (lst->name)
+		free(lst->name);
+	if (lst->content)
+		free(lst->content);
+	free(lst);
+}
+
+void		cat_var(t_var *lst)
+{
+	t_var	*tofree;
+	t_var	*tocat;
+
+	tofree = lst->next;
+	if (tofree)
+	{
+		tocat = tofree->next;
+		del_var(tofree);
+		lst->next = tocat;
+	}
+}
+
+void		free_lst_var(t_var *lst)
 {
 	t_var	*ptr;
 
 	while (lst)
 	{
-		printf("%s=%s\n",lst->name,lst->content);
 		ptr = lst->next;
-		if (lst->name)
-			free(lst->name);
-		if (lst->content)
-			free(lst->content);
-		free(lst);
+		del_var(lst);
 		lst = ptr;
 	}
-
 }
