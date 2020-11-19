@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 17:15:49 by user42            #+#    #+#             */
-/*   Updated: 2020/11/19 17:25:33 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/19 17:50:38 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,20 @@ void		cat_var(t_var *lst)
 		lst->next = tocat;
 	}
 }
+
+/* version alternative
+
+t_var		*cat_var(t_var *lst)
+{
+	t_var	*tocat;
+
+	if (lst)
+	{
+		tocat = lst->next;
+		del_var(lst);
+	}
+	return(tocat);
+}*/
 
 void		free_lst_var(t_var *lst)
 {
