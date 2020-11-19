@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/18 15:33:33 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/19 16:35:43 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,21 @@ static int	child(t_cmd *ptr, char *path, char **envp)
 	exit(0);
 }
 
+static int			is_builtins(int status, t_cmd *cmd)
+{
+	int tmp;
+
+	tmp = status / 256;
+
+	if (tmp == 11)
+		return (status);
+	else if (tmp == 12)
+		return (status);
+	else if (tmp == 13)
+		return (add_to_lst(ft_array_len(cmd->av), cmd->av));
+	return (status);
+}
+
 int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd)
 {
 	int			status; // to check and maybe add to stuct
@@ -75,8 +90,11 @@ int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd)
 	else
 	{
 		wait(&status);
-		free(path);
+		if (path != NULL)
+			free(path);
 		ft_array_free(envp);
+		status = is_builtins(status, ptr);
+
 	}
 	return (edit_qmrk(status / 256, ptr->av[0]));
 }

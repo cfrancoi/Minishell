@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:12:33 by user42            #+#    #+#             */
-/*   Updated: 2020/11/18 15:56:22 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/19 16:47:57 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef	struct			s_built
 
 int						msh_export(int ac, char **argv);
 t_built					*builtins_alloc(t_built *first, char *name, int (*f)());
+
+int						add_to_lst(int ac, char **av);
 
 int						echo(int ac, char **argv);
 int						unset(int ac, char **argv);

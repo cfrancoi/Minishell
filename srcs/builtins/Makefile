@@ -3,6 +3,7 @@ NAME		= builtins.a
 SRCS		= $(addprefix $(ECHO_DIR), echo.c)
 SRCS		+= $(addprefix $(ENV_DIR), env.c)
 SRCS		+= $(addprefix $(EXPORT_DIR), export.c)
+SRCS		+= $(addprefix $(EXPORT_DIR), add_to_lst.c)
 SRCS		+= $(addprefix $(CD_DIR), cd.c)
 SRCS		+= $(addprefix $(PWD_DIR), pwd.c)
 SRCS		+= $(addprefix $(UNSET_DIR), unset.c)
