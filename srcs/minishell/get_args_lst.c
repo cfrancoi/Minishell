@@ -6,12 +6,16 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 19:48:24 by user42            #+#    #+#             */
-/*   Updated: 2020/11/12 15:17:40 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/20 15:58:34 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+static int		is_char_var(char c)
+{
+	return (ft_isalnum(c) || c == '_');
+}
 int				get_final_len(char *ptr)
 {
 	int		i;
@@ -26,7 +30,7 @@ int				get_final_len(char *ptr)
 	{
 		if (ptr[i] == '"'|| (ptr[i] == '\'' && (qte == 0 || qte == ptr[i])))
 			qte = (qte == ptr[i]) ? 0 : ptr[i];
-		else if (ptr[i] == '$' && qte != '\'' && ft_isalnum(ptr[i + 1]))
+		else if (ptr[i] == '$' && qte != '\'' && is_char_var(ptr[i + 1]))
 		{
 			if (!(var = variable(ptr, &i, &len)))
 				return (-1);
@@ -53,7 +57,7 @@ static char		*get_final_arg(char *ptr, int len, int qte)
 	{
 		if (ptr[i] == '"'|| (ptr[i] == '\'' && (qte == 0 || qte == ptr[i])))
 			qte = (qte == ptr[i]) ? 0 : ptr[i];
-		else if (ptr[i] == '$' && qte != '\'' && ft_isalnum(ptr[i + 1]))
+		else if (ptr[i] == '$' && qte != '\'' && is_char_var(ptr[i + 1]))
 		{
 			if (!(var = variable(ptr, &i, NULL)))
 				return (NULL);
