@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:39:10 by user42            #+#    #+#             */
-/*   Updated: 2020/11/17 17:57:29 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/20 16:59:16 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ t_var	*variable(char *ptr, int *i, int *len)
 	t_var	*var;
 
 	if (!(tmp = get_str_var(&ptr[*i])))
+	{
+		*i = -1;
 		return (NULL);
+	}
 	*i += ft_strlen(tmp);
 	if (!(var = get_var(g_all.var, tmp)))
 		return (NULL);

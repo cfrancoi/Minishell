@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 19:48:24 by user42            #+#    #+#             */
-/*   Updated: 2020/11/20 15:58:34 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/20 17:01:00 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int		is_char_var(char c)
 {
-	return (ft_isalnum(c) || c == '_');
+	return (ft_isalnum(c) || c == '_' || c == '?');
 }
 int				get_final_len(char *ptr)
 {
@@ -32,7 +32,7 @@ int				get_final_len(char *ptr)
 			qte = (qte == ptr[i]) ? 0 : ptr[i];
 		else if (ptr[i] == '$' && qte != '\'' && is_char_var(ptr[i + 1]))
 		{
-			if (!(var = variable(ptr, &i, &len)))
+			if (!(var = variable(ptr, &i, &len)) && i == -1)
 				return (-1);
 		}
 		else
@@ -59,10 +59,10 @@ static char		*get_final_arg(char *ptr, int len, int qte)
 			qte = (qte == ptr[i]) ? 0 : ptr[i];
 		else if (ptr[i] == '$' && qte != '\'' && is_char_var(ptr[i + 1]))
 		{
-			if (!(var = variable(ptr, &i, NULL)))
+			if (!(var = variable(ptr, &i, NULL)) && i == -1)
 				return (NULL);
-			ft_memcpy(&new[len], var->content, ft_strlen(var->content));
-			len += ft_strlen(var->content);
+			(var != NULL) ? ft_memcpy(&new[len], var->content, ft_strlen(var->content)) : 0;
+			(var != NULL) ? len += ft_strlen(var->content) : 0;
 		}
 		else
 			new[len++] = ptr[i];

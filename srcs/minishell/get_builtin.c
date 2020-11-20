@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 16:29:53 by user42            #+#    #+#             */
-/*   Updated: 2020/11/18 14:48:53 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/20 17:03:44 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		get_builtin(char *cmd, int (**f)(), t_cmd *ptr)
 		exit(10);//msh_exit(ptr, built, 8);
 	while (built)
 	{
-		if (ft_strncmp(cmd, built->name, ft_strlen(cmd)) == 0)
+		if (ft_strncmp(cmd, built->name, ft_strlen(built->name)) == 0)
 		{
 			*f = built->f;
 			return (1);
