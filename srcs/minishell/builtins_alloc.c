@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 16:15:35 by user42            #+#    #+#             */
-/*   Updated: 2020/11/18 16:02:11 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/22 17:42:59 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ t_built		*builtins_alloc(t_built *first, char *name, int (*f)())
 	if (!(ret->name = ft_strdup(name)))
 		return (NULL);
 	if (ft_strncmp(name, "echo", 5) == 0)
-		ret->next = builtins_alloc(ret->next, "env", &env);
+		ret->next = builtins_alloc(ret->next, "env", env);
 	else if (ft_strncmp(name, "env", 3) == 0)
-		ret->next = builtins_alloc(ret->next, "export", &msh_export);
+		ret->next = builtins_alloc(ret->next, "export", msh_export);
 	else if (ft_strncmp(name, "export", 6) == 0)
-		ret->next = builtins_alloc(ret->next, "unset", &unset);
+		ret->next = builtins_alloc(ret->next, "unset", unset_child);
 	else if (ft_strncmp(name, "unset", 5) == 0)
-		ret->next = builtins_alloc(ret->next, "cd", &msh_cd);
+		ret->next = builtins_alloc(ret->next, "cd", msh_cd);
 	else if (ft_strncmp(name, "cd", 2) == 0)
-		ret->next = builtins_alloc(ret->next, "pwd", &msh_pwd);
+		ret->next = builtins_alloc(ret->next, "pwd", msh_pwd);
 	return (first);
 }

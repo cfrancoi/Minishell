@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/19 16:35:43 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/22 17:45:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ static int			is_builtins(int status, t_cmd *cmd)
 		return (status);
 	else if (tmp == 13)
 		return (add_to_lst(ft_array_len(cmd->av), cmd->av));
+	else if (tmp == 14)
+		return (unset_parent(ft_array_len(cmd->av), cmd->av));
 	return (status);
 }
 
