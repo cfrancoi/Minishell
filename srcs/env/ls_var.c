@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 14:08:29 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/03 18:12:15 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/23 14:34:34 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int		ls_var(t_var **lst)
 	{
 		while (tmp != NULL)
 		{
-			print_var(tmp);
+			if (ft_strncmp(tmp->name, "?", 1) != 0)
+				print_var(tmp);
 			tmp = tmp->next;
 		}
 	}

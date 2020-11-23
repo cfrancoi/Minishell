@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/22 17:45:12 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/23 15:24:45 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ static int	do_pipe(int *p_fd, int *p_rd)
 
 static int	pathfinder(char **av, char *const envp[], char *path)
 {
-	int		i;
+//	int		i;
 
-	i = -1;
-	while (av[0][++i])
+//	i = -1;
+	/*while (av[0][++i])
 	{
 		if (av[0][i] == '/')
-			return (execve(av[0], av, envp));
-	}
+			execve(av[0], av, envp);
+	}*/
 	msh_get_path(av[0], &path);
 	if (path)
-		return (execve(path, av, envp));
+		return(execve(path, av, envp));
 	exit(127);
 }
 
