@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:48:44 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/17 17:56:23 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/23 17:07:55 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,9 @@ int			msh_push_cmd(t_cmd	**ptr)
 
 	p_rd[0] = 0;
 	p_rd[1] = 0;
-	
-	int fd_out = dup(1);
-	int fd_in = dup(0);
 	cmd = *ptr;
-	pipe(p_fd);
+	if (pipe(p_fd) == -1)
+		return (-1);
 	while (cmd != NULL)
 	{
 		p_rd[1] = need_pipe(cmd);
@@ -66,10 +64,7 @@ int			msh_push_cmd(t_cmd	**ptr)
 		p_rd[0] = need_pipe(cmd);
 		cmd = get_next_cmd(cmd);
 	}
-	dup2(0, fd_in);
-	dup2(1, fd_out);
 	close(p_fd[1]);
 	close(p_fd[0]);
-
 	return (0);
 }

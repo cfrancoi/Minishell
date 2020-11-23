@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/23 15:24:45 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/23 17:07:26 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd)
 			free(path);
 		ft_array_free(envp);
 		status = is_builtins(status, ptr);
-
 	}
 	return (edit_qmrk(status / 256, ptr->av[0]));
 }
