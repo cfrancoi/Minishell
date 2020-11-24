@@ -6,14 +6,34 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:51:47 by user42            #+#    #+#             */
-/*   Updated: 2020/11/22 18:05:59 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/24 16:17:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../../include/builtins.h"
 # include <stdio.h>
 
-int	unset_parent(int ac, char **argv)
+static int	check_arg(char *argv, int *ret)
+{
+	int x;
+
+	x = 0;
+	while (argv && argv[x])
+	{
+		if ((ft_isalnum(argv[x]) == 0) && argv[x] != '_')
+		{
+			*ret = 1;
+			ft_putstr_fd("unset « ", 2);
+			ft_putstr_fd(argv, 2);
+			ft_putstr_fd(" » : non valable identifier\n", 2);
+			return (1);
+		}
+		x++;
+	}
+	return (0);
+}
+
+int			unset_parent(int ac, char **argv)
 {
 	int		i;
 	int		ret;
@@ -26,31 +46,25 @@ int	unset_parent(int ac, char **argv)
 	write(1, "**unset**\n", 10);
 	while (++i < ac)
 	{
-		varnxt = get_var(var, argv[i]);
-		if (varnxt)
+		if (check_arg(argv[i], &ret) == 0)
 		{
-			while (varnxt && var->next != varnxt)
-				var = var->next;
-			cat_var(var);
+			varnxt = get_var(var, argv[i]);
+			if (varnxt)
+			{
+				while (varnxt && var->next != varnxt)
+					var = var->next;
+				cat_var(var);
+			}
+			var = g_all.var;
 		}
-		var = g_all.var;
 	}
 	return (ret);
 }
 
-int	unset_child(int ac, char **argv)
+int			unset_child(int ac, char **argv)
 {
-	int		i;
-	t_var	*tmp;
-
-	i = 0;
 	if (ac == 1)
 		return (0);
-	while (++i <= ac)
-	{
-		tmp = get_var(g_all.var, argv[i]);
-		if (tmp)
-			return (14);
-	}
-	return (0);
+	argv = argv;
+	return (14);
 }
