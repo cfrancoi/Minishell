@@ -3,24 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   msh_execve.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/23 17:07:26 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/24 16:47:38 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 #include <stdio.h>
 
-static int	do_pipe(int *p_fd, int *p_rd)
+static int	do_pipe(int (*p_fd)[2], int (*p_rd)[2])
 {
-	if (p_rd[0] == 1)
-		dup2(p_fd[0], 0);
-	if (p_rd[1] == 1)
-		dup2(p_fd[1], 1);
-	close(p_fd[0]);
-	close(p_fd[1]);
+	if (!(p_rd[0][0] == 0 && p_rd[0][1] == 0))
+	{
+		if (p_rd[0][0] == 1)
+			dup2(p_fd[0][0], 0);
+		if (p_rd[0][1] == 1)
+			dup2(p_fd[0][1], 1);
+		close(p_fd[0][0]);
+		close(p_fd[0][1]);
+	}
+	if (!(p_rd[1][0] == 0 && p_rd[1][1] == 0))
+	{
+		if (p_rd[1][0] == 1)
+			dup2(p_fd[1][0], 0);
+		if (p_rd[1][1] == 1)
+			dup2(p_fd[1][1], 1);
+		close(p_fd[1][0]);
+		close(p_fd[1][1]);
+	}
 	return (0);
 }
 
@@ -33,7 +45,7 @@ static int	pathfinder(char **av, char *const envp[], char *path)
 	{
 		if (av[0][i] == '/')
 			execve(av[0], av, envp);
-	}*/
+	} a faire avec cd relatif et abs*/
 	msh_get_path(av[0], &path);
 	if (path)
 		return(execve(path, av, envp));
@@ -71,7 +83,26 @@ static int			is_builtins(int status, t_cmd *cmd)
 	return (status);
 }
 
-int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd)
+static int	close_pipe(int (*p_fd)[2], int (*p_rd)[2])
+{
+	if (p_rd[0][0] == 1)
+	{
+		p_rd[0][1] = 0;
+		p_rd[0][0] = 0;
+		close(p_fd[0][0]);
+		close(p_fd[0][1]);
+	}
+	else if (p_rd[1][0] == 1)
+	{
+		p_rd[1][1] = 0;
+		p_rd[1][0] = 0;
+		close(p_fd[1][0]);
+		close(p_fd[1][1]);
+	}
+	return (0);
+}
+
+int			msh_execve(t_cmd *ptr, int (*p_fd)[2], int (*p_rd)[2])
 {
 	int			status; // to check and maybe add to stuct
 	pid_t		pid;
@@ -91,6 +122,7 @@ int			msh_execve(t_cmd *ptr, int *p_fd, int *p_rd)
 	}
 	else
 	{
+		close_pipe(p_fd, p_rd);
 		wait(&status);
 		if (path != NULL)
 			free(path);

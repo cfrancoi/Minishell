@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_push_cmd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:48:44 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/23 17:07:55 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/24 16:47:57 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,27 +44,58 @@ static t_cmd	*get_next_cmd(t_cmd *ptr)
 	return (NULL);
 }
 
+static int	place_pipe(int (*p_fd)[2], int (*p_rd)[2], t_cmd *cmd)
+{
+	if (need_pipe(cmd))
+	{
+		
+		if (p_rd[0][0] == 0 && p_rd[0][1] == 0)
+		{
+			p_rd[0][1] = 1;
+			return (pipe(p_fd[0]));
+		}
+		else if (p_rd[1][0] == 0 && p_rd[1][1] == 0)
+		{
+			p_rd[1][1] = 1;
+			
+			return (pipe(p_fd[1]));
+		}
+	}
+	return (0);
+}
+
+static int	cfg_pipe(int (*p_rd)[2])
+{
+	if (p_rd[0][1] == 1)
+	{
+		p_rd[0][1] = 0;
+		p_rd[0][0] = 1;
+	}
+	else if (p_rd[1][1] == 1)
+	{
+		p_rd[1][1] = 0;
+		p_rd[1][0] = 1;
+	}
+	return (0);
+}
+
 int			msh_push_cmd(t_cmd	**ptr)
 {
 	t_cmd	*cmd;
-	int		p_fd[2];
-	int		p_rd[2];
+	int		p_fd[2][2];
+	int		p_rd[2][2];
 	
 
-	p_rd[0] = 0;
-	p_rd[1] = 0;
+	bzero(&p_rd[0], sizeof(int) * 2);
+	bzero(&p_rd[1], sizeof(int) * 2);
 	cmd = *ptr;
-	if (pipe(p_fd) == -1)
-		return (-1);
 	while (cmd != NULL)
 	{
-		p_rd[1] = need_pipe(cmd);
+		place_pipe(p_fd, p_rd, cmd);
 		if (msh_execve(cmd, p_fd, p_rd) == 10)
 			msh_exit(cmd, 0);
-		p_rd[0] = need_pipe(cmd);
+		cfg_pipe(p_rd);
 		cmd = get_next_cmd(cmd);
 	}
-	close(p_fd[1]);
-	close(p_fd[0]);
 	return (0);
 }

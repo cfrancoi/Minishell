@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_execve.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 12:58:42 by user42            #+#    #+#             */
-/*   Updated: 2020/11/17 17:51:28 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/24 16:47:45 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #include <fcntl.h>
 
 int		msh_push_cmd(t_cmd **ptr);
-int		msh_execve(t_cmd *ptr, int *p_fd, int *p_rd);
+int		msh_execve(t_cmd *ptr, int (*p_fd)[2], int (*p_rd)[2]);
 int		msh_dup_fd(t_cmd *ptr);
 int		msh_get_path(char *prgm, char **path);
 #endif
