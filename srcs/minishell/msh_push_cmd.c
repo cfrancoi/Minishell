@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:48:44 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/24 16:53:06 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/25 12:01:27 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_cmd	*get_next_cmd(t_cmd *ptr)
 	while (cmd != NULL)
 	{
 		sep = cmd->sep;
-		if (sep == EOF)
+		if (sep == MSH_EOF)
 		{
 			ft_array_free(cmd->av);
 			cmd->sep = 0;
@@ -94,6 +94,7 @@ int			msh_push_cmd(t_cmd	**ptr)
 		place_pipe(p_fd, p_rd, cmd);
 		if (msh_execve(cmd, p_fd, p_rd) == 10)
 			msh_exit(cmd, 0);
+		printf("EOF %i\n", EOF);
 		cfg_pipe(p_rd);
 		cmd = get_next_cmd(cmd);
 	}

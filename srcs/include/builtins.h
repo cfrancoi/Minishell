@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:12:33 by user42            #+#    #+#             */
-/*   Updated: 2020/11/22 17:41:53 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/25 11:25:09 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ int						msh_pwd(int ac, char **argv);
 int						env(void);
 
 
-int						get_builtin(char *cmd, int (**f)(), t_cmd *ptr);
+int						get_builtin(char *cmd, int (**f)());
 int						msh_exit(t_cmd *cmd, int ret);
 #endif

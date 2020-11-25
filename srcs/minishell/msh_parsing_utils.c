@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:39:10 by user42            #+#    #+#             */
-/*   Updated: 2020/11/20 16:59:16 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/25 12:04:15 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		need_pipe(t_cmd *cmd)
 			cmd = cmd->next;
 		else if (sep == PIPE)
 			return (1);
-		else if (sep == SEMI || sep == EOF)
+		else if (sep == SEMI || sep == MSH_EOF)
 			return (0);
 	}
 	return (0);

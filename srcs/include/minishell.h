@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:26:16 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/17 17:46:18 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/25 13:58:26 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct	s_all
 {
 	t_built		*built;
 	t_var		*var;
+	char		*path;
 }				t_all;
 
 t_all			g_all;

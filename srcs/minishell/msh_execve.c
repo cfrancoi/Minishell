@@ -6,12 +6,11 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/24 16:47:38 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/25 13:57:58 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-#include <stdio.h>
 
 static int	do_pipe(int (*p_fd)[2], int (*p_rd)[2])
 {
@@ -56,7 +55,7 @@ static int	child(t_cmd *ptr, char *path, char **envp)
 {
 	int			(*f)();
 
-	if (get_builtin(ptr->av[0], &f, ptr) == 1)
+	if (get_builtin(ptr->av[0], &f) == 1)
 		exit((*f)(ft_array_len(ptr->av), ptr->av));
 	else
 	{
@@ -71,7 +70,6 @@ static int			is_builtins(int status, t_cmd *cmd)
 	int tmp;
 
 	tmp = status / 256;
-
 	if (tmp == 11)
 		return (status);
 	else if (tmp == 12)
@@ -102,6 +100,9 @@ static int	close_pipe(int (*p_fd)[2], int (*p_rd)[2])
 	return (0);
 }
 
+#include <stdio.h>
+#include <limits.h>
+
 int			msh_execve(t_cmd *ptr, int (*p_fd)[2], int (*p_rd)[2])
 {
 	int			status; // to check and maybe add to stuct
@@ -109,6 +110,7 @@ int			msh_execve(t_cmd *ptr, int (*p_fd)[2], int (*p_rd)[2])
 	char		**envp;
 	char		*path;
 
+	status = 0;
 	path = NULL;
 	if ((envp = lst_to_envp(g_all.var)) == NULL)
 		return (-1);
@@ -119,11 +121,13 @@ int			msh_execve(t_cmd *ptr, int (*p_fd)[2], int (*p_rd)[2])
 		do_pipe(p_fd, p_rd);
 		msh_dup_fd(ptr);
 		child(ptr, path, envp);
+		exit(0);
 	}
 	else
 	{
 		close_pipe(p_fd, p_rd);
 		wait(&status);
+		//printf("status = %i\n", status);
 		if (path != NULL)
 			free(path);
 		ft_array_free(envp);

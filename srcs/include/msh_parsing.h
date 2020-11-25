@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 15:35:25 by user42            #+#    #+#             */
-/*   Updated: 2020/11/17 17:46:54 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/25 12:26:15 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "./minishell.h"
 
-# define EOF	0
+# define MSH_EOF	0
 # define PIPE	1
 # define SEMI	2
 # define LFT	3

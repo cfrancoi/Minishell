@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:51:39 by user42            #+#    #+#             */
-/*   Updated: 2020/11/18 15:47:12 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/25 11:21:02 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		msh_pwd(int ac, char **argv)
 {
 	write(1, "**pwd**\n", 8);
-	ac = ac;
-	argv = argv;
+	ac = 0;
+	argv = NULL;
 	return (0);
 }

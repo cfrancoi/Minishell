@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:51:47 by user42            #+#    #+#             */
-/*   Updated: 2020/11/24 16:17:57 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/25 11:21:30 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ int			unset_child(int ac, char **argv)
 {
 	if (ac == 1)
 		return (0);
-	argv = argv;
+	argv = NULL;
 	return (14);
 }

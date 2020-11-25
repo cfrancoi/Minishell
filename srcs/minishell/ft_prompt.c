@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:01:14 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/17 17:55:52 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/25 11:37:20 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int		ft_prompt(void)
 		msh_push_cmd(&ptr);
 		ptr = NULL;
 		free(line);
+		printf("\nend\nl");
 	}
 	return(ret);
 }

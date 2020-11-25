@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:25:43 by user42            #+#    #+#             */
-/*   Updated: 2020/11/18 15:45:11 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/25 11:20:40 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int			msh_cd(int ac, char **argv)
 {
 	write(1, "**cd**\n", 7);
-	ac = ac;
-	argv = argv;
+	ac = 0;
+	argv = NULL;
 	return (0);
 }

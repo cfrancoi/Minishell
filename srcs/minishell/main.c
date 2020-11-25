@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 13:52:04 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/17 17:53:41 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/25 14:08:49 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ int		main(int ac, char **av, char **envp)
 {
 	int				ret;
 
-	ac = ac;
-	av = av;
+	if (ac != 1)
+		return (0);
+	(void)av;
 	/* pars envp */
 	if (!(g_all.built = builtins_alloc(g_all.built, "echo", echo)))
 		return (-1);
@@ -27,6 +28,8 @@ int		main(int ac, char **av, char **envp)
 		return (-1);
 	/*			*/
 	/* get currrent dir */
+	g_all.path = getcwd(NULL, 0);
+	printf("cwd = %s\n", g_all.path);
 	/* start prompt */
 	ret = ft_prompt();
 
