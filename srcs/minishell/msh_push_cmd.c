@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:48:44 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/25 12:01:27 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/25 17:36:53 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ int			msh_push_cmd(t_cmd	**ptr)
 		place_pipe(p_fd, p_rd, cmd);
 		if (msh_execve(cmd, p_fd, p_rd) == 10)
 			msh_exit(cmd, 0);
-		printf("EOF %i\n", EOF);
 		cfg_pipe(p_rd);
 		cmd = get_next_cmd(cmd);
 	}

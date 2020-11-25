@@ -3,19 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/04 15:51:39 by user42            #+#    #+#             */
-/*   Updated: 2020/11/25 11:21:02 by cfrancoi         ###   ########lyon.fr   */
+/*   Created: 2020/11/25 16:39:19 by cfrancoi          #+#    #+#             */
+/*   Updated: 2020/11/25 16:47:38 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/builtins.h"
+#include "../../include/builtins.h"
 
 int		msh_pwd(int ac, char **argv)
 {
-	write(1, "**pwd**\n", 8);
-	ac = 0;
+	ac = 1;
 	argv = NULL;
-	return (0);
+
+	char		*path;
+
+	path = getcwd(NULL, 0);
+	ft_putstr_fd(path, 1);
+	ft_putchar_fd('\n', 1);
+	free(path);
+	return (12);
 }

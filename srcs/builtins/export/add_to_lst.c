@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 16:17:40 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/20 17:25:48 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/25 15:26:17 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,14 @@ static int		to_add(char *ptr)
 		return (-1);
 	while (ptr[i + 1] && ptr[i] != '=')
 		i++;
-	ptr[i] = '\0';
+	if (ptr[i] == '=')
+		ptr[i] = '\0';
 	if ((tmp = is_existing_var(ptr)) != NULL)
 	{
 		//ptr[i] = '=';
 		if (tmp->content != NULL)
 			free(tmp->content);
-		if (ft_strdup(&ptr[i + 1]) == NULL)
+		if ((tmp->content = ft_strdup(&ptr[i + 1])) == NULL)
 			return (-1);
 	}
 	else

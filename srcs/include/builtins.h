@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:12:33 by user42            #+#    #+#             */
-/*   Updated: 2020/11/25 11:25:09 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/25 15:55:46 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int						msh_export(int ac, char **argv);
 t_built					*builtins_alloc(t_built *first, char *name, int (*f)());
 
 int						add_to_lst(int ac, char **av);
-
+int						f_msh_cd(int	ac, char **argv);
 int						echo(int ac, char **argv);
 int						unset_child(int ac, char **argv);
 int						unset_parent(int ac, char **argv);

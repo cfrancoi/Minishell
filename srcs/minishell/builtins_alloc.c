@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 16:15:35 by user42            #+#    #+#             */
-/*   Updated: 2020/11/22 17:42:59 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/25 15:56:21 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_built		*builtins_alloc(t_built *first, char *name, int (*f)())
 	else if (ft_strncmp(name, "export", 6) == 0)
 		ret->next = builtins_alloc(ret->next, "unset", unset_child);
 	else if (ft_strncmp(name, "unset", 5) == 0)
-		ret->next = builtins_alloc(ret->next, "cd", msh_cd);
+		ret->next = builtins_alloc(ret->next, "cd", f_msh_cd);
 	else if (ft_strncmp(name, "cd", 2) == 0)
 		ret->next = builtins_alloc(ret->next, "pwd", msh_pwd);
 	return (first);

@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/25 13:57:58 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/25 17:40:07 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ static int	do_pipe(int (*p_fd)[2], int (*p_rd)[2])
 
 static int	pathfinder(char **av, char *const envp[], char *path)
 {
-//	int		i;
+	int		i;
 
-//	i = -1;
-	/*while (av[0][++i])
+	i = -1;
+	while (av[0][++i])
 	{
 		if (av[0][i] == '/')
-			execve(av[0], av, envp);
-	} a faire avec cd relatif et abs*/
+			return(execve(av[0], av, envp));
+	}
 	msh_get_path(av[0], &path);
 	if (path)
 		return(execve(path, av, envp));
@@ -71,7 +71,7 @@ static int			is_builtins(int status, t_cmd *cmd)
 
 	tmp = status / 256;
 	if (tmp == 11)
-		return (status);
+		return (msh_cd(ft_array_len(cmd->av), cmd->av));
 	else if (tmp == 12)
 		return (status);
 	else if (tmp == 13)
@@ -100,12 +100,9 @@ static int	close_pipe(int (*p_fd)[2], int (*p_rd)[2])
 	return (0);
 }
 
-#include <stdio.h>
-#include <limits.h>
-
 int			msh_execve(t_cmd *ptr, int (*p_fd)[2], int (*p_rd)[2])
 {
-	int			status; // to check and maybe add to stuct
+	int			status;
 	pid_t		pid;
 	char		**envp;
 	char		*path;
@@ -127,7 +124,6 @@ int			msh_execve(t_cmd *ptr, int (*p_fd)[2], int (*p_rd)[2])
 	{
 		close_pipe(p_fd, p_rd);
 		wait(&status);
-		//printf("status = %i\n", status);
 		if (path != NULL)
 			free(path);
 		ft_array_free(envp);

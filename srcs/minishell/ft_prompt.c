@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:01:14 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/25 11:37:20 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/25 16:39:31 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,16 @@ int		ft_prompt(void)
 	line = NULL;
 	while (ret)
 	{
-		printf("Minishell : \n");
+		char *path;
+		path = getcwd(NULL, 0);
+		printf("Minishell -> %s : \n", path);
 		ret = get_next_line(0, &line);
 		ret = msh_parsing(line, &ptr);
 		
 		msh_push_cmd(&ptr);
 		ptr = NULL;
 		free(line);
-		printf("\nend\nl");
+		free(path);
 	}
-	return(ret);
+	return (ret);
 }
