@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:51:47 by user42            #+#    #+#             */
-/*   Updated: 2020/11/25 11:21:30 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/26 14:12:04 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int			unset_child(int ac, char **argv)
 {
 	if (ac == 1)
 		return (0);
-	argv = NULL;
+	(void)ac;
+	(void)argv;
 	return (14);
 }

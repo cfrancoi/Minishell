@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_cd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 15:26:35 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/25 16:27:57 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/26 14:14:08 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static int			is_relativ_path(char *ptr)
 		return (-1);
 	if ((cwd = ft_strjoinf(cwd, ptr, 1)) == NULL)
 		return (-1);
-	printf("%s\n", cwd);
 	if ((fdir = opendir(cwd)) == NULL)
 		return (-1);
 	free(fdir);
@@ -46,6 +45,7 @@ int			msh_cd(int ac, char **argv)
 {
 	char		*path;
 
+	(void)argv;
 	if (ac == 1)
 		return (0);
 	if (ac == 2)

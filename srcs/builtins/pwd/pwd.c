@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 16:39:19 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/25 16:47:38 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/26 14:11:35 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int		msh_pwd(int ac, char **argv)
 {
-	ac = 1;
-	argv = NULL;
+	(void)ac;
+	(void)argv;
 
 	char		*path;
 
