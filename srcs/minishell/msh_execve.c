@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/25 17:40:07 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/26 16:25:23 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,6 @@ static int	pathfinder(char **av, char *const envp[], char *path)
 	exit(127);
 }
 
-static int	child(t_cmd *ptr, char *path, char **envp)
-{
-	int			(*f)();
-
-	if (get_builtin(ptr->av[0], &f) == 1)
-		exit((*f)(ft_array_len(ptr->av), ptr->av));
-	else
-	{
-		if (pathfinder(ptr->av, envp, path) == -1)
-			exit(126);
-	}
-	exit(0);
-}
 
 static int			is_builtins(int status, t_cmd *cmd)
 {
@@ -98,6 +85,21 @@ static int	close_pipe(int (*p_fd)[2], int (*p_rd)[2])
 		close(p_fd[1][1]);
 	}
 	return (0);
+}
+
+
+int	child(t_cmd *ptr, char *path, char **envp)
+{
+	int			(*f)();
+
+	if (get_builtin(ptr->av[0], &f) == 1)
+		exit((*f)(ft_array_len(ptr->av), ptr->av));
+	else
+	{
+		if (pathfinder(ptr->av, envp, path) == -1)
+			exit(126);
+	}
+	exit(0);
 }
 
 int			msh_execve(t_cmd *ptr, int (*p_fd)[2], int (*p_rd)[2])
