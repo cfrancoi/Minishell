@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_dup_fd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 15:37:21 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/25 12:03:32 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/27 14:35:11 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 static int		redirect_fd(const char *path, int flags, int fd)
 {
-		int lfd;
+	int lfd;
 
-		if ((lfd = open(path, flags, 0666)) == -1)
-			return (-1);
-		if ((dup2(lfd, fd)) == -1)
-			return (-1);
-		return (close(lfd));
+	if ((lfd = open(path, flags, 0666)) == -1)
+		return (-1);
+	if ((dup2(lfd, fd)) == -1)
+		return (-1);
+	return (close(lfd));
 }
 
-int		msh_dup_fd(t_cmd *ptr)
+int				msh_dup_fd(t_cmd *ptr)
 {
 	while (ptr)
 	{
@@ -34,9 +34,13 @@ int		msh_dup_fd(t_cmd *ptr)
 				if (ptr->sep == LFT)
 					redirect_fd(ptr->next->av[0], O_RDWR, 0);
 				else if (ptr->sep == RGT)
-					redirect_fd(ptr->next->av[0], O_RDWR | O_CREAT | O_TRUNC, 1);
+					redirect_fd(ptr->next->av[0],
+								O_RDWR | O_CREAT | O_TRUNC,
+								1);
 				else if (ptr->sep == DRGT)
-					redirect_fd(ptr->next->av[0], O_RDWR | O_CREAT | O_APPEND,  1);
+					redirect_fd(ptr->next->av[0],
+								O_RDWR | O_CREAT | O_APPEND,
+								1);
 			}
 		}
 		else

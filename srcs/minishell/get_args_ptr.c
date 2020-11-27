@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   get_args_ptr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 19:45:27 by user42            #+#    #+#             */
-/*   Updated: 2020/11/07 19:45:52 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/27 14:05:54 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "minishell.h"
 
- /* Part 1 */
 static void	*add_args(char *ptr, t_arg **lst)
 {
 	t_arg	*new;
-	t_arg  *tmp;
+	t_arg	*tmp;
 
 	if ((new = malloc(sizeof(t_arg))) == NULL)
 		return (NULL);
@@ -24,7 +23,7 @@ static void	*add_args(char *ptr, t_arg **lst)
 	new->ptr = ptr;
 	if (*lst == NULL)
 	{
-		*lst = new; 
+		*lst = new;
 	}
 	else
 	{
@@ -46,7 +45,7 @@ int			get_args_ptr(char *ptr, t_arg **lst)
 			return (-1);
 	while (ptr[i])
 	{
-		if (ptr[i] == '"' || ptr[i] == 39 )
+		if (ptr[i] == '"' || ptr[i] == 39)
 		{
 			i += pass_quotes(&ptr[i], ptr[i]);
 			if (!(ptr[i]))

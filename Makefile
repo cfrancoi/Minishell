@@ -42,7 +42,7 @@ all:
 	$(MAKE) $(NAME) --no-print-directory
 
 $(OBJ_DIR)%.o:$(MSH_DIR)%.c $(INC_DIR)*.h
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR)
 
 $(NAME):$(OBJ) $(INC_DIR) $(LIBFT_A) $(ENV_A) $(BUILT_A)
 	$(CC) $(CFLAGS) -g $(OBJ) $(BUILT_A) $(ENV_A) $(LIBFT_A) -o $(NAME)

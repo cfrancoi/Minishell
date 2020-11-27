@@ -23,7 +23,7 @@ FLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 %.o: %.c $(INC)
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@ -I ../include
 
 $(NAME): $(OBJS) $(INC)
 	ar rc $(NAME) $(OBJS) $(INC)

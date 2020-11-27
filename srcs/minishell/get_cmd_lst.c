@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmd_lst.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 16:10:23 by user42            #+#    #+#             */
-/*   Updated: 2020/11/25 12:02:32 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/27 14:33:09 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,36 +24,29 @@ static t_cmd	*edit_cmd(char **src, t_cmd *dst)
 	if (*s == ';')
 		dst->sep = SEMI;
 	if (*s == '>')
+		dst->sep = RGT;
+	if (*(s + 1) && *(s + 1) == '>' && *(s + 1) == '>')
 	{
-		if (*(s + 1) && *(s + 1) == '>')
-		{
-			dst->sep = DRGT;
-			*s = 0;
-			s++;
-		}
-		else
-			dst->sep = RGT;
+		dst->sep = DRGT;
+		*s++ = 0;
 	}
 	*s = 0;
-	if (!(dst->next = malloc(sizeof(t_cmd))))
+	if (!(dst->next = ft_calloc(sizeof(t_cmd), 1)))
 		return (NULL);
-	dst = dst->next;
-	dst->sep = 0;
-	dst->str = s + 1;
+	dst->next->str = s + 1;
 	*src = s;
-	return (dst);
+	return (dst->next);
 }
 
-int		get_cmd_lst(char *s, t_cmd **dst)
+int				get_cmd_lst(char *s, t_cmd **dst)
 {
 	t_cmd	*first;
 	int		i;
 
-	if (!(*dst = malloc (sizeof(t_cmd))))
+	if (!(*dst = ft_calloc(sizeof(t_cmd), 1)))
 		return (-1);
 	first = *dst;
 	(*dst)->str = s;
-	(*dst)->sep = 0;
 	while (*s)
 	{
 		if (*s == '|' || *s == '>' || *s == '<' || *s == ';')
@@ -70,7 +63,6 @@ int		get_cmd_lst(char *s, t_cmd **dst)
 		}
 		s++;
 	}
-	(*dst)->next = NULL;
 	*dst = first;
 	return (0);
 }

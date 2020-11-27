@@ -6,12 +6,12 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:51:47 by user42            #+#    #+#             */
-/*   Updated: 2020/11/26 14:12:04 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/27 13:54:20 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/builtins.h"
-# include <stdio.h>
+#include "builtins.h"
+#include <stdio.h>
 
 static int	check_arg(char *argv, int *ret)
 {

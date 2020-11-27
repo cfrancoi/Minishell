@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   msh_exit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:57:17 by user42            #+#    #+#             */
-/*   Updated: 2020/11/17 18:05:46 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/27 14:35:50 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "minishell.h"
 
 static void	free_built(t_built *built)
 {
@@ -49,5 +49,5 @@ int			msh_exit(t_cmd *cmd, int ret)
 	free_built(g_all.built);
 	free_lst_var(g_all.var);
 	ft_putstr_fd("exit\n", 2);
-	exit (ret);
+	exit(ret);
 }

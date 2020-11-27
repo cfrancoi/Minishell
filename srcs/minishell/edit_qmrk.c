@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   edit_qmrk.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 17:41:58 by user42            #+#    #+#             */
-/*   Updated: 2020/11/25 11:49:58 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/27 14:06:14 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/minishell.h"
-# include <errno.h>
+#include "minishell.h"
+#include <errno.h>
 
 static int	edit_errno(int excode, int tmp)
 {

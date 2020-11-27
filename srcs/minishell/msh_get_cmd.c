@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   msh_get_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 15:29:50 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/12 15:04:58 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/27 14:39:33 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static char	**lst_to_array(t_arg *lst)
+static char		**lst_to_array(t_arg *lst)
 {
 	t_arg	*tmp;
 	int		i;
@@ -24,11 +24,11 @@ static char	**lst_to_array(t_arg *lst)
 	{
 		tmp = tmp->next;
 		i++;
-	}	
+	}
 	if ((ptr = malloc(sizeof(char *) * (i + 1))))
 	{
 		i = 0;
-		while(lst)
+		while (lst)
 		{
 			ptr[i++] = lst->ptr;
 			tmp = lst->next;
@@ -40,33 +40,14 @@ static char	**lst_to_array(t_arg *lst)
 	return (ptr);
 }
 
-char		**msh_get_cmd(char *ptr)
+char			**msh_get_cmd(char *ptr)
 {
 	t_arg	*lst;
 	char	**av;
-	
+
 	lst = NULL;
-
 	get_args_ptr(ptr, &lst);
-	get_args_lst(lst); /* need to free /!\ */
-	//free(lst);
+	get_args_lst(lst);
 	av = lst_to_array(lst);
-
-
 	return (av);
 }
-
-/*
-int main(int ac, char **av)
-{
-	char **lol = msh_get_cmd(av[1]);
-
-	int i = 0;
-
-	while(lol[i])
-	{
-		printf("av[%i] = %s\n", i, lol[i]);
-		i++;
-	}
-}
-*/

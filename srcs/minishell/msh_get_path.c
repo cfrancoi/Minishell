@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   msh_get_path.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 16:07:47 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/17 18:06:27 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/27 14:44:00 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
-#include <stdio.h>
+#include "minishell.h"
 
 static char		*get_next_path(char **pgrm)
 {
@@ -27,7 +26,7 @@ static char		*get_next_path(char **pgrm)
 	else
 	{
 		ptr = *pgrm;
-		while(*ptr != '\0' && *ptr != ':')
+		while (*ptr != '\0' && *ptr != ':')
 		{
 			ptr++;
 		}
@@ -38,7 +37,7 @@ static char		*get_next_path(char **pgrm)
 	}
 }
 
-int			msh_get_path(char *prgm, char **path)
+int				msh_get_path(char *prgm, char **path)
 {
 	void	*ptr;
 	char	*tmp;
