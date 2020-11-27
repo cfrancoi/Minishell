@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 16:07:47 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/27 14:44:00 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/27 15:39:19 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char		*get_next_path(char **pgrm)
 			ptr++;
 		}
 		if (*ptr == ':')
-			ptr += 1; 
+			ptr += 1;
 		*pgrm = ptr;
 		return (tmp);
 	}
@@ -42,17 +42,11 @@ int				msh_get_path(char *prgm, char **path)
 	void	*ptr;
 	char	*tmp;
 	int		fd;
-	char	*to_free;
-
-	fd = 0;
-	*path = NULL;
-	tmp = NULL;
 
 	if ((ptr = get_var(g_all.var, "PATH")) == NULL)
 		return (-1);
-	ptr = ft_strdup(((t_var *)ptr)->content);
-	to_free = ptr;
-	while((tmp = get_next_path((char **)(&ptr))) != NULL)
+	ptr = ((t_var *)ptr)->content;
+	while ((tmp = get_next_path((char **)(&ptr))) != NULL)
 	{
 		tmp = ft_strjoinf(tmp, "/", 1);
 		tmp = ft_strjoinf(tmp, prgm, 1);
@@ -64,13 +58,9 @@ int				msh_get_path(char *prgm, char **path)
 		else
 		{
 			*path = tmp;
-			close (fd);
-			free(to_free);
-			return(0);
+			close(fd);
+			return (0);
 		}
 	}
-	if (tmp != NULL)
-		free(tmp);
-	free(to_free);
 	return (-1);
 }

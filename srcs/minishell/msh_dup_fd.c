@@ -6,11 +6,11 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 15:37:21 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/27 14:35:11 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/27 16:12:43 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "minishell.h"
 
 static int		redirect_fd(const char *path, int flags, int fd)
 {
@@ -47,5 +47,25 @@ int				msh_dup_fd(t_cmd *ptr)
 			return (0);
 		ptr = ptr->next;
 	}
+	return (0);
+}
+
+int		red_pipe(t_tfrk *lst)
+{
+	if (lst->prev != NULL)
+	{
+		if ((dup2(lst->prev->pfd[0], 0)) == -1)
+			return (-1);
+		close(lst->prev->pfd[0]); // fermer pere et fils
+	}
+	if (lst->pfd[1] != 0)
+	{
+		if ((dup2(lst->pfd[1], 1)) == -1)
+			return (-1);
+	}
+	if (lst->pfd[0] != 0)
+		close(lst->pfd[0]); // fermer juste dans le fils
+	if (lst->pfd[1] != 0)
+		close(lst->pfd[1]); // fermer dans pere et fils
 	return (0);
 }

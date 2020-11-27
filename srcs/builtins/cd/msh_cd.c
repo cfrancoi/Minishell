@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 15:26:35 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/26 14:14:08 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/27 15:01:56 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static int			is_relativ_path(char *ptr)
 		return (-1);
 	free(fdir);
 	return (1);
-
 }
 
 

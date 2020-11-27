@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:15:46 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/12 14:38:45 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/27 15:41:28 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@ int		msh_parsing(char *line, t_cmd **ptr)
 	if (get_cmd_lst(line, &cmd) == -1)
 		return (-1);
 	first = cmd;
-
-	/* remplacement des $env */
-
 	while (cmd)
 	{
 		if (!(cmd->av = msh_get_cmd(cmd->str)))

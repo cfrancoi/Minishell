@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   msh_parsing_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:39:10 by user42            #+#    #+#             */
-/*   Updated: 2020/11/25 12:04:15 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/27 15:41:09 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "../include/minishell.h"
-#include "../include/env.h"
+#include "minishell.h"
+#include "env.h"
 
 int		pass_quotes(char *str, int type)
 {
@@ -51,7 +50,7 @@ int		need_pipe(t_cmd *cmd)
 	while (cmd != NULL)
 	{
 		sep = cmd->sep;
-		if (sep == LFT || sep ==  RGT || sep == DRGT)
+		if (sep == LFT || sep == RGT || sep == DRGT)
 			cmd = cmd->next;
 		else if (sep == PIPE)
 			return (1);
