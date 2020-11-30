@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_cd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 15:26:35 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/30 15:48:26 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/30 16:47:19 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int			msh_cd(int ac, char **argv)
 		}
 		if (is_relativ_path(argv[1]) == -1)
 		{
-			printf("msh cd : %s", strerror(errno));
+			printf("msh cd : %s\n", strerror(errno));
 		}
 		else
 		{

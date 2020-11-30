@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:12:33 by user42            #+#    #+#             */
-/*   Updated: 2020/11/25 15:55:46 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/30 16:42:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef	struct			s_built
 
 # include "./env.h"
 # include "./minishell.h"
+# include "./msh_execve.h"
 
 int						msh_export(int ac, char **argv);
 t_built					*builtins_alloc(t_built *first, char *name, int (*f)());
@@ -38,5 +39,5 @@ int						env(void);
 
 
 int						get_builtin(char *cmd, int (**f)());
-int						msh_exit(t_cmd *cmd, int ret);
+int						msh_exit(t_cmd *cmd, t_tfrk *lst, int ret);
 #endif

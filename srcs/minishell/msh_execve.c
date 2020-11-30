@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_execve.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/27 16:11:36 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/30 16:40:04 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,16 @@ static int	pathfinder(char **av, char *const envp[], char *path)
 }
 
 
-static int			is_builtins(int status, t_cmd *cmd)
+static int			is_builtins(int status, t_cmd *cmd, t_tfrk *lst)
 {
-	int tmp;
-
-	tmp = status / 256;
-	if (tmp == 11)
+	if (ft_strncmp(cmd->av[0], "cd", 3) == 0)
 		return (msh_cd(ft_array_len(cmd->av), cmd->av));
-	else if (tmp == 12)
-		return (status);
-	else if (tmp == 13)
+	else if (ft_strncmp(cmd->av[0], "export", 7) == 0)
 		return (add_to_lst(ft_array_len(cmd->av), cmd->av));
-	else if (tmp == 14)
+	else if (ft_strncmp(cmd->av[0], "unset", 6) == 0)
 		return (unset_parent(ft_array_len(cmd->av), cmd->av));
+	else if (ft_strncmp(cmd->av[0], "exit", 5) == 0)
+		return (msh_exit(cmd, lst, 0));
 	return (status);
 }
 
@@ -67,7 +64,8 @@ static int		wait_all(t_tfrk *lst)
 	while (lst != NULL)
 	{
 		waitpid(lst->pid, &status, 0);
-		status = is_builtins(status, lst->cmd); /* a fair */
+		if (!(lst->prev) && !(lst->next))
+			status = is_builtins(status, lst->cmd, lst); /* a fair */
 		edit_qmrk(status / 256, lst->cmd->av[0]); /* a faire */
 		lst = lst->next;
 	}
