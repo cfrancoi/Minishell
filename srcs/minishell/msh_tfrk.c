@@ -48,9 +48,23 @@ t_tfrk   *crt_lst(t_cmd *cmd)
     while((cmd = get_next_cmd(cmd)))
     {
         if ((lst->next = nw_frk(lst, cmd)) == NULL)
-            return (NULL); // need to free lst
-        printf("argv = %s\n", cmd->av[0]);
+        {
+            free_tfrk(first);
+            return (NULL);
+        }
         lst = lst->next;
     }
     return (first);
+}
+
+void    free_tfrk(t_tfrk *lst)
+{
+    t_tfrk *tmp;
+
+    while (lst != NULL)
+    {
+        tmp = lst->next;
+        free(lst);
+        lst = tmp;
+    }
 }

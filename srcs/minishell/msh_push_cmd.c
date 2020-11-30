@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:48:44 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/27 16:21:11 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/30 15:52:31 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,6 @@ static t_cmd	*get_next_cmd(t_cmd *ptr)
 	return (NULL);
 }
 
-static int			is_builtins(int status, t_cmd *cmd)
-{
-	int tmp;
-
-	tmp = status / 256;
-	if (tmp == 11)
-		return (msh_cd(ft_array_len(cmd->av), cmd->av));
-	else if (tmp == 12)
-		return (status);
-	else if (tmp == 13)
-		return (add_to_lst(ft_array_len(cmd->av), cmd->av));
-	else if (tmp == 14)
-		return (unset_parent(ft_array_len(cmd->av), cmd->av));
-	return (status);
-}
-
-
 int			msh_push_cmd(t_cmd	**ptr)
 {
 	t_cmd	*cmd;
@@ -71,9 +54,9 @@ int			msh_push_cmd(t_cmd	**ptr)
 		lst = crt_lst(cmd); /* lst of cmd to fork */
 		/*	*/
 		start_fork(lst);
+		free_tfrk(lst);
 		/* free lst */
 		cmd = get_next_cmd(cmd);
 	}
 	return (0);
 }
-

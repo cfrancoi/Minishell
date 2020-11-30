@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 12:58:42 by user42            #+#    #+#             */
-/*   Updated: 2020/11/27 16:11:56 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/11/30 15:51:52 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ int         msh_execve(t_cmd *ptr, int (*p_fd)[2], int (*p_rd)[2]);
 int         msh_dup_fd(t_cmd *ptr);
 int         red_pipe(t_tfrk *lst);
 int         msh_get_path(char *prgm, char **path);
+void		free_tfrk(t_tfrk *lst);
 #endif
