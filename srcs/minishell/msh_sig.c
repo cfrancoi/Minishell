@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   msh_sig.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/02 14:26:16 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/01 16:28:46 by cfrancoi         ###   ########lyon.fr   */
+/*   Created: 2020/12/01 16:22:11 by cfrancoi          #+#    #+#             */
+/*   Updated: 2020/12/01 16:35:14 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef		MINISHELL_H
-# define	MINISHELL_H
+#include "minishell.h"
+#include <signal.h>
 
-# include	<unistd.h>
-# include	"./env.h"
-# include	"../libft/libft.h"
-# include	"./msh_parsing.h"
-# include	"./builtins.h"
-# include	"./msh_execve.h"
-# include	"./cfrancoi.h"
-# include	"./lfourage.h"
-
-typedef struct	s_all
+static void sigint_handler(int signum)
 {
-	t_built		*built;
-	t_var		*var;
-	char		*path;
-}				t_all;
+    (void)signum;
+    ft_putstr_fd("crt-c\n", 1);
+    return ;
+}
 
-t_all			g_all;
-
-int				ft_prompt(void);
-int				msh_sig(void);
-
-# endif
+int     msh_sig()
+{
+    if ((signal(SIGINT, sigint_handler)) == SIG_ERR)
+        return (-1);
+    return (0);
+}

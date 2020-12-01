@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 13:52:04 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/25 14:08:49 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/01 16:34:34 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int		main(int ac, char **av, char **envp)
 		return (0);
 	(void)av;
 	/* pars envp */
+	msh_sig();
+	
 	if (!(g_all.built = builtins_alloc(g_all.built, "echo", echo)))
 		return (-1);
 	if(!(g_all.var = get_envp(envp)))

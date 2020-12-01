@@ -18,6 +18,7 @@ SRCS		+= builtins_alloc.c
 SRCS		+= get_builtin.c
 SRCS		+= msh_get_path.c
 SRCS		+= msh_tfrk.c
+SRCS		+= msh_sig.c
 
 OBJ_DIR		= ./srcs/objects/
 MSH_DIR		= ./srcs/minishell/
