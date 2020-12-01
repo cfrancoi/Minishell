@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 16:39:19 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/26 14:11:35 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/01 17:07:41 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 int		msh_pwd(int ac, char **argv)
 {
-	(void)ac;
-	(void)argv;
-
 	char		*path;
 
+	(void)ac;
+	(void)argv;
 	path = getcwd(NULL, 0);
 	ft_putstr_fd(path, 1);
 	ft_putchar_fd('\n', 1);

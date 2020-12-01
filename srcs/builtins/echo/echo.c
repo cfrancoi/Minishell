@@ -6,12 +6,12 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:47:39 by user42            #+#    #+#             */
-/*   Updated: 2020/11/23 17:25:17 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/01 16:50:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../libft/libft.h"
-# include "../../include/minishell.h"
+#include "../../libft/libft.h"
+#include "../../include/minishell.h"
 
 int	echo(int ac, char **av)
 {

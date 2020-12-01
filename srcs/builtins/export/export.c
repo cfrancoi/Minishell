@@ -3,20 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:51:21 by user42            #+#    #+#             */
-/*   Updated: 2020/11/26 14:09:29 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/01 17:06:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../include/builtins.h"
-#include <stdio.h>
+#include "../../include/builtins.h"
 
 int		msh_export(int ac, char **av)
 {
 	write(1, "**export**\n", 11);
-
 	(void)av;
 	if (ac == 1)
 		env();

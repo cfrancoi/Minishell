@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 15:26:35 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/30 16:47:19 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/01 16:49:44 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 #include <stdio.h>
 #include <sys/errno.h>
 
-static int			is_abs_path(char *ptr)
+static int	is_abs_path(char *ptr)
 {
 	if (ptr[0] == '\\')
 		return (1);
 	return (0);
 }
 
-static int			is_relativ_path(char *ptr)
+static int	is_relativ_path(char *ptr)
 {
 	char		*cwd;
 	DIR			*fdir;
@@ -39,6 +39,14 @@ static int			is_relativ_path(char *ptr)
 	return (1);
 }
 
+static void	msh_absolute_error_str(char *path)
+{
+	ft_putstr_fd("msh cd : ", 2);
+	ft_putstr_fd(path, 2);
+	ft_putstr_fd(" : ", 2);
+	ft_putstr_fd(strerror(errno), 2);
+	ft_putchar_fd('\n', 2);
+}
 
 int			msh_cd(int ac, char **argv)
 {
@@ -57,9 +65,7 @@ int			msh_cd(int ac, char **argv)
 				return (0);
 		}
 		if (is_relativ_path(argv[1]) == -1)
-		{
-			printf("msh cd : %s\n", strerror(errno));
-		}
+			msh_absolute_error_str(argv[1]);
 		else
 		{
 			path = ft_strjoinf(getcwd(NULL, 0), "/", 1);

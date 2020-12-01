@@ -3,59 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   add_to_lst.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 16:17:40 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/25 15:26:17 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/01 17:05:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/builtins.h"
 
-static int			is_name_var(char *str)
+static int		is_name_var(char *str)
 {
 	int i;
 
 	i = 0;
-	while(str[i] && str[i] != '=' && (ft_isalnum(str[i]) || str[i] == '_'))
+	while (str[i] && str[i] != '=' && (ft_isalnum(str[i]) || str[i] == '_'))
 		i++;
 	if (str[i] == '=' || str[i] == '\0')
-		return (1);
+	{
+		str[i] = 0;
+		return (i);
+	}
 	else
 		return (0);
 }
 
-static t_var			*is_existing_var(char *name)
+static t_var	*is_existing_var(char *name)
 {
 	t_var *tmp;
 
 	tmp = get_var(g_all.var, name);
+	return (tmp);
+}
 
-	return(tmp);
+static int		replace_content(t_var *tmp, char *ptr, int i)
+{
+	if (tmp->content != NULL)
+		free(tmp->content);
+	if ((tmp->content = ft_strdup(&ptr[i + 1])) == NULL)
+		return (-1);
+	return (0);
 }
 
 static int		to_add(char *ptr)
 {
-	int i;
+	int		i;
 	t_var	**lst;
 	t_var	*tmp;
 
-	tmp= NULL;
+	tmp = NULL;
 	lst = &g_all.var;
-	i = 0;
-
-	if (!is_name_var(ptr))
+	i = is_name_var(ptr);
+	if (i == 0)
 		return (-1);
-	while (ptr[i + 1] && ptr[i] != '=')
-		i++;
-	if (ptr[i] == '=')
-		ptr[i] = '\0';
 	if ((tmp = is_existing_var(ptr)) != NULL)
 	{
-		//ptr[i] = '=';
-		if (tmp->content != NULL)
-			free(tmp->content);
-		if ((tmp->content = ft_strdup(&ptr[i + 1])) == NULL)
+		if ((replace_content(tmp, ptr, i)) == -1)
 			return (-1);
 	}
 	else
@@ -67,15 +70,8 @@ static int		to_add(char *ptr)
 	ptr[i] = '=';
 	return (0);
 }
-/* En cas d'erreur un message est send sans interompre la fct */
-/* 
-	Exemple : export OUI!=NON NON=OUI 
-	on aura un message d'erreur pour $OUI mais $NON sera cree
-*/
 
-#include <stdio.h>
-
-int		add_to_lst(int ac, char **av) 
+int				add_to_lst(int ac, char **av)
 {
 	int i;
 	int ret;
@@ -93,6 +89,5 @@ int		add_to_lst(int ac, char **av)
 		}
 		i++;
 	}
-	return (ret);	
+	return (ret);
 }
-
