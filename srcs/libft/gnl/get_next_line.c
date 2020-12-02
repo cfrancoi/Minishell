@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 12:00:55 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/12 16:16:17 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/02 17:25:40 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ int		get_next_line(int fd, char **line)
 	(mysta == NULL) ? mysta = nw(fd) : 0;
 	(mysta != NULL) ? n = readline(mysta, fd, line) : 0;
 	(n > 0) ? n = 1 : 0;
-	(fd == 0 && ft_strlen(mysta->buf) == 0 ) ? n = 0 : 0 ;
-	if (mysta != NULL && (n == 0 || n == -1))
+	//(fd == 0 && mysta->buf != NULL && ft_strlen(mysta->buf) == 0 ) ? n = 0 : 0;
+	if (mysta != NULL && ((n == 0 || n == -1)
+		|| (fd == 0 && mysta->buf != NULL && ft_strlen(mysta->buf) == 0 )))
 	{
 		if (mysta->buf != NULL)
 		{
