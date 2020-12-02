@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 16:22:11 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/02 17:10:10 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/02 18:02:18 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,39 @@
 
 static void sigint_handler(int signum)
 {
+    char        *path;
     (void)signum;
+    path = NULL;
+    
+    /* crt-c */
+    ft_putstr_fd("\n", 1);
+    if (g_all.step == MSH_READ)
+    {
+        path = getcwd(NULL, 0); // a securiser !!!!!!
+        ft_putstr_fd("Minishell : ", 1);
+		ft_putstr_fd(path, 1);
+		ft_putstr_fd(" : ", 1);  /* a faire */
+        free(path);
+    }
     return ;
 }
 
 static void sigquit_handler(int signum)
 {
-    (void)signum;
+    char *path;
 
-    ft_putstr_fd("crtl-\\\n", 1);
+    (void)signum;
+    path = NULL;
+    ft_putstr_fd("\n", 1);
+    if (g_all.step == MSH_READ)
+    {
+        path = getcwd(NULL, 0); // a securiser !!!!!!
+        ft_putstr_fd("Minishell : ", 1);
+		ft_putstr_fd(path, 1);
+		ft_putstr_fd(" : ", 1);  /* a faire */
+        free(path);
+    }
+    /**/
     return ;
 }
 

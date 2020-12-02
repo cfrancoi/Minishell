@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:26:16 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/01 16:28:46 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/02 17:55:15 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,18 @@
 # include	"./msh_execve.h"
 # include	"./cfrancoi.h"
 # include	"./lfourage.h"
-
+# define	MSH_READ 0
+# define	MSH_STCMD 1
 typedef struct	s_all
 {
 	t_built		*built;
 	t_var		*var;
 	char		*path;
+	int			step;
 }				t_all;
 
 t_all			g_all;
+
 
 int				ft_prompt(void);
 int				msh_sig(void);

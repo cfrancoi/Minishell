@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_execve.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/30 17:18:50 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/02 18:51:10 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int			child(t_cmd *ptr, char **envp)
 	}
 	exit(0);
 }
-
+#include <stdio.h>
+#include <errno.h>
 static int	wait_all(t_tfrk *lst)
 {
 	int status;
@@ -34,10 +35,19 @@ static int	wait_all(t_tfrk *lst)
 	while (lst != NULL)
 	{
 		waitpid(lst->pid, &status, 0);
+		
 		if (!(lst->prev) && !(lst->next))
 			status = is_builtins(status, lst->cmd, lst); /* a fair */
 		edit_qmrk(status / 256, lst->cmd->av[0]); /* a faire */
 		lst = lst->next;
+	}
+	if (WIFSIGNALED(status))
+	{
+		printf("signal d'arret : %i %s\n", WTERMSIG(status), strerror(SIGQUIT));
+#ifdef WCOREDUMP
+		if (WCOREDUMP(status))
+			ft_putstr_fd("Core dumped\n",2);
+#endif
 	}
 	return (1);
 }
