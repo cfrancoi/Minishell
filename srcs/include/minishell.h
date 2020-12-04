@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:26:16 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/02 17:55:15 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/04 17:00:49 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include	"./lfourage.h"
 # define	MSH_READ 0
 # define	MSH_STCMD 1
+# define	MSH_EXIT 2
+
 typedef struct	s_all
 {
 	t_built		*built;

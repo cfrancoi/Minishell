@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:01:14 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/02 17:57:17 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/04 17:02:38 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,18 @@ int			ft_prompt(void)
 		ft_putstr_fd("Minishell : ", 1);
 		ft_putstr_fd(path, 1);
 		ft_putstr_fd(" : ", 1);  /* a faire */
+		free(path);
 		ret = get_next_line(0, &line);
 		if (ret != 0)
 		{
 			g_all.step = MSH_STCMD;
 			ret = msh_parsing(line, &ptr);
-			msh_push_cmd(&ptr);
-			ptr = NULL;
+			if (msh_push_cmd(&ptr) == MSH_EXIT)
+				ret = 0;			
 		}
-		free(line);
-		free(path);
+		if (line)
+			free(line);
 	}
+	msh_exit(ptr, 0);
 	return (ret);
 }

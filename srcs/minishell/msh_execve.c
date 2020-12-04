@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/02 19:06:59 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/04 16:26:26 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ int			child(t_cmd *ptr, char **envp)
 	}
 	exit(0);
 }
-#include <stdio.h>
-#include <errno.h>
+
 static int	wait_all(t_tfrk *lst)
 {
 	int status;
@@ -38,18 +37,19 @@ static int	wait_all(t_tfrk *lst)
 		
 		if (!(lst->prev) && !(lst->next))
 			status = is_builtins(status, lst->cmd, lst); /* a fair */
+//		if (!(g_all.step == MSH_EXIT && lst->prev == NULL && lst->next == NULL))
+//			g_all.step = MSH_STCMD;
 		edit_qmrk(status / 256, lst->cmd->av[0]); /* a faire */
 		lst = lst->next;
 	}
 	if (WIFSIGNALED(status))
 	{
-		printf("signal d'arret : %i %s\n", WTERMSIG(status), strerror(SIGQUIT));
 #ifdef WCOREDUMP
 		if (WCOREDUMP(status))
-			ft_putstr_fd("Core dumped\n",2);
+			ft_putstr_fd("Core dumped\n", 2);
 #endif
 	}
-	return (1);
+	return (g_all.step);
 }
 
 static int	start_pipe(t_tfrk *lst)
