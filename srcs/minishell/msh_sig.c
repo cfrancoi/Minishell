@@ -6,20 +6,19 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 16:22:11 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/07 16:52:16 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/07 17:13:02 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <signal.h>
-#include <stdio.h>
 
 static void	sigint_handler(int signum)
 {
 	(void)signum;
 	ft_putstr_fd("\n", 1);
 	if (g_all.step == MSH_READ)
-		print_path(g.all.path);
+		print_path();
 	return ;
 }
 
@@ -28,7 +27,7 @@ static void	sigquit_handler(int signum)
 	(void)signum;
 	ft_putstr_fd("\n", 1);
 	if (g_all.step == MSH_READ)
-		print_path(g.all.path);
+		print_path();
 	return ;
 }
 

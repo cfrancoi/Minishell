@@ -6,15 +6,15 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 16:00:23 by user42            #+#    #+#             */
-/*   Updated: 2020/12/07 16:50:27 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/07 17:11:29 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_path(char *path)
+void	print_path(void)
 {
 	ft_putstr_fd("Minishell : ", 1);
-	ft_putstr_fd(path, 1);
+	ft_putstr_fd(g_all.path, 1);
 	ft_putstr_fd(" : ", 1);
 }

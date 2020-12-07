@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:26:16 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/07 16:02:04 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/07 17:13:05 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ t_all			g_all;
 
 int				ft_prompt(void);
 int				msh_sig(void);
-int				print_path(void);
+void			print_path(void);
 
 # endif

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:01:14 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/07 17:08:15 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/07 17:12:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static int	print_cwd(void)
 {
-	if (!(g.all.path = getcwd(NULL, 0)))
+	if (!(g_all.path = getcwd(NULL, 0)))
 		return (-1);
-	print_path(g.all.path)
+	print_path();
 	return (0);
 }
 
@@ -50,8 +50,8 @@ int			ft_prompt(void)
 			ret = msh_parse_line(line, ptr);
 		if (line)
 			free(line);
-		if (g.all.path)
-			free(g.all.path);
+		if (g_all.path)
+			free(g_all.path);
 	}
 	msh_exit(ptr, 0);
 	return (ret);
