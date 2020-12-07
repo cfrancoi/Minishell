@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 16:22:11 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/07 16:14:11 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/07 16:52:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	sigint_handler(int signum)
 	(void)signum;
 	ft_putstr_fd("\n", 1);
 	if (g_all.step == MSH_READ)
-		g.all.step = print_path(void);
+		print_path(g.all.path);
 	return ;
 }
 
@@ -28,7 +28,7 @@ static void	sigquit_handler(int signum)
 	(void)signum;
 	ft_putstr_fd("\n", 1);
 	if (g_all.step == MSH_READ)
-		g.all.step = print_path(void);
+		print_path(g.all.path);
 	return ;
 }
 
@@ -38,5 +38,5 @@ int			msh_sig(void)
 		return (-1);
 	if ((signal(SIGQUIT, sigquit_handler)) == SIG_ERR)
 		return (-1);
-	return (g.all.step);
+	return (0);
 }
