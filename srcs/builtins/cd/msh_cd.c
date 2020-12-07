@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_cd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 15:26:35 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/07 14:59:48 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/07 17:55:36 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ static void	msh_error_str(char *path)
 	ft_putstr_fd("msh cd : ", 2);
 	ft_putstr_fd(path, 2);
 	ft_putstr_fd(" : ", 2);
-	ft_putstr_fd(strerror(errno), 2);
-	ft_putchar_fd('\n', 2);
+	ft_putendl_fd(strerror(errno), 2);
 }
 
 /* fact chelou a faire des test pour vois unse PWD & OLDPWD 

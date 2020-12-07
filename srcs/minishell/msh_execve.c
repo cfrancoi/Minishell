@@ -6,11 +6,12 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/04 16:26:26 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/07 19:08:39 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <errno.h>
 
 int			child(t_cmd *ptr, char **envp)
 {
@@ -21,7 +22,10 @@ int			child(t_cmd *ptr, char **envp)
 	else
 	{
 		if (pathfinder(ptr->av, envp) == -1)
-			exit(126);
+		{
+			ft_putendl_fd(strerror(errno), 2);
+			exit(ERR_EXECVE);
+		}
 	}
 	exit(0);
 }
@@ -34,12 +38,9 @@ static int	wait_all(t_tfrk *lst)
 	while (lst != NULL)
 	{
 		waitpid(lst->pid, &status, 0);
-		
 		if (!(lst->prev) && !(lst->next))
-			status = is_builtins(status, lst->cmd, lst); /* a fair */
-//		if (!(g_all.step == MSH_EXIT && lst->prev == NULL && lst->next == NULL))
-//			g_all.step = MSH_STCMD;
-		edit_qmrk(status / 256, lst->cmd->av[0]); /* a faire */
+			status = start_builtins(status, lst->cmd, lst);
+		edit_qmrk(status / 256);
 		lst = lst->next;
 	}
 	if (WIFSIGNALED(status))
@@ -65,14 +66,14 @@ static int	make_forks(t_tfrk *lst, char **envp)
 	while (lst != NULL)
 	{
 		if (lst->next != NULL && start_pipe(lst) == -1)
-			return (-1); /* kill all fork if failed */
+			return (-1);
 		if ((lst->pid = fork()) == -1)
-			return (-1); /* kill all fork if failed */
+			return (-1);
 		else if (lst->pid == 0)
 		{
 			red_pipe(lst);
 			msh_dup_fd(lst->cmd);
-			child(lst->cmd, envp); // add envp is need  
+			child(lst->cmd, envp);
 			exit(0);
 		}
 		else
@@ -89,12 +90,12 @@ static int	make_forks(t_tfrk *lst, char **envp)
 
 int			start_fork(t_tfrk *lst)
 {
-	char 	**envp;
-	
+	char	**envp;
+
 	if ((envp = lst_to_envp(g_all.var)) == NULL)
 		return (-1);
 	if (make_forks(lst, envp) != 0)
 		return (-1);
 	ft_array_free(envp);
-	return(wait_all(lst));
+	return (wait_all(lst));
 }

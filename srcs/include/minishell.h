@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:26:16 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/04 17:00:49 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/07 19:07:56 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@
 # include	"./msh_execve.h"
 # include	"./cfrancoi.h"
 # include	"./lfourage.h"
-# define	MSH_READ 0
-# define	MSH_STCMD 1
-# define	MSH_EXIT 2
+# define	MSH_READ			0
+# define	MSH_STCMD			1
+# define	MSH_EXIT			2
+# define	ERR_EXECVE			126
+# define	ERR_CMD_NOT_FOUND	127
 
 typedef struct	s_all
 {
@@ -38,5 +40,6 @@ t_all			g_all;
 
 int				ft_prompt(void);
 int				msh_sig(void);
+void			print_path(void);
 
 # endif

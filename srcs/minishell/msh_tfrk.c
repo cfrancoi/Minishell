@@ -1,16 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   msh_tfrk.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/07 16:27:22 by user42            #+#    #+#             */
+/*   Updated: 2020/12/07 16:30:51 by user42           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/minishell.h"
-#include <stdio.h>
 
-t_tfrk   *nw_frk(t_tfrk *prev, t_cmd *cmd)
+t_tfrk			*nw_frk(t_tfrk *prev, t_cmd *cmd)
 {
-    t_tfrk *nw;
+	t_tfrk	*nw;
 
-    if ((nw = ft_calloc(sizeof(t_tfrk), 1)) == NULL)
-        return (NULL);
-    nw->prev = prev;
-    nw->cmd = cmd;
-    return (nw);
+	if ((nw = ft_calloc(sizeof(t_tfrk), 1)) == NULL)
+		return (NULL);
+	nw->prev = prev;
+	nw->cmd = cmd;
+	return (nw);
 }
 
 static t_cmd	*get_next_cmd(t_cmd *ptr)
@@ -29,7 +39,7 @@ static t_cmd	*get_next_cmd(t_cmd *ptr)
 		}
 		else if (sep == PIPE)
 			return (cmd->next);
-		else if (sep == LFT || sep ==  RGT || sep == DRGT)
+		else if (sep == LFT || sep == RGT || sep == DRGT)
 		{
 			cmd = cmd->next;
 		}
@@ -37,34 +47,34 @@ static t_cmd	*get_next_cmd(t_cmd *ptr)
 	return (NULL);
 }
 
-t_tfrk   *crt_lst(t_cmd *cmd)
+t_tfrk			*crt_lst(t_cmd *cmd)
 {
-    t_tfrk       *lst;
-    t_tfrk       *first;
+	t_tfrk	*lst;
+	t_tfrk	*first;
 
-    if ((lst = nw_frk(NULL, cmd)) == NULL)
-        return (NULL);
-    first = lst;
-    while((cmd = get_next_cmd(cmd)))
-    {
-        if ((lst->next = nw_frk(lst, cmd)) == NULL)
-        {
-            free_tfrk(first);
-            return (NULL);
-        }
-        lst = lst->next;
-    }
-    return (first);
+	if ((lst = nw_frk(NULL, cmd)) == NULL)
+		return (NULL);
+	first = lst;
+	while ((cmd = get_next_cmd(cmd)))
+	{
+		if ((lst->next = nw_frk(lst, cmd)) == NULL)
+		{
+			free_tfrk(first);
+			return (NULL);
+		}
+		lst = lst->next;
+	}
+	return (first);
 }
 
-void    free_tfrk(t_tfrk *lst)
+void			free_tfrk(t_tfrk *lst)
 {
-    t_tfrk *tmp;
+	t_tfrk	*tmp;
 
-    while (lst != NULL)
-    {
-        tmp = lst->next;
-        free(lst);
-        lst = tmp;
-    }
+	while (lst != NULL)
+	{
+		tmp = lst->next;
+		free(lst);
+		lst = tmp;
+	}
 }

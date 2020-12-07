@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prgm.c                                             :+:      :+:    :+:   */
+/*   ft_prompt_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/09 17:13:30 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/19 17:06:07 by user42           ###   ########.fr       */
+/*   Created: 2020/12/07 16:00:23 by user42            #+#    #+#             */
+/*   Updated: 2020/12/07 17:11:29 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 
-
-#include <unistd.h>
-#include <string.h>
-
-int main()
+void	print_path(void)
 {
-	char buf [1024];
-
-	bzero(buf, 1024);
-
-	read(0, buf, 1024);
-		write(1, buf, strlen(buf));
-		write(1, buf, strlen(buf));
+	ft_putstr_fd("Minishell : ", 1);
+	ft_putstr_fd(g_all.path, 1);
+	ft_putstr_fd(" : ", 1);
 }

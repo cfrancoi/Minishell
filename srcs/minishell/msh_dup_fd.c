@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   msh_dup_fd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 15:37:21 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/27 16:12:43 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/07 16:20:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int		redirect_fd(const char *path, int flags, int fd)
+static int	redirect_fd(const char *path, int flags, int fd)
 {
 	int lfd;
 
@@ -23,7 +23,7 @@ static int		redirect_fd(const char *path, int flags, int fd)
 	return (close(lfd));
 }
 
-int				msh_dup_fd(t_cmd *ptr)
+int			msh_dup_fd(t_cmd *ptr)
 {
 	while (ptr)
 	{
@@ -50,13 +50,13 @@ int				msh_dup_fd(t_cmd *ptr)
 	return (0);
 }
 
-int		red_pipe(t_tfrk *lst)
+int			red_pipe(t_tfrk *lst)
 {
 	if (lst->prev != NULL)
 	{
 		if ((dup2(lst->prev->pfd[0], 0)) == -1)
 			return (-1);
-		close(lst->prev->pfd[0]); // fermer pere et fils
+		close(lst->prev->pfd[0]);
 	}
 	if (lst->pfd[1] != 0)
 	{
@@ -64,8 +64,8 @@ int		red_pipe(t_tfrk *lst)
 			return (-1);
 	}
 	if (lst->pfd[0] != 0)
-		close(lst->pfd[0]); // fermer juste dans le fils
+		close(lst->pfd[0]);
 	if (lst->pfd[1] != 0)
-		close(lst->pfd[1]); // fermer dans pere et fils
+		close(lst->pfd[1]);
 	return (0);
 }

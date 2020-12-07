@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 12:58:42 by user42            #+#    #+#             */
-/*   Updated: 2020/11/30 17:17:46 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/07 18:11:41 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ int         red_pipe(t_tfrk *lst);
 int         msh_get_path(char *prgm, char **path);
 void		free_tfrk(t_tfrk *lst);
 int			pathfinder(char **av, char *const envp[]);
-int			is_builtins(int status, t_cmd *cmd, t_tfrk *lst);
+int			start_builtins(int status, t_cmd *cmd, t_tfrk *lst);
 
 #endif
