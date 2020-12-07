@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_prompt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:01:14 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/07 17:12:20 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/07 17:19:35 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	print_cwd(void)
 	return (0);
 }
 
-static int	msh_parse_line(char *line, t_cmd *ptr)
+static int	msh_treat_line(char *line, t_cmd *ptr)
 {
 	int ret;
 
@@ -47,7 +47,7 @@ int			ft_prompt(void)
 			return (-1);
 		ret = get_next_line(0, &line);
 		if (ret != 0)
-			ret = msh_parse_line(line, ptr);
+			ret = msh_treat_line(line, ptr);
 		if (line)
 			free(line);
 		if (g_all.path)
