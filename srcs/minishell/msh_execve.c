@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   msh_execve.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/07 18:24:04 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/07 19:08:39 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <errno.h>
 
 int			child(t_cmd *ptr, char **envp)
 {
@@ -22,14 +23,13 @@ int			child(t_cmd *ptr, char **envp)
 	{
 		if (pathfinder(ptr->av, envp) == -1)
 		{
-			*g_all.step = ERR_EXECVE;
-			exit(EXIT_FAILURE);
+			ft_putendl_fd(strerror(errno), 2);
+			exit(ERR_EXECVE);
 		}
 	}
 	exit(0);
 }
 
-#include <stdio.h>
 static int	wait_all(t_tfrk *lst)
 {
 	int status;
@@ -38,10 +38,9 @@ static int	wait_all(t_tfrk *lst)
 	while (lst != NULL)
 	{
 		waitpid(lst->pid, &status, 0);
-		printf("pas child %i\n", *g_all.step);
 		if (!(lst->prev) && !(lst->next))
 			status = start_builtins(status, lst->cmd, lst);
-		edit_qmrk(status, lst->cmd->av[0]);
+		edit_qmrk(status / 256);
 		lst = lst->next;
 	}
 	if (WIFSIGNALED(status))
@@ -51,7 +50,7 @@ static int	wait_all(t_tfrk *lst)
 			ft_putstr_fd("Core dumped\n", 2);
 #endif
 	}
-	return (*g_all.step);
+	return (g_all.step);
 }
 
 static int	start_pipe(t_tfrk *lst)

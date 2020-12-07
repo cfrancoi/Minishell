@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 16:57:37 by user42            #+#    #+#             */
-/*   Updated: 2020/11/19 17:32:36 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/07 19:05:00 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_var	*create_var(char *name, char *content);
 void	cat_var(t_var *lst);
 void	free_lst_var(t_var *lst);
 t_var	*get_envp(char **envp);
-int		edit_qmrk(int excode, char *cmd);
+int		edit_qmrk(int excode);
 char	**lst_to_envp(t_var *lst);
 
 #endif
