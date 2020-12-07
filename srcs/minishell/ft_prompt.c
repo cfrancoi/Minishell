@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:01:14 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/07 17:05:19 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/07 17:06:41 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ static int	print_cwd(void)
 {
 	if (!(g.all.path = getcwd(NULL, 0)))
 		return (-1);
-	if (print_path(g.all.path) == -1)
-		return (-1);
+	print_path(g.all.path)
 	return (0);
 }
 
