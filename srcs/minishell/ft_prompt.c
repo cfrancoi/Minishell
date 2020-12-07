@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:01:14 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/07 17:06:41 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/07 17:08:15 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static int	print_cwd(void)
 
 static int	msh_parse_line(char *line, t_cmd *ptr)
 {
+	int ret;
+
 	g_all.step = MSH_STCMD;
 	ret = msh_parsing(line, &ptr);
 	if (msh_push_cmd(&ptr) == MSH_EXIT)
