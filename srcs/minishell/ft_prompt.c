@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:01:14 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/07 17:03:07 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/07 17:05:19 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int			ft_prompt(void)
 	while (ret)
 	{
 		g_all.step = MSH_READ;
-		if (print_cwd == -1)
+		if (print_cwd() == -1)
 			return (-1);
 		ret = get_next_line(0, &line);
 		if (ret != 0)
