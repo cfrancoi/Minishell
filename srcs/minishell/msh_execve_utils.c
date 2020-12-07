@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_execve_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 17:11:32 by user42            #+#    #+#             */
-/*   Updated: 2020/12/04 15:56:52 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/07 15:42:39 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int	pathfinder(char **av, char *const envp[])
 	while (av[0][++i])
 	{
 		if (av[0][i] == '/')
-			return(execve(av[0], av, envp));
+			return (execve(av[0], av, envp));
 	}
 	msh_get_path(av[0], &path);
 	if (path)
-		return(execve(path, av, envp));
+		return (execve(path, av, envp));
 	exit(127);
 }
 

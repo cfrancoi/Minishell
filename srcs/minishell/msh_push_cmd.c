@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   msh_push_cmd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:48:44 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/04 17:09:49 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/07 16:35:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static t_cmd	*end_of_line(t_cmd *cmd)
+{
+	ft_array_free(cmd->av);
+	cmd->sep = 0;
+	free(cmd);
+	return (NULL);
+}
 
 static t_cmd	*get_next_cmd(t_cmd *ptr)
 {
@@ -23,15 +31,10 @@ static t_cmd	*get_next_cmd(t_cmd *ptr)
 	{
 		sep = cmd->sep;
 		if (sep == MSH_EOF)
-		{
-			ft_array_free(cmd->av);
-			cmd->sep = 0;
-			free(cmd);
-			return (NULL);
-		}
+			return (end_of_line(cmd));
 		else if (sep == SEMI)
 			return (cmd->next);
-		else if (sep == LFT || sep ==  RGT || sep == DRGT || sep == PIPE)
+		else if (sep == LFT || sep == RGT || sep == DRGT || sep == PIPE)
 		{
 			ptr = cmd->next;
 			cmd->sep = 0;
@@ -43,7 +46,7 @@ static t_cmd	*get_next_cmd(t_cmd *ptr)
 	return (NULL);
 }
 
-int			msh_push_cmd(t_cmd	**ptr)
+int				msh_push_cmd(t_cmd **ptr)
 {
 	t_cmd	*cmd;
 	t_tfrk	*lst;
@@ -51,8 +54,7 @@ int			msh_push_cmd(t_cmd	**ptr)
 	cmd = *ptr;
 	while (cmd != NULL)
 	{
-		lst = crt_lst(cmd); /* lst of cmd to fork */
-		/*	*/
+		lst = crt_lst(cmd);
 		if ((start_fork(lst)) == MSH_EXIT)
 		{
 			free_tfrk(lst);
@@ -60,7 +62,6 @@ int			msh_push_cmd(t_cmd	**ptr)
 			return (MSH_EXIT);
 		}
 		free_tfrk(lst);
-		/* free lst */
 		cmd = get_next_cmd(cmd);
 	}
 	*ptr = NULL;
