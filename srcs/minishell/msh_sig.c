@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 16:22:11 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/02 18:02:18 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/07 15:01:40 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,11 @@ static void sigquit_handler(int signum)
     return ;
 }
 
-/*static void sigkill_handler(int signum)
-{
-    (void)signum;
-    printf("value of sig is %i\n", signum);
-    ft_putstr_fd("crtl-d\n", 1);
-    
-    
-    exit(-1);
-}*/
-
 int     msh_sig()
 {
     if ((signal(SIGINT, sigint_handler)) == SIG_ERR)
         return (-1);
     if ((signal(SIGQUIT, sigquit_handler)) == SIG_ERR)
         return (-1);
-    /*if ((signal(i++, sigkill_handler)) == SIG_ERR)
-        return (-1);*/
     return (0);
 }

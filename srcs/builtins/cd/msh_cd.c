@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 15:26:35 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/04 17:45:09 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/07 14:59:48 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static void	msh_error_str(char *path)
 	ft_putstr_fd(strerror(errno), 2);
 	ft_putchar_fd('\n', 2);
 }
-
 
 /* fact chelou a faire des test pour vois unse PWD & OLDPWD 
 		de plus $PWD affichera toujours les varable d'environement */
