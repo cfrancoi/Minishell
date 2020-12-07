@@ -6,11 +6,12 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 17:11:32 by user42            #+#    #+#             */
-/*   Updated: 2020/12/07 15:42:39 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/07 18:27:14 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <stdio.h>
 
 int	pathfinder(char **av, char *const envp[])
 {
@@ -27,10 +28,12 @@ int	pathfinder(char **av, char *const envp[])
 	msh_get_path(av[0], &path);
 	if (path)
 		return (execve(path, av, envp));
-	exit(127);
+	*g_all.step = ERR_CMD_NOT_FOUND;
+	printf("child %i\n", *g_all.step);
+	exit(EXIT_FAILURE);
 }
 
-int	is_builtins(int status, t_cmd *cmd, t_tfrk *lst)
+int	start_builtins(int status, t_cmd *cmd, t_tfrk *lst)
 {
 	if (lst->prev == NULL && lst->next == NULL)
 	{
@@ -42,7 +45,7 @@ int	is_builtins(int status, t_cmd *cmd, t_tfrk *lst)
 			return (unset_parent(ft_array_len(cmd->av), cmd->av));
 		else if (ft_strncmp(cmd->av[0], "exit", 5) == 0)
 		{
-			g_all.step = MSH_EXIT;
+			*g_all.step = MSH_EXIT;
 		}
 	}
 	return (status);

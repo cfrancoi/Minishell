@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:26:16 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/07 17:13:05 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/07 18:20:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,18 @@
 # include	"./msh_execve.h"
 # include	"./cfrancoi.h"
 # include	"./lfourage.h"
-# define	MSH_READ 0
-# define	MSH_STCMD 1
-# define	MSH_EXIT 2
+# define	MSH_READ			0
+# define	MSH_STCMD			1
+# define	MSH_EXIT			2
+# define	ERR_EXECVE			126
+# define	ERR_CMD_NOT_FOUND	127
 
 typedef struct	s_all
 {
 	t_built		*built;
 	t_var		*var;
 	char		*path;
-	int			step;
+	int			*step;
 }				t_all;
 
 t_all			g_all;

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 13:52:04 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/07 15:34:51 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/07 18:25:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@
 
 int		main(int ac, char **av, char **envp)
 {
-	int				ret;
+	int	ret;
+	int	step;
 
+	step = 0;
+	g_all.step = &step;
 	if (ac != 1)
 		return (0);
 	(void)av;
