@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 17:11:32 by user42            #+#    #+#             */
-/*   Updated: 2020/12/07 18:27:14 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/07 18:31:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	pathfinder(char **av, char *const envp[])
 	msh_get_path(av[0], &path);
 	if (path)
 		return (execve(path, av, envp));
-	*g_all.step = ERR_CMD_NOT_FOUND;
+	g_all.step = ERR_CMD_NOT_FOUND;
 	printf("child %i\n", *g_all.step);
 	exit(EXIT_FAILURE);
 }
@@ -44,9 +44,7 @@ int	start_builtins(int status, t_cmd *cmd, t_tfrk *lst)
 		else if (ft_strncmp(cmd->av[0], "unset", 6) == 0)
 			return (unset_parent(ft_array_len(cmd->av), cmd->av));
 		else if (ft_strncmp(cmd->av[0], "exit", 5) == 0)
-		{
 			*g_all.step = MSH_EXIT;
-		}
 	}
 	return (status);
 }
