@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:51:21 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 01:55:55 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 16:52:54 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ int		msh_export(int ac, char **av)
 	if (ac == 1)
 		env();
 	else
-		return (13);
-	return (0);
+		return (EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }

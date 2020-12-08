@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:47:39 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 01:56:45 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 16:53:18 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ int	echo(int ac, char **av)
 	}
 	if (n == 0)
 		ft_putchar_fd('\n', 1);
-	return (0);
+	return (EXIT_SUCCESS);
 }

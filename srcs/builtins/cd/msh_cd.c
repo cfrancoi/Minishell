@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_cd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 15:26:35 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/08 01:57:19 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 16:50:15 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,23 @@ static int	is_relativ_path(char *ptr)
 	return (1);
 }
 
-static void	msh_error_str(char *path)
+static int	msh_error_str(char *path)
 {
 	ft_putstr_fd("msh cd : ", 2);
 	ft_putstr_fd(path, 2);
 	ft_putstr_fd(" : ", 2);
 	ft_putendl_fd(strerror(errno), 2);
+	return (-1);
 }
 
-/* fact chelou a faire des test pour vois unse PWD & OLDPWD 
-		de plus $PWD affichera toujours les varable d'environement */
-
-static void		set_pwd_var(char *path)
+int			set_pwd_var(void)
 {
+	char	*path;
 	t_var	*m_pwd;
 	t_var	*m_oldpwd;
 	
-	
+	if ((path = getcwd(NULL, 0)) == NULL)
+		return (-1);
 	m_pwd = NULL;
 	m_oldpwd = NULL;
 	if ((m_pwd = get_var(g_all.var, "PWD")) != NULL)
@@ -72,6 +72,7 @@ static void		set_pwd_var(char *path)
 	}
 	else
 		free(path);
+	return (0);
 }
 
 int			msh_cd(int ac, char **argv)
@@ -97,7 +98,9 @@ int			msh_cd(int ac, char **argv)
 			path = ft_strjoinf(getcwd(NULL, 0), "/", 1);
 			path = ft_strjoinf(path, argv[1], 1);
 			chdir(path);
-			set_pwd_var(path);
+			free(path);
+			if (set_pwd_var() == -1)
+				return (msh_error_str(argv[1]));
 			return (0);
 		}
 	}
