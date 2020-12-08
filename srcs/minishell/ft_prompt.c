@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:01:14 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/08 13:33:00 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/08 17:57:55 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,16 @@ int			ft_prompt(void)
 			return (-1);
 		ret = get_next_line(0, &line);
 		if (ret != 0)
+		{
 			ret = msh_treat_line(line, &ptr);
+			line = NULL;
+		}
 		if (g_all.path)
 			free(g_all.path);
 		g_all.path = NULL;
 	}
+	if (line != NULL)
+		free(line);
 	ret = msh_exit(ptr);
 	return (ret);
 }
