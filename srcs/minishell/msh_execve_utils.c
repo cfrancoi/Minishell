@@ -6,37 +6,15 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 17:11:32 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 01:14:35 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 02:23:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	pathfinder(t_cmd *ptr, char *const envp[])
+static int	is_exit_arg(t_cmd *cmd)
 {
-	int		i;
-	char	*path;
-
-	i = -1;
-	path = NULL;
-	while (ptr->av[0][++i])
-	{
-		if (ptr->av[0][i] == '/')
-			return (execve(ptr->av[0], ptr->av, envp));
-	}
-	msh_get_path(ptr->av[0], &path);
-	if (path)
-		return (execve(path, ptr->av, envp));
-	ft_putstr_fd(ptr->av[0], 2);
-	ft_putstr_fd(" : Command not found\n", 2);
-	msh_free(ptr);
-	exit(ERR_CMD_NOT_FOUND);
-}
-
-
-static	int	is_exit_arg(t_cmd *cmd)
-{
-	int		i;
+	int	i;
 
 	i = 0;
 	if (cmd->av[1] != NULL)
@@ -53,13 +31,63 @@ static	int	is_exit_arg(t_cmd *cmd)
 				ft_putstr_fd(cmd->av[1], 2);
 				ft_putendl_fd(" : too many arguments", 2);
 				return (0);
-			}				
+			}
 		}
 	}
 	return (1);
 }
 
-int	start_builtins(int status, t_cmd *cmd, t_tfrk *lst)
+int			get_builtin(t_cmd *ptr, int (**f)())
+{
+	t_built	*built;
+
+	built = g_all.built;
+	if (ft_strncmp(ptr->av[0], "exit", 5) == 0)
+	{
+		msh_free(ptr);
+		exit(0);
+	}
+	while (built)
+	{
+		if (ft_strncmp(ptr->av[0], built->name, ft_strlen(built->name)) == 0)
+		{
+			*f = built->f;
+			return (1);
+		}
+		built = built->next;
+	}
+	*f = NULL;
+	return (0);
+}
+
+int			pathfinder(t_cmd *ptr, char *const envp[])
+{
+	int		i;
+	char	*path;
+
+	i = -1;
+	path = NULL;
+	while (ptr->av[0][++i])
+	{
+		if (ptr->av[0][i] == '/')
+		{
+			msh_free(NULL);
+			return (execve(ptr->av[0], ptr->av, envp));
+		}
+	}
+	msh_get_path(ptr->av[0], &path);
+	if (path)
+	{
+		msh_free(NULL);
+		return (execve(path, ptr->av, envp));
+	}
+	ft_putstr_fd(ptr->av[0], 2);
+	ft_putstr_fd(" : Command not found\n", 2);
+	msh_free(ptr);
+	exit(ERR_CMD_NOT_FOUND);
+}
+
+int			start_builtins(int status, t_cmd *cmd, t_tfrk *lst)
 {
 	if (lst->prev == NULL && lst->next == NULL)
 	{
