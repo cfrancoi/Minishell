@@ -6,12 +6,11 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/08 16:12:53 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 16:36:54 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <errno.h>
 
 int			child(t_cmd *ptr, char **envp)
 {
@@ -28,9 +27,9 @@ int			child(t_cmd *ptr, char **envp)
 		msh_free(ptr, 1);
 		exit(ret);
 	}
-	msh_free(ptr, 0);
 	else
 	{
+		msh_free(ptr, 0);
 		if (pathfinder(av, envp) == -1)
 		{
 			ft_putendl_fd(strerror(errno), 2);

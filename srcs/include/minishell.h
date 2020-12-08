@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:26:16 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/08 16:05:29 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 16:30:47 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define	MINISHELL_H
 
 # include	<unistd.h>
+# include	<errno.h>
 # include	"./env.h"
 # include	"../libft/libft.h"
 # include	"./msh_parsing.h"

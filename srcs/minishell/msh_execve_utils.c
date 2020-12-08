@@ -6,12 +6,11 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 17:11:32 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 16:24:50 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 16:37:18 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <errno.h>
 
 static int	is_exit_arg(t_cmd *cmd)
 {
@@ -82,7 +81,7 @@ int			pathfinder(char **av, char *const envp[])
 	{
 		ft_putendl_fd(strerror(errno), 2);
 		ft_array_free(av);
-		exit(EXIT_FAILURE)
+		exit(EXIT_FAILURE);
 	}
 	ft_putstr_fd(av[0], 2);
 	ft_putendl_fd(" : Command not found", 2);
