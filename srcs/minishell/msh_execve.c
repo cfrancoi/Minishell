@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/08 21:49:12 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/08 22:15:20 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,19 @@ int			child(t_cmd *ptr, char **envp)
 	exit(ret);
 }
 
+static int	kill_all(t_tfrk *lst)
+{
+	msh_fork_error("wait", -1);
+	while (lst)
+	{
+		kill(lst->pid, SIGKILL);
+		lst = lst->next;
+	}
+	if (errno != 0)
+		errno = 0;
+	return (-1);
+}
+
 static int	wait_all(t_tfrk *lst)
 {
 	int status;
@@ -44,8 +57,8 @@ static int	wait_all(t_tfrk *lst)
 	status = 0;
 	while (lst != NULL)
 	{
-		kill(-1, 9);
-		waitpid(lst->pid, &status, 0);
+		if ((waitpid(lst->pid, &status, 0)) == -1)
+			return (kill_all(lst->next));
 		if (!(lst->prev) && !(lst->next))
 			status = start_builtins(status, lst->cmd, lst);
 		if (g_all.step != MSH_SIGINT && g_all.step != MSH_SIGQUIT)
