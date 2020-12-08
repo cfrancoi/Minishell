@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 17:11:32 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 16:37:18 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 17:05:49 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,32 +61,45 @@ int			get_builtin(t_cmd *ptr, int (**f)(), char **envp)
 	return (0);
 }
 
-int			pathfinder(char **av, char *const envp[])
+static int	path_not_found(char **av,  char *const envp[])
 {
-	int		i;
-	char	*path;
-
-	i = -1;
-	path = NULL;
-	while (av[0][++i])
-	{
-		if (av[0][i] == '/')
-			return (execve(av[0], av, envp));
-	}
-	msh_get_path(av[0], &path);
-	if (path)
-		return (execve(path, av, envp));
-	ft_array_free((char **)envp);
 	if (errno != 0)
 	{
 		ft_putendl_fd(strerror(errno), 2);
+		ft_array_free((char **)envp);
 		ft_array_free(av);
 		exit(EXIT_FAILURE);
 	}
 	ft_putstr_fd(av[0], 2);
 	ft_putendl_fd(" : Command not found", 2);
+	ft_array_free((char **)envp);
 	ft_array_free(av);
 	exit(ERR_CMD_NOT_FOUND);
+}
+
+int			pathfinder(t_cmd *ptr, char *const envp[])
+{
+	int		i;
+	char	*path;
+	char	**av;
+
+	i = -1;
+	path = NULL;
+	av = ptr->av;
+	ft_putendl_fd(av[0], 1);
+	while (av[0][++i])
+	{
+		if (av[0][i] == '/')
+		{
+			msh_free(ptr, 1);
+			return (execve(av[0], av, envp));
+		}
+	}
+	msh_get_path(av[0], &path);
+	msh_free(ptr, 1);
+	if (path)
+		return (execve(path, av, envp));
+	return (path_not_found(av, envp));
 }
 
 int			start_builtins(int status, t_cmd *cmd, t_tfrk *lst)

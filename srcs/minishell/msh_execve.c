@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/08 16:36:54 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 16:55:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,21 @@ int			child(t_cmd *ptr, char **envp)
 {
 	int		(*f)();
 	int		ret;
-	char	**av;
 
 	ret = 0;
-	av = ptr->av;
 	if (get_builtin(ptr, &f, envp) == 1)
 	{
-		ret = (*f)(ft_array_len(av), av);
+		ret = (*f)(ft_array_len(ptr->av), ptr->av);
 		ft_array_free(envp);
 		msh_free(ptr, 1);
 		exit(ret);
 	}
 	else
 	{
-		msh_free(ptr, 0);
-		if (pathfinder(av, envp) == -1)
+		if (pathfinder(ptr, envp) == -1)
 		{
 			ft_putendl_fd(strerror(errno), 2);
 			ft_array_free(envp);
-			ft_array_free(av);
 			exit(ERR_EXECVE);
 		}
 	}
