@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_execve.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/08 16:55:20 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 19:25:01 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,13 @@ static int	make_forks(t_tfrk *lst, char **envp)
 		if (lst->next != NULL && start_pipe(lst) == -1)
 			return (-1);
 		if ((lst->pid = fork()) == -1)
-			return (-1);
+			return (msh_fork_error(lst->cmd->av[0]));
 		else if (lst->pid == 0)
 		{
 			tmp = lst->cmd;
-			red_pipe(lst);
+			if (red_pipe(lst) == -1 || msh_dup_fd((t_cmd *)tmp) == -1)
+				exit(msh_fork_error(((t_cmd *)tmp)->av[0]));
 			free_tfrk(lst);
-			msh_dup_fd((t_cmd *)tmp);
 			child((t_cmd *)tmp, envp);
 			exit(0);
 		}

@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 16:07:47 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/27 15:39:19 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/08 19:32:30 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int				msh_get_path(char *prgm, char **path)
 		{
 			free(tmp);
 			tmp = NULL;
+			errno = 0;
 		}
 		else
 		{

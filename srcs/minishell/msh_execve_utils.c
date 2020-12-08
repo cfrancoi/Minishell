@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_execve_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 17:11:32 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 17:16:03 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 20:04:39 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,24 +82,29 @@ int			pathfinder(t_cmd *ptr, char *const envp[])
 	int		i;
 	char	*path;
 	char	**av;
+	char	*tmp;
 
 	i = -1;
+	tmp = NULL;
 	path = NULL;
 	av = ptr->av;
-	ft_putendl_fd(av[0], 1);
 	while (av[0][++i])
-	{
 		if (av[0][i] == '/')
-		{
-			msh_free(ptr, 0);
-			return (execve(av[0], av, envp));
-		}
+			tmp = av[0];
+	if (tmp == NULL)
+	{
+		msh_get_path(av[0], &path);
+		msh_free(ptr, 0);
+		tmp = path;
+		if (path == NULL)
+			return (path_not_found(av, envp));
 	}
-	msh_get_path(av[0], &path);
-	msh_free(ptr, 0);
-	if (path)
-		return (execve(path, av, envp));
-	return (path_not_found(av, envp));
+	else
+		msh_free(ptr, 0);
+	execve(tmp, av, envp);
+	ft_array_free(av);
+	(path != NULL ) ? free(path) : 0;
+	return (-1);
 }
 
 int			start_builtins(int status, t_cmd *cmd, t_tfrk *lst)

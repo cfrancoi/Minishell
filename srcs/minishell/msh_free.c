@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 00:58:57 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 17:14:55 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 19:21:31 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void		msh_free(t_cmd *cmd, int process)
 	free_cmd(cmd, process);
 	free_built(g_all.built);
 	g_all.built = NULL;
+	if (g_all.var != NULL)
 	free_lst_var(g_all.var);
 	g_all.var = NULL;
 	if (g_all.path != NULL)

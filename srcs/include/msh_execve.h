@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_execve.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 12:58:42 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 16:57:52 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 18:27:00 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ void		free_tfrk(t_tfrk *lst);
 int			pathfinder(t_cmd *ptr, char *const envp[]);
 int			get_builtin(t_cmd *ptr, int (**f)(), char **envp);
 int			start_builtins(int status, t_cmd *cmd, t_tfrk *lst);
+int			msh_fork_error(char *cmd);
 
 #endif
