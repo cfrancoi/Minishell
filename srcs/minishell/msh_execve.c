@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_execve.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/08 19:25:01 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/08 21:04:02 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ static int	wait_all(t_tfrk *lst)
 		waitpid(lst->pid, &status, 0);
 		if (!(lst->prev) && !(lst->next))
 			status = start_builtins(status, lst->cmd, lst);
-		edit_qmrk(status / 256);
+		if (g_all.step != MSH_SIGINT && g_all.step != MSH_SIGQUIT)
+			edit_qmrk(status / 256);
 		lst = lst->next;
 	}
 	if (WIFSIGNALED(status))

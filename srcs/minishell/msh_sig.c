@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 16:22:11 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/07 17:13:02 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 21:02:11 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 
 static void	sigint_handler(int signum)
 {
-	(void)signum;
-	ft_putstr_fd("\n", 1);
+	ft_putchar_fd('\n', 1);
+	if (g_all.step != MSH_READ)
+		g_all.step = MSH_SIGINT;
+	if (edit_qmrk(128 + signum) == -1)
+		ft_putendl_fd(strerror(errno), 2);
 	if (g_all.step == MSH_READ)
 		print_path();
 	return ;
@@ -24,8 +27,11 @@ static void	sigint_handler(int signum)
 
 static void	sigquit_handler(int signum)
 {
-	(void)signum;
-	ft_putstr_fd("\n", 1);
+	ft_putchar_fd('\n', 1);
+	if (g_all.step != MSH_READ)
+		g_all.step = MSH_SIGQUIT;
+	if (edit_qmrk(128 + signum) == -1)
+		ft_putendl_fd(strerror(errno), 2);
 	if (g_all.step == MSH_READ)
 		print_path();
 	return ;

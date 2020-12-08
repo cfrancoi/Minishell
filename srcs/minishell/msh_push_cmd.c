@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_push_cmd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:48:44 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/07 20:12:30 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/08 21:01:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,25 @@ int				msh_push_cmd(t_cmd **ptr)
 {
 	t_cmd	*cmd;
 	t_tfrk	*lst;
+	int		msh;
 
 	cmd = *ptr;
 	while (cmd != NULL)
 	{
 		if ((lst = crt_lst(cmd)) == NULL)
 			return (MSH_EXIT);
-		if ((start_fork(lst)) == MSH_EXIT)
+		msh = start_fork(lst);
+		if (msh == MSH_EXIT || msh == MSH_SIGINT)
 		{
+			if (msh == MSH_SIGINT)
+				free_cmd(cmd, 1);
 			free_tfrk(lst);
 			*ptr = cmd;
-			return (MSH_EXIT);
+			return (msh);
 		}
 		free_tfrk(lst);
 		cmd = get_next_cmd(cmd);
+		g_all.step = MSH_STCMD;
 	}
 	*ptr = NULL;
 	return (0);

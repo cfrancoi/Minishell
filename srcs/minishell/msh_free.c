@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 00:58:57 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 19:21:31 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/08 20:51:36 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	free_built(t_built *built)
 	}
 }
 
-static void	free_cmd(t_cmd *cmd, int process)
+void		free_cmd(t_cmd *cmd, int process)
 {
 	void	*tofree;
 
