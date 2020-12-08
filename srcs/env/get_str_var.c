@@ -6,13 +6,11 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 17:52:03 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/08 01:40:59 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 18:03:37 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
-
-
 
 char	*get_str_var(char *ptr)
 {
@@ -27,7 +25,7 @@ char	*get_str_var(char *ptr)
 		return (NULL);
 	if (ptr[i] == '?')
 		return (ft_strdup("?"));
-	while(ptr[i] && ft_isalnum(ptr[i]))
+	while (ptr[i] && ft_isalnum(ptr[i]))
 		i++;
 	var = ft_substr(ptr, 0, i);
 	return (var);

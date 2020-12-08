@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 17:15:49 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 15:23:53 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/08 18:00:26 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		free_lst_var(t_var *lst)
 	}
 }
 
-int		is_protect(char *name)
+int			is_protect(char *name)
 {
 	if (ft_strncmp(name, "PWD", 4) == 0)
 		return (1);

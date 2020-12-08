@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_var.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 14:02:19 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/08 15:17:05 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/08 17:58:39 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	add_var(t_var **lst, t_var *to_add)
 	t_var	*tmp;
 
 	tmp = *lst;
-
 	if (tmp == NULL)
 	{
 		*lst = to_add;
