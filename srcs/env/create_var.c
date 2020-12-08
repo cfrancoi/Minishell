@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   create_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 17:16:30 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/08 01:41:23 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 15:50:40 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "env.h"
 #include <stdlib.h>
 
-t_var		*create_var(char *name, char *content)
+t_var		*create_var(char *name, char *content, int protect)
 {
 	t_var	*new;
 
@@ -27,7 +27,7 @@ t_var		*create_var(char *name, char *content)
 		if (content != NULL)
 			new->content = ft_strdup(content);
 		new->next = NULL;
-
+		new->protect = protect;
 	}
 	return (new);
 }

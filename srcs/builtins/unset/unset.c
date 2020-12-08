@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:51:47 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 01:31:11 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 15:42:50 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,18 @@ int			unset_parent(int ac, char **argv)
 			varnxt = get_var(var, argv[i]);
 			if (varnxt)
 			{
-				while (varnxt && var->next != varnxt)
-					var = var->next;
-				cat_var(var);
+				if (is_protect(argv[i]))
+				{
+					free(varnxt->content);
+					varnxt->content = NULL;
+					varnxt->protect = 1;
+				}
+				else
+				{
+					while (varnxt && var->next != varnxt)
+						var = var->next;
+					cat_var(var);
+				}
 			}
 			var = g_all.var;
 		}

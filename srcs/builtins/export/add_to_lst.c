@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_to_lst.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 16:17:40 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/08 01:57:37 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 16:20:58 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ static t_var	*is_existing_var(char *name)
 
 static int		replace_content(t_var *tmp, char *ptr, int i)
 {
+	if (tmp->protect == 1)
+	{
+		tmp->protect = 0;
+		if (ptr[i] != '=')
+			return (0);
+	}
 	if (tmp->content != NULL)
 		free(tmp->content);
 	if ((tmp->content = ft_strdup(&ptr[i + 1])) == NULL)
@@ -63,7 +69,7 @@ static int		to_add(char *ptr)
 	}
 	else
 	{
-		if ((tmp = create_var(&ptr[0], &ptr[i + 1])) == NULL)
+		if ((tmp = create_var(&ptr[0], &ptr[i + 1], 0)) == NULL)
 			return (-1);
 		add_var(lst, tmp);
 	}

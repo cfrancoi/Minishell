@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 16:57:37 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 01:54:55 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 15:54:34 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct		s_var
 {
 	char			*name;
 	char			*content;
+	int				protect;
 	struct s_var	*next;
 }					t_var;
 
@@ -28,12 +29,13 @@ int		add_var(t_var **lst, t_var *to_add);
 t_var	*get_var(t_var *lst, char *name);
 char	*get_str_var(char *ptr);
 int		print_var(t_var *ptr);
-int		ls_var(t_var **lst);
-t_var	*create_var(char *name, char *content);
+int		ls_var(t_var **lst, int protect);
+t_var	*create_var(char *name, char *content, int protect);
 void	cat_var(t_var *lst);
 void	free_lst_var(t_var *lst);
 t_var	*get_envp(char **envp);
 int		edit_qmrk(int excode);
 char	**lst_to_envp(t_var *lst);
+int		is_protect(char *name);
 
 #endif
