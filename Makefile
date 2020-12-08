@@ -13,6 +13,7 @@ SRCS		+= get_cmd_lst.c
 SRCS		+= msh_execve.c
 SRCS		+= msh_execve_utils.c
 SRCS		+= msh_exit.c
+SRCS		+= msh_free.c
 SRCS		+= msh_dup_fd.c
 SRCS		+= msh_push_cmd.c
 SRCS		+= builtins_alloc.c

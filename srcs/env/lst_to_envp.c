@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lst_to_envp.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 14:50:13 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/13 15:42:52 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/08 01:52:15 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/env.h"
-#include "../libft/libft.h"
+#include "env.h"
 
 char	**lst_to_envp(t_var *lst)
 {

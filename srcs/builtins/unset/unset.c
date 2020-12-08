@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:51:47 by user42            #+#    #+#             */
-/*   Updated: 2020/11/27 13:54:20 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/08 01:31:11 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
-#include <stdio.h>
 
 static int	check_arg(char *argv, int *ret)
 {
@@ -43,7 +42,6 @@ int			unset_parent(int ac, char **argv)
 	i = 0;
 	ret = 0;
 	var = g_all.var;
-	write(1, "**unset**\n", 10);
 	while (++i < ac)
 	{
 		if (check_arg(argv[i], &ret) == 0)

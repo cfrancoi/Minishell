@@ -6,11 +6,11 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:25:43 by user42            #+#    #+#             */
-/*   Updated: 2020/12/01 16:50:38 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 01:57:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/builtins.h"
+#include "builtins.h"
 
 int			f_msh_cd(int ac, char **argv)
 {

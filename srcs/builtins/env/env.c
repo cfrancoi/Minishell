@@ -6,13 +6,13 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:47:53 by user42            #+#    #+#             */
-/*   Updated: 2020/12/01 16:50:48 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 01:56:51 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/builtins.h"
+#include "builtins.h"
 
-int						env(void)
+int	env(void)
 {
 	write(1, "**env**\n", 8);
 	ls_var(&g_all.var);

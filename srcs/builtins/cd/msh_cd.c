@@ -6,14 +6,13 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 15:26:35 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/07 17:55:36 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 01:57:19 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/builtins.h"
+#include "builtins.h"
 #include "env.h"
 #include <dirent.h>
-#include <stdio.h>
 #include <sys/errno.h>
 
 static int	is_abs_path(char *ptr)

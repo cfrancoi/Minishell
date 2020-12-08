@@ -6,11 +6,11 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:51:21 by user42            #+#    #+#             */
-/*   Updated: 2020/12/01 17:06:55 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 01:55:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/builtins.h"
+#include "builtins.h"
 
 int		msh_export(int ac, char **av)
 {

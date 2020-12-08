@@ -16,6 +16,8 @@ ENV_DIR		= ./env/
 EXPORT_DIR	= ./export/
 PWD_DIR		= ./pwd/
 UNSET_DIR	= ./unset/
+INC_DIR		= ../include/
+INC			= $(addprefix $(INC_DIR), builtins.h)
 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
@@ -23,7 +25,7 @@ FLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 %.o: %.c $(INC)
-	$(CC) $(FLAGS) -c $< -o $@ -I ../include
+	$(CC) $(FLAGS) -c $< -o $@ -I $(INC_DIR)
 
 $(NAME): $(OBJS) $(INC)
 	ar rc $(NAME) $(OBJS) $(INC)

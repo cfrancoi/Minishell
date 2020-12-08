@@ -6,11 +6,11 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 16:39:19 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/01 17:07:41 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 01:55:49 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/builtins.h"
+#include "builtins.h"
 
 int		msh_pwd(int ac, char **argv)
 {

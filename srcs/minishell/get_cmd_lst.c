@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_cmd_lst.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 16:10:23 by user42            #+#    #+#             */
-/*   Updated: 2020/11/27 15:03:11 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/08 01:38:36 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "minishell.h"
 
 static t_cmd	*edit_cmd(char **src, t_cmd *dst)
 {

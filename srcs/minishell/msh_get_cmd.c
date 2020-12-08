@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   msh_get_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 15:29:50 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/27 14:39:33 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/08 01:38:14 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "minishell.h"
 
 static char		**lst_to_array(t_arg *lst)
 {

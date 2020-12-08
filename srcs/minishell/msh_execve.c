@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_execve.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/07 19:08:39 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/08 01:33:17 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,25 @@
 
 int			child(t_cmd *ptr, char **envp)
 {
-	int			(*f)();
+	int	(*f)();
+	int	ret;
 
-	if (get_builtin(ptr->av[0], &f) == 1)
-		exit((*f)(ft_array_len(ptr->av), ptr->av));
+	ret = 0;
+	if (get_builtin(ptr, &f) == 1)
+	{
+		ret = (*f)(ft_array_len(ptr->av), ptr->av);
+		msh_free(ptr);
+		exit(ret);
+	}
 	else
 	{
-		if (pathfinder(ptr->av, envp) == -1)
+		if (pathfinder(ptr, envp) == -1)
 		{
 			ft_putendl_fd(strerror(errno), 2);
 			exit(ERR_EXECVE);
 		}
 	}
-	exit(0);
+	exit(ret);
 }
 
 static int	wait_all(t_tfrk *lst)
@@ -47,7 +53,7 @@ static int	wait_all(t_tfrk *lst)
 	{
 #ifdef WCOREDUMP
 		if (WCOREDUMP(status))
-			ft_putstr_fd("Core dumped\n", 2);
+			ft_putendl_fd("Core dumped", 2);
 #endif
 	}
 	return (g_all.step);

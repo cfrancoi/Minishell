@@ -3,33 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   msh_execve_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 17:11:32 by user42            #+#    #+#             */
-/*   Updated: 2020/12/07 20:09:56 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/08 01:14:35 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 
-int	pathfinder(char **av, char *const envp[])
+int	pathfinder(t_cmd *ptr, char *const envp[])
 {
 	int		i;
 	char	*path;
 
 	i = -1;
 	path = NULL;
-	while (av[0][++i])
+	while (ptr->av[0][++i])
 	{
-		if (av[0][i] == '/')
-			return (execve(av[0], av, envp));
+		if (ptr->av[0][i] == '/')
+			return (execve(ptr->av[0], ptr->av, envp));
 	}
-	msh_get_path(av[0], &path);
+	msh_get_path(ptr->av[0], &path);
 	if (path)
-		return (execve(path, av, envp));
-	ft_putstr_fd(av[0], 2);
+		return (execve(path, ptr->av, envp));
+	ft_putstr_fd(ptr->av[0], 2);
 	ft_putstr_fd(" : Command not found\n", 2);
+	msh_free(ptr);
 	exit(ERR_CMD_NOT_FOUND);
 }
 

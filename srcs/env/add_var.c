@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   add_var.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 14:02:19 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/18 14:55:33 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/08 01:52:51 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/env.h"
+#include "env.h"
 
 int	add_var(t_var **lst, t_var *to_add)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_str_var.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 17:52:03 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/20 16:53:37 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/08 01:40:59 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/env.h"
+#include "env.h"
 
 
 

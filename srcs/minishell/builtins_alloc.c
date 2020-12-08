@@ -6,11 +6,11 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 16:15:35 by user42            #+#    #+#             */
-/*   Updated: 2020/11/25 15:56:21 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/08 01:38:51 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/builtins.h"
+#include "builtins.h"
 
 t_built		*builtins_alloc(t_built *first, char *name, int (*f)())
 {

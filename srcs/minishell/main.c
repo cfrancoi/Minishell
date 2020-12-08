@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 13:52:04 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/07 19:08:17 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/08 01:38:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
-
-#include <stdio.h>
+#include "minishell.h"
 
 int		main(int ac, char **av, char **envp)
 {

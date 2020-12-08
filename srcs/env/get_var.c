@@ -6,11 +6,11 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 15:44:05 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/07 16:43:49 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 01:40:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/env.h"
+#include "env.h"
 
 t_var	*get_var(t_var *lst, char *name)
 {

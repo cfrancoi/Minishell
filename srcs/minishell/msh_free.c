@@ -1,27 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   msh_path_file.c                                    :+:      :+:    :+:   */
+/*   msh_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/13 16:42:08 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/08 01:36:47 by user42           ###   ########.fr       */
+/*   Created: 2020/12/08 00:58:57 by user42            #+#    #+#             */
+/*   Updated: 2020/12/08 01:02:15 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <errno.h>
 
-int		msh_path_file(char *path)
+static void	free_built(t_built *built)
 {
-	int fd;
+	void	*tofree;
 
-	if ((fd = open(path, O_RDONLY) == -1))
+	while (built)
 	{
-		ft_putstr_fd(path, 1);
-		ft_putstr_fd(" : ", 1);
-		ft_putendl_fd(strerror(errno), 1);
+		if (built->name)
+			free(built->name);
+		tofree = (void *)built;
+		built = built->next;
+		free(tofree);
 	}
-	return (0);
+}
+
+static void	free_cmd(t_cmd *cmd)
+{
+	void	*tofree;
+
+	while (cmd)
+	{
+		ft_array_free(cmd->av);
+		tofree = (void *)cmd;
+		cmd = cmd->next;
+		free(tofree);
+	}
+}
+
+void		msh_free(t_cmd *cmd)
+{
+	free_cmd(cmd);
+	free_built(g_all.built);
+	free_lst_var(g_all.var);
 }

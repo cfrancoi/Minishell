@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   create_var.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 17:16:30 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/11 18:21:01 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/08 01:41:23 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/env.h"
+#include "env.h"
 #include <stdlib.h>
 
 t_var		*create_var(char *name, char *content)

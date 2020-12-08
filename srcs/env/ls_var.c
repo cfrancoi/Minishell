@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ls_var.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 14:08:29 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/23 14:34:34 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/08 01:40:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/env.h"
+#include "env.h"
 
 int		ls_var(t_var **lst)
 {

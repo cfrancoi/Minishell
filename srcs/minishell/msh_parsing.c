@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   msh_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:15:46 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/27 15:41:28 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/08 01:38:01 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "minishell.h"
 
 int		msh_parsing(char *line, t_cmd **ptr)
 {

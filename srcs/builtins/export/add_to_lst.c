@@ -6,11 +6,11 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 16:17:40 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/01 17:05:30 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 01:57:37 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/builtins.h"
+#include "builtins.h"
 
 static int		is_name_var(char *str)
 {

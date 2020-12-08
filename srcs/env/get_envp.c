@@ -6,13 +6,11 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 17:49:41 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/17 17:52:11 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 01:51:19 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/env.h"
-#include "../include/minishell.h"
-#include <stdio.h>
+#include "env.h"
 
 
 t_var		*get_envp(char **envp)
