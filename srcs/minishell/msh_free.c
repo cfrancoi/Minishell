@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 00:58:57 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 16:34:26 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 17:14:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	free_cmd(t_cmd *cmd, int process)
 
 	while (cmd)
 	{
-		if (process++ == 0)
+		if (process++ != 0)
 			ft_array_free(cmd->av);
 		tofree = (void *)cmd;
 		cmd = cmd->next;

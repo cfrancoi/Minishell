@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 17:11:32 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 17:05:49 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 17:16:03 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,12 @@ int			pathfinder(t_cmd *ptr, char *const envp[])
 	{
 		if (av[0][i] == '/')
 		{
-			msh_free(ptr, 1);
+			msh_free(ptr, 0);
 			return (execve(av[0], av, envp));
 		}
 	}
 	msh_get_path(av[0], &path);
-	msh_free(ptr, 1);
+	msh_free(ptr, 0);
 	if (path)
 		return (execve(path, av, envp));
 	return (path_not_found(av, envp));
