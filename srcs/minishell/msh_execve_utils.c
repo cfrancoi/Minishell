@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_execve_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 17:11:32 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 02:30:08 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 13:27:20 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	is_exit_arg(t_cmd *cmd)
 	return (1);
 }
 
-int			get_builtin(t_cmd *ptr, int (**f)())
+int			get_builtin(t_cmd *ptr, int (**f)(), char **envp)
 {
 	t_built	*built;
 
@@ -45,6 +45,7 @@ int			get_builtin(t_cmd *ptr, int (**f)())
 	if (ft_strncmp(ptr->av[0], "exit", 5) == 0)
 	{
 		msh_free(ptr);
+		ft_array_free((char **)envp);
 		exit(0);
 	}
 	while (built)
@@ -83,6 +84,7 @@ int			pathfinder(t_cmd *ptr, char *const envp[])
 	}
 	ft_putstr_fd(ptr->av[0], 2);
 	ft_putstr_fd(" : Command not found\n", 2);
+	ft_array_free((char **)envp);
 	msh_free(ptr);
 	exit(ERR_CMD_NOT_FOUND);
 }

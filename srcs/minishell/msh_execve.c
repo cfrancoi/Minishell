@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_execve.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/08 01:33:17 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 13:27:33 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ int			child(t_cmd *ptr, char **envp)
 	int	ret;
 
 	ret = 0;
-	if (get_builtin(ptr, &f) == 1)
+	if (get_builtin(ptr, &f, envp) == 1)
 	{
 		ret = (*f)(ft_array_len(ptr->av), ptr->av);
+		ft_array_free(envp);
 		msh_free(ptr);
 		exit(ret);
 	}
@@ -30,6 +31,9 @@ int			child(t_cmd *ptr, char **envp)
 		if (pathfinder(ptr, envp) == -1)
 		{
 			ft_putendl_fd(strerror(errno), 2);
+			ft_array_free(envp);
+			ft_array_free(envp);
+			//msh_free(ptr);
 			exit(ERR_EXECVE);
 		}
 	}
@@ -69,6 +73,8 @@ static int	start_pipe(t_tfrk *lst)
 
 static int	make_forks(t_tfrk *lst, char **envp)
 {
+	void	*tmp;
+
 	while (lst != NULL)
 	{
 		if (lst->next != NULL && start_pipe(lst) == -1)
@@ -77,9 +83,11 @@ static int	make_forks(t_tfrk *lst, char **envp)
 			return (-1);
 		else if (lst->pid == 0)
 		{
+			tmp = lst->cmd;
 			red_pipe(lst);
-			msh_dup_fd(lst->cmd);
-			child(lst->cmd, envp);
+			free_tfrk(lst);
+			msh_dup_fd((t_cmd *)tmp);
+			child((t_cmd *)tmp, envp);
 			exit(0);
 		}
 		else

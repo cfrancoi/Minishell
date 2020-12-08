@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:12:33 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 02:00:15 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 13:28:08 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ int						msh_pwd(int ac, char **argv);
 int						env(void);
 
 
-int						get_builtin(t_cmd *ptr, int (**f)());
+int						get_builtin(t_cmd *ptr, int (**f)(), char **envp);
 int						msh_exit(t_cmd *cmd);
 #endif
