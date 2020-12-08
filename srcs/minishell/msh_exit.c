@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:57:17 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 01:01:19 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 16:07:01 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			msh_exit(t_cmd *cmd)
 	ret = get_return();
 	if (g_all.step == MSH_EXIT)
 		ret = get_exit_value(cmd, ret);
-	msh_free(cmd);
+	msh_free(cmd, 1);
 	if (errno != 0)
 		ft_putendl_fd(strerror(errno), 2);
 	return (ret);

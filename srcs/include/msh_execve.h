@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 12:58:42 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 01:09:26 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 16:27:19 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct          s_tfrk {
 	int                 pid;
 	t_cmd               *cmd;
 	int                 pfd[2];
-	struct s_tfrk        *prev; // to get previous pipe
+	struct s_tfrk        *prev;
 	struct s_tfrk        *next;
 }                       t_tfrk;
 
@@ -38,7 +38,8 @@ int         msh_dup_fd(t_cmd *ptr);
 int         red_pipe(t_tfrk *lst);
 int         msh_get_path(char *prgm, char **path);
 void		free_tfrk(t_tfrk *lst);
-int			pathfinder(t_cmd *ptr, char *const envp[]);
+int			pathfinder(char **av, char *const envp[]);
+int			get_builtin(t_cmd *ptr, int (**f)(), char **envp);
 int			start_builtins(int status, t_cmd *cmd, t_tfrk *lst);
 
 #endif

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   msh_execve_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 17:11:32 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 13:27:20 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/08 16:24:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <errno.h>
 
 static int	is_exit_arg(t_cmd *cmd)
 {
@@ -44,8 +45,8 @@ int			get_builtin(t_cmd *ptr, int (**f)(), char **envp)
 	built = g_all.built;
 	if (ft_strncmp(ptr->av[0], "exit", 5) == 0)
 	{
-		msh_free(ptr);
 		ft_array_free((char **)envp);
+		msh_free(ptr, 1);
 		exit(0);
 	}
 	while (built)
@@ -61,31 +62,31 @@ int			get_builtin(t_cmd *ptr, int (**f)(), char **envp)
 	return (0);
 }
 
-int			pathfinder(t_cmd *ptr, char *const envp[])
+int			pathfinder(char **av, char *const envp[])
 {
 	int		i;
 	char	*path;
 
 	i = -1;
 	path = NULL;
-	while (ptr->av[0][++i])
+	while (av[0][++i])
 	{
-		if (ptr->av[0][i] == '/')
-		{
-			msh_free(NULL);
-			return (execve(ptr->av[0], ptr->av, envp));
-		}
+		if (av[0][i] == '/')
+			return (execve(av[0], av, envp));
 	}
-	msh_get_path(ptr->av[0], &path);
+	msh_get_path(av[0], &path);
 	if (path)
-	{
-		msh_free(NULL);
-		return (execve(path, ptr->av, envp));
-	}
-	ft_putstr_fd(ptr->av[0], 2);
-	ft_putstr_fd(" : Command not found\n", 2);
+		return (execve(path, av, envp));
 	ft_array_free((char **)envp);
-	msh_free(ptr);
+	if (errno != 0)
+	{
+		ft_putendl_fd(strerror(errno), 2);
+		ft_array_free(av);
+		exit(EXIT_FAILURE)
+	}
+	ft_putstr_fd(av[0], 2);
+	ft_putendl_fd(" : Command not found", 2);
+	ft_array_free(av);
 	exit(ERR_CMD_NOT_FOUND);
 }
 
