@@ -17,7 +17,6 @@ SRCS		+= msh_free.c
 SRCS		+= msh_dup_fd.c
 SRCS		+= msh_push_cmd.c
 SRCS		+= builtins_alloc.c
-SRCS		+= get_builtin.c
 SRCS		+= msh_get_path.c
 SRCS		+= msh_tfrk.c
 SRCS		+= msh_sig.c
