@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 15:26:35 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/09 14:37:40 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/09 18:56:03 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ static int	get_relative(char **argv)
 		ft_putstr_fd(argv[1], 2);
 		ft_putstr_fd(" : ", 2);
 		ft_putendl_fd(strerror(errno), 2);
+		errno = 0;
 		return (-1);
 	}
 	return (0);
@@ -105,6 +106,7 @@ int			msh_cd(int ac, char **argv)
 			ft_putstr_fd(argv[1], 2);
 			ft_putstr_fd(" : ", 2);
 			ft_putendl_fd(strerror(errno), 2);
+			errno = 0;
 			return (-1);
 		}
 		else

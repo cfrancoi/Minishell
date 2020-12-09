@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/09 14:33:17 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/09 18:59:04 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int			child(t_cmd *ptr, char **envp)
 		if (pathfinder(ptr, envp) == -1)
 		{
 			ft_putendl_fd(strerror(errno), 2);
+			errno = 0;
 			ft_array_free(envp);
 			exit(ERR_EXECVE);
 		}

@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 00:58:57 by user42            #+#    #+#             */
-/*   Updated: 2020/12/09 14:33:31 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/09 18:25:49 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,13 @@ void		free_cmd(t_cmd *cmd, int process)
 		{
 			if (cmd->av)
 				ft_array_free(cmd->av);
+			cmd->av = NULL;
 		}
 		tofree = cmd;
 		cmd = cmd->next;
 		free(tofree);
 	}
+	cmd = NULL;
 }
 
 void		msh_free(t_cmd *cmd, int process)

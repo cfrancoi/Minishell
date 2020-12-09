@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:51:47 by user42            #+#    #+#             */
-/*   Updated: 2020/12/09 14:48:33 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/09 18:47:49 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int			unset_child(int ac, char **argv)
 {
 	if (ac == 1)
 		return (EXIT_SUCCESS);
-	(void)ac;
 	(void)argv;
 	return (EXIT_SUCCESS);
 }

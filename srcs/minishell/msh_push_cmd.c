@@ -6,18 +6,19 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:48:44 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/09 14:34:09 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/09 18:38:59 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static t_cmd	*end_of_line(t_cmd *cmd)
+static t_cmd	*end_of_line(t_cmd *cmd, t_cmd *ret)
 {
-	ft_array_free(cmd->av);
+	if (cmd->av)
+		ft_array_free(cmd->av);
 	cmd->sep = 0;
 	free(cmd);
-	return (NULL);
+	return (ret);
 }
 
 static t_cmd	*get_next_cmd(t_cmd *ptr)
@@ -31,9 +32,9 @@ static t_cmd	*get_next_cmd(t_cmd *ptr)
 	{
 		sep = cmd->sep;
 		if (sep == MSH_EOF)
-			return (end_of_line(cmd));
+			return (end_of_line(cmd, NULL));
 		else if (sep == SEMI)
-			return (cmd->next);
+			return (end_of_line(cmd, cmd->next));
 		else if (sep == LFT || sep == RGT || sep == DRGT || sep == PIPE)
 		{
 			ptr = cmd->next;

@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 19:45:27 by user42            #+#    #+#             */
-/*   Updated: 2020/12/09 17:30:54 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/09 19:02:56 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int			get_args_ptr(char *ptr, t_arg **lst)
 			if (!(ptr[i]))
 				return (-1);
 		}
-		if (((ptr[i] == ' ' || ptr[i] == '\t') && (ptr[i + 1] != '\t' && ptr[i + 1] != ' '))
+		if (((ptr[i] == ' ' || ptr[i] == '\t')
+			&& (ptr[i + 1] != '\t' && ptr[i + 1] != ' '))
 			&& ptr[i + 1])
 			if (add_args(&ptr[i + 1], lst) == NULL)
 				return (-1);

@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:57:17 by user42            #+#    #+#             */
-/*   Updated: 2020/12/09 14:26:22 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/09 18:56:56 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ int			msh_exit(t_cmd *cmd)
 		msh_free(NULL, 0);
 	if (errno != 0)
 		ft_putendl_fd(strerror(errno), 2);
+	errno = 0;
 	return (ret);
 }

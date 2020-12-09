@@ -6,13 +6,27 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:15:46 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/09 16:50:31 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/09 18:41:50 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static	int msh_last_check(t_cmd *cmd)
+static int	check_syntax(t_cmd *cmd, t_cmd *save, int last)
+{
+	if (last == SEMI && cmd->sep == MSH_EOF)
+	{
+		free_cmd(save->next, 1);
+		save->next = NULL;
+		save->sep = MSH_EOF;
+		return (1);
+	}
+	ft_putstr_fd("Minishell: syntax error < ", 2);
+	ft_putendl_fd(" >", 2);
+	return (-1);
+}
+
+static int	msh_last_check(t_cmd *cmd)
 {
 	int		last;
 	t_cmd	*save;
@@ -21,28 +35,10 @@ static	int msh_last_check(t_cmd *cmd)
 	if ((ft_strlen(cmd->av[0]) == 0 && cmd->sep == MSH_EOF))
 		return (-1);
 	last = cmd->sep;
-	//cmd = cmd->next;
 	while (cmd)
 	{
-		if (cmd->av[0] == NULL || ft_strlen(cmd->av[0]) == 0)
-		{
-			if (last == SEMI && cmd->sep == MSH_EOF)
-			{
-				if (save != NULL)
-				{
-					if (cmd->av == NULL)
-						ft_array_free(cmd->av);
-					free(cmd);
-					save->next = NULL;
-				}
-			}
-			else
-			{
-				ft_putstr_fd("Minishell: syntax error < ", 2);
-				ft_putendl_fd(" >", 2);
-				return (-1);
-			}
-		}
+		if (cmd->av == NULL || ft_strlen(cmd->av[0]) == 0)
+			return (check_syntax(cmd, save, last));
 		save = cmd;
 		last = cmd->sep;
 		cmd = cmd->next;
@@ -50,7 +46,7 @@ static	int msh_last_check(t_cmd *cmd)
 	return (1);
 }
 
-int		msh_parsing(char *line, t_cmd **ptr)
+int			msh_parsing(char *line, t_cmd **ptr)
 {
 	t_cmd	*first;
 	t_cmd	*cmd;
@@ -67,5 +63,5 @@ int		msh_parsing(char *line, t_cmd **ptr)
 		cmd = cmd->next;
 	}
 	*ptr = first;
-	return (msh_last_check(first));
+	return (msh_last_check(*ptr));
 }

@@ -6,12 +6,12 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 17:52:03 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/09 15:04:18 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/09 19:03:23 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
- #include "msh_execve.h"
- 
+#include "msh_execve.h"
+
 t_tfrk			*nw_frk(t_tfrk *prev, t_cmd *cmd)
 {
 	t_tfrk	*nw;

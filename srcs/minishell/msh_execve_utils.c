@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 17:11:32 by user42            #+#    #+#             */
-/*   Updated: 2020/12/09 14:33:07 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/09 18:58:02 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static int	path_not_found(char **av, char *const envp[])
 		ft_putendl_fd(strerror(errno), 2);
 		ft_array_free((char **)envp);
 		ft_array_free(av);
+		errno = 0;
 		exit(EXIT_FAILURE);
 	}
 	ft_putstr_fd(av[0], 2);

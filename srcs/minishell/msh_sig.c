@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 16:22:11 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/09 14:34:25 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/09 19:00:28 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	sigint_handler(int signum)
 		ft_putendl_fd(strerror(errno), 2);
 	if (g_all.step == MSH_READ)
 		print_path();
+	errno = 0;
 	return ;
 }
 
@@ -34,6 +35,7 @@ static void	sigquit_handler(int signum)
 		ft_putendl_fd(strerror(errno), 2);
 	if (g_all.step == MSH_READ)
 		print_path();
+	errno = 0;
 	return ;
 }
 
