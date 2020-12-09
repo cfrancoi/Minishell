@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_var.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 16:00:42 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/11/03 18:12:10 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/09 14:31:24 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   msh_tfrk.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/07 16:27:22 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 01:37:45 by user42           ###   ########.fr       */
+/*   Created: 2020/10/26 17:52:03 by cfrancoi          #+#    #+#             */
+/*   Updated: 2020/12/09 14:36:32 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "minishell.h"
 
 t_tfrk			*nw_frk(t_tfrk *prev, t_cmd *cmd)
 {
