@@ -41,9 +41,9 @@ RM_DIR		= rm -rf
 
 all:
 	mkdir -p $(OBJ_DIR)
-	make -C $(LIBFT_DIR)
-	make -C $(BUILT_DIR)
-	make -C $(ENV_DIR)
+	make -C $(LIBFT_DIR) --no-print-directory
+	make -C $(BUILT_DIR) --no-print-directory
+	make -C $(ENV_DIR) --no-print-directory
 	$(MAKE) $(NAME) --no-print-directory
 
 $(OBJ_DIR)%.o:$(MSH_DIR)%.c $(INC_DIR)*.h

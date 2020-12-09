@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_exit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:57:17 by user42            #+#    #+#             */
-/*   Updated: 2020/12/09 04:06:32 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/09 13:09:30 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int			msh_exit(t_cmd *cmd)
 	ret = get_return();
 	if (g_all.step == MSH_EXIT)
 		ret = get_exit_value(cmd, ret);
-	else if (g_all.step != MSH_SIGEOF)
+	if (g_all.step != MSH_SIGEOF)
 		msh_free(cmd, 1);
 	else
 		msh_free(NULL, 0);
