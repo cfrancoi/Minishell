@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_cd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 15:26:35 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/08 16:50:15 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/09 04:15:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,12 @@ static int	is_relativ_path(char *ptr)
 	return (1);
 }
 
-static int	msh_error_str(char *path)
-{
-	ft_putstr_fd("msh cd : ", 2);
-	ft_putstr_fd(path, 2);
-	ft_putstr_fd(" : ", 2);
-	ft_putendl_fd(strerror(errno), 2);
-	return (-1);
-}
-
 int			set_pwd_var(void)
 {
 	char	*path;
 	t_var	*m_pwd;
 	t_var	*m_oldpwd;
-	
+
 	if ((path = getcwd(NULL, 0)) == NULL)
 		return (-1);
 	m_pwd = NULL;
@@ -75,10 +66,27 @@ int			set_pwd_var(void)
 	return (0);
 }
 
-int			msh_cd(int ac, char **argv)
+static int	get_relative(char **argv)
 {
 	char		*path;
 
+	path = ft_strjoinf(getcwd(NULL, 0), "/", 1);
+	path = ft_strjoinf(path, argv[1], 1);
+	chdir(path);
+	free(path);
+	if (set_pwd_var() == -1)
+	{
+		ft_putstr_fd("msh cd : ", 2);
+		ft_putstr_fd(argv[1], 2);
+		ft_putstr_fd(" : ", 2);
+		ft_putendl_fd(strerror(errno), 2);
+		return (-1);
+	}
+	return (0);
+}
+
+int			msh_cd(int ac, char **argv)
+{
 	(void)argv;
 	if (ac == 1)
 		return (0);
@@ -92,17 +100,15 @@ int			msh_cd(int ac, char **argv)
 				return (0);
 		}
 		if (is_relativ_path(argv[1]) == -1)
-			msh_error_str(argv[1]);
-		else
 		{
-			path = ft_strjoinf(getcwd(NULL, 0), "/", 1);
-			path = ft_strjoinf(path, argv[1], 1);
-			chdir(path);
-			free(path);
-			if (set_pwd_var() == -1)
-				return (msh_error_str(argv[1]));
-			return (0);
+			ft_putstr_fd("msh cd : ", 2);
+			ft_putstr_fd(argv[1], 2);
+			ft_putstr_fd(" : ", 2);
+			ft_putendl_fd(strerror(errno), 2);
+			return (-1);
 		}
+		else
+			return (get_relative(argv));
 	}
 	return (0);
 }

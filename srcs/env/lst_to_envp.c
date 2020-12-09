@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_to_envp.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 14:50:13 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/08 19:00:56 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/09 00:11:15 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	**lst_to_envp(t_var *lst)
 	tmp = lst;
 	ptr = NULL;
 	while (tmp && ++len)
-       tmp = tmp->next;
+		tmp = tmp->next;
 	if ((envp = malloc(sizeof(char *) * (len + 1))) == NULL)
 		return (NULL);
 	envp[len] = NULL;

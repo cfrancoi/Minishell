@@ -3,26 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 16:57:37 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 15:54:34 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/09 03:28:11 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENV_H
 # define ENV_H
 # include <string.h>
-
-
-typedef struct		s_var
-{
-	char			*name;
-	char			*content;
-	int				protect;
-	struct s_var	*next;
-}					t_var;
-
+# include "t_var.h"
 # include "../libft/libft.h"
 
 int		add_var(t_var **lst, t_var *to_add);

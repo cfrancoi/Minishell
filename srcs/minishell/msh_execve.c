@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_execve.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/08 22:15:20 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/09 02:05:35 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	kill_all(t_tfrk *lst)
 	return (-1);
 }
 
-static int	wait_all(t_tfrk *lst)
+int			wait_all(t_tfrk *lst)
 {
 	int status;
 
@@ -67,70 +67,8 @@ static int	wait_all(t_tfrk *lst)
 	}
 	if (WIFSIGNALED(status))
 	{
-# ifdef WCOREDUMP
 		if (WCOREDUMP(status))
 			ft_putendl_fd("Core dumped", 2);
-# endif
 	}
 	return (g_all.step);
-}
-
-static int	start_pipe(t_tfrk *lst)
-{
-	if ((pipe(lst->pfd) == -1))
-		return (-1);
-	else
-		return (0);
-}
-
-static int	make_forks(t_tfrk *lst, char **envp)
-{
-	void	*tmp;
-
-	while (lst != NULL)
-	{
-		if (lst->next != NULL && start_pipe(lst) == -1)
-			return (-1);
-		if ((lst->pid = fork()) == -1)
-			return (msh_fork_error(lst->cmd->av[0], MSH_EXIT));
-		else if (lst->pid == 0)
-		{
-			tmp = lst->cmd;
-			if (red_pipe(lst) == -1 || msh_dup_fd((t_cmd *)tmp) == -1)
-			{
-				msh_fork_error(((t_cmd *)tmp)->av[0], -1);
-				msh_free(lst->cmd, 1);
-				free_tfrk(lst);
-				ft_array_free(envp);	
-				exit(EXIT_FAILURE);
-			}
-			free_tfrk(lst);
-			child((t_cmd *)tmp, envp);
-			exit(0);
-		}
-		else
-		{
-			if (lst->prev != NULL)
-				close(lst->prev->pfd[0]);
-			if (lst->pfd[1] != 0)
-				close(lst->pfd[1]);
-			lst = lst->next;
-		}
-	}
-	return (0);
-}
-
-int			start_fork(t_tfrk *lst)
-{
-	char	**envp;
-
-	if ((envp = lst_to_envp(g_all.var)) == NULL)
-		return (-1);
-	if (make_forks(lst, envp) != 0)
-	{
-		ft_array_free(envp);
-		return (-1);
-	}
-	ft_array_free(envp);
-	return (wait_all(lst));
 }

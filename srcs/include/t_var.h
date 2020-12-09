@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   msh_parsing.c                                      :+:      :+:    :+:   */
+/*   t_var.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/02 14:15:46 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/09 02:58:37 by user42           ###   ########.fr       */
+/*   Created: 2020/12/09 03:36:24 by user42            #+#    #+#             */
+/*   Updated: 2020/12/09 03:36:49 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef T_VAR_H
+# define T_VAR_H
 
-int		msh_parsing(char *line, t_cmd **ptr)
+typedef struct		s_var
 {
-	t_cmd	*first;
-	t_cmd	*cmd;
+	char			*name;
+	char			*content;
+	int				protect;
+	struct s_var	*next;
+}					t_var;
 
-	first = NULL;
-	cmd = NULL;
-	if (get_cmd_lst(line, &cmd) == -1)
-		return (-1);
-	first = cmd;
-	while (cmd)
-	{
-		if (!(cmd->av = msh_get_cmd(cmd->str)))
-			return (-1);
-		cmd = cmd->next;
-	}
-	*ptr = first;
-	return (1);
-}
+#endif

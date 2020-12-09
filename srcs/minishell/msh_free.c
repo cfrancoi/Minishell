@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/08 00:58:57 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 21:14:43 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/09 02:10:38 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static void	free_built(t_built *built)
 {
-	void	*tofree;
+	t_built	*tofree;
 
 	while (built)
 	{
 		if (built->name)
 			free(built->name);
-		tofree = (void *)built;
+		tofree = built;
 		built = built->next;
 		free(tofree);
 	}
@@ -28,13 +28,16 @@ static void	free_built(t_built *built)
 
 void		free_cmd(t_cmd *cmd, int process)
 {
-	void	*tofree;
+	t_cmd	*tofree;
 
 	while (cmd)
 	{
 		if (process++ != 0)
-			ft_array_free(cmd->av);
-		tofree = (void *)cmd;
+		{
+			if (cmd->av)
+				ft_array_free(cmd->av);
+		}
+		tofree = cmd;
 		cmd = cmd->next;
 		free(tofree);
 	}
@@ -42,13 +45,16 @@ void		free_cmd(t_cmd *cmd, int process)
 
 void		msh_free(t_cmd *cmd, int process)
 {
-	free_cmd(cmd, process);
-	free_built(g_all.built);
+	if (cmd)
+		free_cmd(cmd, process);
+	cmd = NULL;
+	if (g_all.built)
+		free_built(g_all.built);
 	g_all.built = NULL;
-	if (g_all.var != NULL)
+	if (g_all.var)
 		free_lst_var(g_all.var);
 	g_all.var = NULL;
-	if (g_all.path != NULL)
+	if (g_all.path)
 		free(g_all.path);
 	g_all.path = NULL;
 }

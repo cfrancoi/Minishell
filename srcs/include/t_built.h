@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   msh_parsing.c                                      :+:      :+:    :+:   */
+/*   t_built.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/02 14:15:46 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/09 02:58:37 by user42           ###   ########.fr       */
+/*   Created: 2020/12/09 03:24:48 by user42            #+#    #+#             */
+/*   Updated: 2020/12/09 03:25:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef T_BUILT_H
+# define T_BUILT_H
 
-int		msh_parsing(char *line, t_cmd **ptr)
+typedef	struct			s_built
 {
-	t_cmd	*first;
-	t_cmd	*cmd;
+	int					(*f)(int, char **);
+	char				*name;
+	struct s_built		*next;
+}						t_built;
 
-	first = NULL;
-	cmd = NULL;
-	if (get_cmd_lst(line, &cmd) == -1)
-		return (-1);
-	first = cmd;
-	while (cmd)
-	{
-		if (!(cmd->av = msh_get_cmd(cmd->str)))
-			return (-1);
-		cmd = cmd->next;
-	}
-	*ptr = first;
-	return (1);
-}
+#endif

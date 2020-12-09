@@ -6,21 +6,20 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 12:50:29 by user42            #+#    #+#             */
-/*   Updated: 2020/11/11 12:50:39 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/09 04:03:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-size_t        ft_array_len(char **ptr)
+size_t	ft_array_len(char **ptr)
 {
-    int i;
+	int i;
 
-    i = 1;
-    if (ptr == NULL)
-        return (0);
-    while(ptr[i] != NULL)
-        i++;
-    return (i);
-
+	i = 1;
+	if (ptr == NULL)
+		return (0);
+	while (ptr[i] != NULL)
+		i++;
+	return (i);
 }

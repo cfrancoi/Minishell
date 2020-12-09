@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:51:47 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 16:54:26 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/09 04:10:00 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,33 @@ static int	check_arg(char *argv, int *ret)
 	return (0);
 }
 
+static void	treat_var(t_var *var, char **argv, int i)
+{
+	t_var	*varnxt;
+
+	varnxt = get_var(var, argv[i]);
+	if (varnxt)
+	{
+		if (is_protect(argv[i]))
+		{
+			free(varnxt->content);
+			varnxt->content = NULL;
+			varnxt->protect = 1;
+		}
+		else
+		{
+			while (varnxt && var->next != varnxt)
+				var = var->next;
+			cat_var(var);
+		}
+	}
+}
+
 int			unset_parent(int ac, char **argv)
 {
 	int		i;
 	int		ret;
 	t_var	*var;
-	t_var	*varnxt;
 
 	i = 0;
 	ret = 0;
@@ -45,25 +66,7 @@ int			unset_parent(int ac, char **argv)
 	while (++i < ac)
 	{
 		if (check_arg(argv[i], &ret) == 0)
-		{
-			varnxt = get_var(var, argv[i]);
-			if (varnxt)
-			{
-				if (is_protect(argv[i]))
-				{
-					free(varnxt->content);
-					varnxt->content = NULL;
-					varnxt->protect = 1;
-				}
-				else
-				{
-					while (varnxt && var->next != varnxt)
-						var = var->next;
-					cat_var(var);
-				}
-			}
-			var = g_all.var;
-		}
+			treat_var(var, argv, i);
 	}
 	return (ret);
 }

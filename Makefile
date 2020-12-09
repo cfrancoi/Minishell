@@ -21,6 +21,7 @@ SRCS		+= msh_get_path.c
 SRCS		+= msh_tfrk.c
 SRCS		+= msh_sig.c
 SRCS		+= msh_error_fork.c
+SRCS		+= start_fork.c
 
 OBJ_DIR		= ./srcs/objects/
 MSH_DIR		= ./srcs/minishell/

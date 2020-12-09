@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   msh_execve_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 17:11:32 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 20:04:39 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/09 03:20:06 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int			get_builtin(t_cmd *ptr, int (**f)(), char **envp)
 	return (0);
 }
 
-static int	path_not_found(char **av,  char *const envp[])
+static int	path_not_found(char **av, char *const envp[])
 {
 	if (errno != 0)
 	{
@@ -82,28 +82,25 @@ int			pathfinder(t_cmd *ptr, char *const envp[])
 	int		i;
 	char	*path;
 	char	**av;
-	char	*tmp;
 
 	i = -1;
-	tmp = NULL;
 	path = NULL;
 	av = ptr->av;
 	while (av[0][++i])
 		if (av[0][i] == '/')
-			tmp = av[0];
-	if (tmp == NULL)
+			path = av[0];
+	if (path == NULL)
 	{
 		msh_get_path(av[0], &path);
 		msh_free(ptr, 0);
-		tmp = path;
 		if (path == NULL)
 			return (path_not_found(av, envp));
 	}
 	else
 		msh_free(ptr, 0);
-	execve(tmp, av, envp);
+	execve(path, av, envp);
 	ft_array_free(av);
-	(path != NULL ) ? free(path) : 0;
+	(path != NULL) ? free(path) : 0;
 	return (-1);
 }
 

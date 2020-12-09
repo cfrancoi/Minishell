@@ -6,28 +6,20 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:12:33 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 16:26:39 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/09 04:05:44 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILTINS_H
 # define BUILTINS_H
 
-
-typedef	struct			s_built
-{
-	int					(*f)(int, char **);
-	char				*name;
-	struct s_built		*next;
-}						t_built;
-
+# include "t_built.h"
 # include "./env.h"
 # include "./minishell.h"
 # include "./msh_execve.h"
 
 int						msh_export(int ac, char **argv);
 t_built					*builtins_alloc(t_built *first, char *name, int (*f)());
-
 int						add_to_lst(int ac, char **av);
 int						f_msh_cd(int	ac, char **argv);
 int						echo(int ac, char **argv);
@@ -36,6 +28,6 @@ int						unset_parent(int ac, char **argv);
 int						msh_cd(int ac, char **argv);
 int						msh_pwd(int ac, char **argv);
 int						env(void);
-
 int						msh_exit(t_cmd *cmd);
+
 #endif
