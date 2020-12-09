@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:25:43 by user42            #+#    #+#             */
-/*   Updated: 2020/12/09 14:37:32 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/09 15:27:05 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int			f_msh_cd(int ac, char **argv)
 {
-	write(1, "**cd**\n", 7);
 	(void)ac;
 	(void)argv;
-	return (11);
+	return (EXIT_SUCCESS);
 }

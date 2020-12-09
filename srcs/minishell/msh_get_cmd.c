@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 15:29:50 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/09 14:33:40 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/09 17:08:27 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,15 @@ static char		**lst_to_array(t_arg *lst)
 	return (ptr);
 }
 
+#include <stdio.h>
+
+/*static void to_do(char **av)
+{
+	int i = -1;
+	while (av[++i])
+		printf("av[%i]|%s|\n", i, av[i]);
+}*/
+
 char			**msh_get_cmd(char *ptr)
 {
 	t_arg	*lst;
@@ -49,5 +58,7 @@ char			**msh_get_cmd(char *ptr)
 	get_args_ptr(ptr, &lst);
 	get_args_lst(lst);
 	av = lst_to_array(lst);
+	//to_do(av);
+
 	return (av);
 }
