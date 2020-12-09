@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_prompt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:01:14 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/09 04:06:17 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/09 12:10:45 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,11 @@ int			ft_prompt(void)
 			ret = msh_treat_line(line, &ptr);
 		else
 			g_all.step = MSH_SIGEOF;
-		line = NULL;
 		if (g_all.path)
 			free(g_all.path);
 		g_all.path = NULL;
 	}
-	if (line != NULL)
+	if (line != NULL && g_all.step == MSH_SIGEOF)
 		free(line);
 	return (msh_exit(ptr));
 }
