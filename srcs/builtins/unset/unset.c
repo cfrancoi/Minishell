@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:51:47 by user42            #+#    #+#             */
-/*   Updated: 2020/12/09 14:37:51 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/09 14:48:33 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	check_arg(char *argv, int *ret)
 			*ret = 1;
 			ft_putstr_fd("unset « ", 2);
 			ft_putstr_fd(argv, 2);
-			ft_putstr_fd(" » : non valable identifier\n", 2);
+			ft_putendl_fd(" » : invalid identifier", 2);
 			return (1);
 		}
 		x++;
