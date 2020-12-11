@@ -8,7 +8,6 @@ static char		**ft_arrayjoin(char **a1, char **a2)
 	int		i;
 
 	len = ft_array_len(a1) + ft_array_len(a2);
-
 	if ((new = malloc(sizeof(char *) * (len + 1))) == NULL)
 		return (NULL);
 	new[len] = NULL;
@@ -34,9 +33,9 @@ static char		**add_av(t_cmd *ptr)
 {
 	char **av;
 	char **tmp;
-	
+
 	av = ptr->av;
-	while(ptr->sep == LFT || ptr->sep == RGT || ptr->sep == DRGT)
+	while (ptr->sep == LFT || ptr->sep == RGT || ptr->sep == DRGT)
 	{
 		if (ptr->next->av[0] && ptr->next->av[1])
 		{
@@ -51,15 +50,14 @@ static char		**add_av(t_cmd *ptr)
 	return (av);
 }
 
-
-static	t_cmd		*get_next_cmd(t_cmd *ptr)
+static t_cmd	*get_next_cmd(t_cmd *ptr)
 {
 	while (ptr->sep == LFT || ptr->sep == RGT || ptr->sep == DRGT)
 		ptr = ptr->next;
 	return (ptr->next);
 }
 
-int			av_last_alloc(t_cmd *ptr)
+int				av_last_alloc(t_cmd *ptr)
 {
 	while (ptr)
 	{
