@@ -1,28 +1,28 @@
 NAME		= Minishell
 
 SRCS		= main.c
+SRCS		+= av_last_alloc.c
+SRCS		+= builtins_alloc.c
 SRCS		+= edit_qmrk.c
 SRCS		+= ft_prompt_utils.c
 SRCS		+= ft_prompt.c
-SRCS		+= msh_parsing.c
-SRCS		+= msh_parsing_utils.c
-SRCS		+= msh_get_cmd.c
 SRCS		+= get_args_ptr.c
 SRCS		+= get_args_lst.c
 SRCS		+= get_cmd_lst.c
+SRCS		+= msh_dup_fd.c
+SRCS		+= msh_parsing.c
+SRCS		+= msh_parsing_utils.c
+SRCS		+= msh_get_cmd.c
 SRCS		+= msh_execve.c
 SRCS		+= msh_execve_utils.c
 SRCS		+= msh_exit.c
 SRCS		+= msh_free.c
-SRCS		+= msh_dup_fd.c
 SRCS		+= msh_push_cmd.c
-SRCS		+= builtins_alloc.c
 SRCS		+= msh_get_path.c
 SRCS		+= msh_tfrk.c
 SRCS		+= msh_sig.c
 SRCS		+= msh_error_fork.c
 SRCS		+= start_fork.c
-SRCS		+= patch.c
 
 OBJ_DIR		= ./srcs/objects/
 MSH_DIR		= ./srcs/minishell/
