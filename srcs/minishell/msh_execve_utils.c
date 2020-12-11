@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 17:11:32 by user42            #+#    #+#             */
-/*   Updated: 2020/12/09 18:58:02 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/11 15:09:28 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ int			pathfinder(t_cmd *ptr, char *const envp[])
 			path = av[0];
 	if (path == NULL)
 	{
-		msh_get_path(av[0], &path);
+		if (ft_strncmp(av[0], ".", 2) != 0 && ft_strncmp(av[0], "..", 3) != 0)
+			msh_get_path(av[0], &path);
 		msh_free(ptr, 0);
 		if (path == NULL)
 			return (path_not_found(av, envp));
