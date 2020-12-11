@@ -1,6 +1,7 @@
 NAME	= libft.a
-FLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror
 CC		= gcc
+
 SRC		+= mem/ft_memset.c
 SRC		+= mem/ft_bzero.c
 SRC		+= mem/ft_memcpy.c
@@ -50,22 +51,22 @@ all:
 	$(MAKE) $(NAME) --no-print-directory
 
 $(OBJ_DIR)%.o : mem/%.c $(INC)
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR)%.o : str/%.c $(INC)
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR)%.o : alloc/%.c $(INC)
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR)%.o : check/%.c $(INC)
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR)%.o : write/%.c $(INC)
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR)%.o : gnl/%.c $(INC)
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 
 $(NAME): $(OBJS) $(INC)
