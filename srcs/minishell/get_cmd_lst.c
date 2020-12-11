@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 16:10:23 by user42            #+#    #+#             */
-/*   Updated: 2020/12/09 14:32:39 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/11 16:15:56 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,19 @@ static t_cmd	*edit_cmd(char **src, t_cmd *dst)
 	return (dst->next);
 }
 
+static int		free_all(t_cmd *first)
+{
+	t_cmd	*tmp;
+
+	while (first)
+	{
+		tmp = first->next;
+		free(first);
+		first = tmp;
+	}
+	return (-1);
+}
+
 int				get_cmd_lst(char *s, t_cmd **dst)
 {
 	t_cmd	*first;
@@ -59,7 +72,7 @@ int				get_cmd_lst(char *s, t_cmd **dst)
 			i = (pass_quotes(s, *s));
 			s += i;
 			if (!(*s))
-				return (-1);
+				return (free_all(first));
 		}
 		s++;
 	}

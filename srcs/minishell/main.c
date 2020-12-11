@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 13:52:04 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/11 15:50:38 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/11 16:05:45 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,17 @@ int		main(int ac, char **av, char **envp)
 	g_all.path = NULL;
 	g_all.var = NULL;
 	if (msh_sig() == -1)
-		return (-1);
+		return (EXIT_FAILURE);
 	if (!(g_all.built = builtins_alloc(g_all.built, "echo", echo)))
-		return (msh_free(NULL, 1));
+	{
+		msh_free(NULL, 1);
+		return (EXIT_FAILURE);
+	}
 	if (!(g_all.var = get_envp(envp)))
-		return (msh_free(NULL, 1));
+	{
+		msh_free(NULL, 1);
+		return (EXIT_FAILURE);
+	}
 	ret = ft_prompt();
 	return (ret);
 }
