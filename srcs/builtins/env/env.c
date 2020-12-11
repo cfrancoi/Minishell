@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:47:53 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 16:53:33 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/11 14:49:08 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	env(void)
 {
-	write(1, "**env**\n", 8);
 	ls_var(&g_all.var, 0);
 	return (EXIT_SUCCESS);
 }
