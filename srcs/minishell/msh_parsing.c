@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:15:46 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/11 13:00:45 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/11 15:29:09 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,18 @@ static int	check_syntax(t_cmd *cmd, t_cmd *save, int last)
 		return (1);
 	}
 	ft_putstr_fd("Minishell: syntax error < ", 2);
+	if (cmd->sep == MSH_EOF)
+		ft_putstr_fd("EOL", 2);
+	else if (cmd->sep == PIPE)
+		ft_putstr_fd("|", 2);
+	else if (cmd->sep == SEMI)
+		ft_putstr_fd(";", 2);
+	else if (cmd->sep == LFT)
+		ft_putstr_fd("<", 2);
+	else if (cmd->sep == RGT)
+		ft_putstr_fd(">", 2);
+	else if (cmd->sep == DRGT)
+		ft_putstr_fd(">>", 2);
 	ft_putendl_fd(" >", 2);
 	return (-1);
 }
