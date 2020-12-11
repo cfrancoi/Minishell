@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 17:49:41 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/11 15:47:36 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/11 15:59:50 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,17 @@ t_var		*get_envp(char **envp)
 		return (NULL);
 	add_var(&var, tmp);
 	tmp = NULL;
-	if (envp != NULL)
-		while (envp[++i] != NULL)
-		{
-			while (envp[i][y] != '=')
-				y++;
-			envp[i][y] = '\0';
-			if ((tmp = create_var(envp[i], &envp[i][y + 1], 0)) == NULL)
-				return (NULL);
-			add_var(&var, tmp);
-			envp[i][y] = '=';
-			y = 0;
-		}
+	while (envp != NULL && envp[++i] != NULL)
+	{
+		while (envp[i][y] != '=')
+			y++;
+		envp[i][y] = '\0';
+		if ((tmp = create_var(envp[i], &envp[i][y + 1], 0)) == NULL)
+			return (NULL);
+		add_var(&var, tmp);
+		envp[i][y] = '=';
+		y = 0;
+	}
 	add_pwd(&var);
 	return (var);
 }
