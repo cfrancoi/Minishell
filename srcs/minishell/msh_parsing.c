@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:15:46 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/09 18:41:50 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/11 13:00:45 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int			msh_parsing(char *line, t_cmd **ptr)
 			return (-1);
 		cmd = cmd->next;
 	}
+	av_last_alloc(first);
 	*ptr = first;
 	return (msh_last_check(*ptr));
 }

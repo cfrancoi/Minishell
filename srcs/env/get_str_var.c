@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 14:30:18 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/09 14:30:22 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/11 13:20:46 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*get_str_var(char *ptr)
 		return (NULL);
 	if (ptr[i] == '?')
 		return (ft_strdup("?"));
-	while (ptr[i] && ft_isalnum(ptr[i]))
+	while (ptr[i] && (ft_isalnum(ptr[i]) || ptr[i] == '_'))
 		i++;
 	var = ft_substr(ptr, 0, i);
 	return (var);

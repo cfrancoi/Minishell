@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:26:16 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/09 14:46:40 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/11 12:57:52 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ int				msh_sig(void);
 void			print_path(void);
 void			free_cmd(t_cmd *cmd, int process);
 void			msh_free(t_cmd *cmd, int process);
+
+int				av_last_alloc(t_cmd *ptr);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:39:10 by user42            #+#    #+#             */
-/*   Updated: 2020/11/27 15:41:09 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/11 13:23:25 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ t_var	*variable(char *ptr, int *i, int *len)
 	}
 	*i += ft_strlen(tmp);
 	if (!(var = get_var(g_all.var, tmp)))
+	{
+		free(tmp);
 		return (NULL);
+	}
 	if (len)
 		*len += ft_strlen(var->content);
 	free(tmp);
