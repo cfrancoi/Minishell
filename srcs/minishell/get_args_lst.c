@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 19:48:24 by user42            #+#    #+#             */
-/*   Updated: 2020/12/09 17:33:59 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/12 14:31:21 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char			*get_final_arg(char *ptr, int len, int qte)
 	len = 0;
 	while (ptr[i] && !((ptr[i] == ' ' || ptr[i] == '\t') && qte == 0))
 	{
-		if (ptr[i] == '"' || (ptr[i] == '\'' && (qte == 0 || qte == ptr[i])))
+		if ((ptr[i] == '\"' || ptr[i] == '\'') && (qte == 0 || qte == ptr[i]))
 			qte = (qte == ptr[i]) ? 0 : ptr[i];
 		else if (ptr[i] == '$' && qte != '\'' && is_char_var(ptr[i + 1]))
 		{

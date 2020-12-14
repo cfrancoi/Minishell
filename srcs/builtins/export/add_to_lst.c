@@ -88,10 +88,10 @@ int				add_to_lst(int ac, char **av)
 	{
 		if (to_add(av[i]) != 0)
 		{
-			ret = 1;
+			ret = 256;
 			ft_putstr_fd("msh : export : << ", 2);
 			ft_putstr_fd(av[i], 2);
-			ft_putstr_fd(" >> : identifiant non valable\n", 2);
+			ft_putstr_fd(" >> : invalid identifier\n", 2);
 		}
 		i++;
 	}

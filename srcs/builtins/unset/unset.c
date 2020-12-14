@@ -21,7 +21,7 @@ static int	check_arg(char *argv, int *ret)
 	{
 		if ((ft_isalnum(argv[x]) == 0) && argv[x] != '_')
 		{
-			*ret = 1;
+			*ret = 256;
 			ft_putstr_fd("unset « ", 2);
 			ft_putstr_fd(argv, 2);
 			ft_putendl_fd(" » : invalid identifier", 2);

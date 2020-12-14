@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:15:46 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/11 15:29:09 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/11 17:03:38 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	msh_last_check(t_cmd *cmd)
 	last = cmd->sep;
 	while (cmd)
 	{
-		if (cmd->av == NULL || ft_strlen(cmd->av[0]) == 0)
+		if (cmd->av == NULL || !cmd->av[0] || ft_strlen(cmd->av[0]) == 0)
 			return (check_syntax(cmd, save, last));
 		save = cmd;
 		last = cmd->sep;
@@ -76,5 +76,11 @@ int			msh_parsing(char *line, t_cmd **ptr)
 	}
 	av_last_alloc(first);
 	*ptr = first;
-	return (msh_last_check(*ptr));
+	if (msh_last_check(*ptr) == -1)
+	{
+		if ((edit_qmrk(2) == 0))
+			return (0);
+		return (-1);
+	}
+	return (1);
 }

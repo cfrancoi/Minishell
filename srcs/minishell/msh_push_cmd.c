@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:48:44 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/09 18:38:59 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/12 14:46:25 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,12 @@ int				msh_push_cmd(t_cmd **ptr)
 		if (msh == MSH_EXIT || msh == MSH_SIGINT)
 		{
 			if (msh == MSH_SIGINT)
+			{
 				free_cmd(cmd, 1);
+			 	*ptr = NULL;
+				 return (msh);
+				 free_tfrk(lst);
+			}
 			free_tfrk(lst);
 			*ptr = cmd;
 			return (msh);
