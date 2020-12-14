@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 17:11:32 by user42            #+#    #+#             */
-/*   Updated: 2020/12/11 15:09:28 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/14 13:17:47 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int			pathfinder(t_cmd *ptr, char *const envp[])
 	av = ptr->av;
 	while (av[0][++i])
 		if (av[0][i] == '/')
-			path = av[0];
+			path = ft_strdup(av[0]);
 	if (path == NULL)
 	{
 		if (ft_strncmp(av[0], ".", 2) != 0 && ft_strncmp(av[0], "..", 3) != 0)

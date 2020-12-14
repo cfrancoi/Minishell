@@ -1,0 +1,9 @@
+/bin/ls
+"/bin/ls"
+"/bin/ls" -a
+echo "un long message'$PWD'"
+"echo"
+echo un;
+echo deux
+echo -n un ; echo -n "deux" ; echo -n "-n trois"
+'echo' -n
