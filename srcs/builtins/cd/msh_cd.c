@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 15:26:35 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/11 15:00:29 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/14 13:39:16 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 static int	is_abs_path(char *ptr)
 {
-	if (ptr[0] == '\\')
+	if (ptr[0] == '/')
 		return (1);
 	return (0);
 }
@@ -66,6 +66,16 @@ int			set_pwd_var(void)
 	return (0);
 }
 
+static int			msh_error_cd(char **argv)
+{
+		ft_putstr_fd("msh cd : ", 2);
+		ft_putstr_fd(argv[1], 2);
+		ft_putstr_fd(" : ", 2);
+		ft_putendl_fd(strerror(errno), 2);
+		errno = 0;
+		return (256);
+}
+
 static int	get_relative(char **argv)
 {
 	char		*path;
@@ -75,14 +85,7 @@ static int	get_relative(char **argv)
 	chdir(path);
 	free(path);
 	if (set_pwd_var() == -1)
-	{
-		ft_putstr_fd("msh cd : ", 2);
-		ft_putstr_fd(argv[1], 2);
-		ft_putstr_fd(" : ", 2);
-		ft_putendl_fd(strerror(errno), 2);
-		errno = 0;
-		return (256);
-	}
+		return (msh_error_cd(argv));
 	return (0);
 }
 
@@ -95,19 +98,14 @@ int			msh_cd(int ac, char **argv)
 	{
 		if (is_abs_path(argv[1]))
 		{
-			if (chdir(argv[1]) == -1)
-				return (256);
+			if (chdir(argv[1]) == -1 || set_pwd_var() == -1)
+				return (msh_error_cd(argv));
 			else
 				return (0);
 		}
 		if (is_relativ_path(argv[1]) == -1)
 		{
-			ft_putstr_fd("msh cd : ", 2);
-			ft_putstr_fd(argv[1], 2);
-			ft_putstr_fd(" : ", 2);
-			ft_putendl_fd(strerror(errno), 2);
-			errno = 0;
-			return (256);
+			return (msh_error_cd(argv));
 		}
 		else
 			return (get_relative(argv));
