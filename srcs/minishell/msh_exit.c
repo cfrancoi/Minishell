@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:57:17 by user42            #+#    #+#             */
-/*   Updated: 2020/12/09 18:56:56 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/14 15:34:45 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ int			msh_exit(t_cmd *cmd)
 {
 	int ret;
 
-	ft_putendl_fd("exit", 2);
+	ft_putendl_fd("exit", 0);
+	if (errno == EBADF)
+		errno = 0;
 	ret = get_return();
 	if (g_all.step == MSH_EXIT)
 		ret = get_exit_value(cmd, ret);

@@ -1,9 +1,24 @@
 /bin/ls
+echo "Return : $?"
 "/bin/ls"
+echo "Return : $?"
 "/bin/ls" -a
+echo "Return : $?"
 echo "un long message'$PWD'"
+echo "Return : $?"
 "echo"
+echo "Return : $?"
 echo un;
+echo "Return : $?"
 echo deux
+echo "Return : $?"
 echo -n un ; echo -n "deux" ; echo -n "-n trois"
+echo "Return : $?"
 'echo' -n
+echo "Return : $?"
+cd ..
+echo "Return : $?"
+cd $OLDPWD
+echo "Return : $?"
+cd "full shit"
+echo "Return : $?"
