@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 17:11:32 by user42            #+#    #+#             */
-/*   Updated: 2020/12/15 16:19:32 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/15 16:24:37 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,14 @@ static int	is_dir(char *path, char *cmd, int save)
 {
 	DIR	*fdir;
 
+	ft_putstr_fd("Msh : ", 2);
+	ft_putstr_fd(cmd, 2);
+	ft_putstr_fd(" : ", 2);
 	if ((fdir = opendir(path)) == NULL)
 		errno = save;
 	else
 	{
-		ft_putstr_fd("Msh : ", 2);
-		ft_putstr_fd(cmd, 2);
-		ft_putendl_fd(" : is a directory", 2);
+		ft_putendl_fd("is a directory", 2);
 		free(fdir);
 		errno = 0;
 	}
