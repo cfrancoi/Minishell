@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 17:11:32 by user42            #+#    #+#             */
-/*   Updated: 2020/12/14 13:17:47 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/15 15:17:13 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static int	is_exit_arg(t_cmd *cmd)
 	i = 0;
 	if (cmd->av[1] != NULL)
 	{
+		if (cmd->av[1][i] == '+' || cmd->av[1][i] == '-')
+			i++;
 		while (ft_isdigit(cmd->av[1][i]))
 			i++;
 		if (cmd->av[1][i] == '\0')
