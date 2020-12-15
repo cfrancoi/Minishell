@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 15:26:35 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/15 11:47:48 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/15 13:51:03 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,7 @@
 #include <dirent.h>
 #include <sys/errno.h>
 
-static int	is_abs_path(char *ptr)
-{
-	if (ptr[0] == '/')
-		return (1);
-	return (0);
-}
-
-static int	is_relativ_path(char *ptr)
+static int			is_relativ_path(char *ptr)
 {
 	char		*cwd;
 	DIR			*fdir;
@@ -33,7 +26,6 @@ static int	is_relativ_path(char *ptr)
 		|| (cwd = ft_strjoinf(cwd, "/", 1)) == NULL
 		|| (cwd = ft_strjoinf(cwd, ptr, 1)) == NULL
 		|| (fdir = opendir(cwd)) == NULL)
-
 	{
 		if (fdir)
 			free(fdir);
@@ -46,7 +38,7 @@ static int	is_relativ_path(char *ptr)
 	return (1);
 }
 
-int			set_pwd_var(void)
+int					set_pwd_var(void)
 {
 	char	*path;
 	t_var	*m_pwd;
@@ -74,15 +66,15 @@ int			set_pwd_var(void)
 
 static int			msh_error_cd(char **argv)
 {
-		ft_putstr_fd("msh cd : ", 2);
-		ft_putstr_fd(argv[1], 2);
-		ft_putstr_fd(" : ", 2);
-		ft_putendl_fd(strerror(errno), 2);
-		errno = 0;
-		return (256);
+	ft_putstr_fd("msh cd : ", 2);
+	ft_putstr_fd(argv[1], 2);
+	ft_putstr_fd(" : ", 2);
+	ft_putendl_fd(strerror(errno), 2);
+	errno = 0;
+	return (256);
 }
 
-static int	get_relative(char **argv)
+static int			get_relative(char **argv)
 {
 	char		*path;
 
@@ -95,14 +87,14 @@ static int	get_relative(char **argv)
 	return (0);
 }
 
-int			msh_cd(int ac, char **argv)
+int					msh_cd(int ac, char **argv)
 {
 	(void)argv;
 	if (ac == 1)
 		return (0);
 	if (ac == 2)
 	{
-		if (is_abs_path(argv[1]))
+		if (argv[1][0] == '/')
 		{
 			if (chdir(argv[1]) == -1 || set_pwd_var() == -1)
 				return (msh_error_cd(argv));

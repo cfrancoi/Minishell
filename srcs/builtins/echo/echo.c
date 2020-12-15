@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 15:47:39 by user42            #+#    #+#             */
-/*   Updated: 2020/12/14 13:09:59 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/15 13:48:56 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	echo(int ac, char **av)
 	}
 	while (i < ac)
 	{
-
 		ft_putstr_fd(av[i], 1);
 		if (i + 1 != ac)
 			ft_putchar_fd(' ', 1);

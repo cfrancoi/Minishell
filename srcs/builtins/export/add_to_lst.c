@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 16:17:40 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/08 16:20:58 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/15 14:09:09 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ static int		is_name_var(char *str)
 	i = 0;
 	while (str[i] && str[i] != '=' && (ft_isalnum(str[i]) || str[i] == '_'))
 		i++;
-	if (str[i] == '=' || str[i] == '\0')
+	if (str[i] == '\0')
+		return (-1);
+	if (str[i] == '=')
 	{
 		str[i] = 0;
 		return (i);
@@ -60,6 +62,8 @@ static int		to_add(char *ptr)
 	tmp = NULL;
 	lst = &g_all.var;
 	i = is_name_var(ptr);
+	if (i == -1)
+		return (0);
 	if (i == 0)
 		return (-1);
 	if ((tmp = is_existing_var(ptr)) != NULL)
