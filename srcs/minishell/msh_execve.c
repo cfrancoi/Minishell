@@ -6,11 +6,59 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 15:45:15 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/09 18:59:04 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/15 16:17:31 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	is_exit_arg(t_cmd *cmd)
+{
+	int	i;
+
+	i = 0;
+	if (cmd->av[1] != NULL)
+	{
+		if (cmd->av[1][i] == '+' || cmd->av[1][i] == '-')
+			i++;
+		while (ft_isdigit(cmd->av[1][i]))
+			i++;
+		if (cmd->av[1][i] == '\0')
+		{
+			if (cmd->av[2] == NULL)
+				return (1);
+			else
+			{
+				ft_putstr_fd("msh: exit: ", 2);
+				ft_putstr_fd(cmd->av[1], 2);
+				ft_putendl_fd(" : too many arguments", 2);
+				return (0);
+			}
+		}
+	}
+	return (1);
+}
+
+int			start_builtins(int status, t_cmd *cmd, t_tfrk *lst)
+{
+	if (lst->prev == NULL && lst->next == NULL)
+	{
+		if (ft_strncmp(cmd->av[0], "cd", 3) == 0)
+			return (msh_cd(ft_array_len(cmd->av), cmd->av));
+		else if (ft_strncmp(cmd->av[0], "export", 7) == 0)
+			return (add_to_lst(ft_array_len(cmd->av), cmd->av));
+		else if (ft_strncmp(cmd->av[0], "unset", 6) == 0)
+			return (unset_parent(ft_array_len(cmd->av), cmd->av));
+		else if (ft_strncmp(cmd->av[0], "exit", 5) == 0)
+		{
+			if (is_exit_arg(cmd))
+				g_all.step = MSH_EXIT;
+			else
+				return (256);
+		}
+	}
+	return (status);
+}
 
 int			child(t_cmd *ptr, char **envp)
 {
@@ -29,8 +77,8 @@ int			child(t_cmd *ptr, char **envp)
 	{
 		if (pathfinder(ptr, envp) == -1)
 		{
-			ft_putendl_fd(strerror(errno), 2);
-			errno = 0;
+			if (errno != 0)
+				ft_putendl_fd(strerror(errno), 2);
 			ft_array_free(envp);
 			exit(ERR_EXECVE);
 		}

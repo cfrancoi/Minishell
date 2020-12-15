@@ -6,38 +6,12 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/30 17:11:32 by user42            #+#    #+#             */
-/*   Updated: 2020/12/15 15:17:13 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/15 16:19:32 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	is_exit_arg(t_cmd *cmd)
-{
-	int	i;
-
-	i = 0;
-	if (cmd->av[1] != NULL)
-	{
-		if (cmd->av[1][i] == '+' || cmd->av[1][i] == '-')
-			i++;
-		while (ft_isdigit(cmd->av[1][i]))
-			i++;
-		if (cmd->av[1][i] == '\0')
-		{
-			if (cmd->av[2] == NULL)
-				return (1);
-			else
-			{
-				ft_putstr_fd("msh: exit: ", 2);
-				ft_putstr_fd(cmd->av[1], 2);
-				ft_putendl_fd(" : too many arguments", 2);
-				return (0);
-			}
-		}
-	}
-	return (1);
-}
+#include <dirent.h>
 
 int			get_builtin(t_cmd *ptr, int (**f)(), char **envp)
 {
@@ -80,6 +54,23 @@ static int	path_not_found(char **av, char *const envp[])
 	exit(ERR_CMD_NOT_FOUND);
 }
 
+static int	is_dir(char *path, char *cmd, int save)
+{
+	DIR	*fdir;
+
+	if ((fdir = opendir(path)) == NULL)
+		errno = save;
+	else
+	{
+		ft_putstr_fd("Msh : ", 2);
+		ft_putstr_fd(cmd, 2);
+		ft_putendl_fd(" : is a directory", 2);
+		free(fdir);
+		errno = 0;
+	}
+	return (0);
+}
+
 int			pathfinder(t_cmd *ptr, char *const envp[])
 {
 	int		i;
@@ -103,28 +94,8 @@ int			pathfinder(t_cmd *ptr, char *const envp[])
 	else
 		msh_free(ptr, 0);
 	execve(path, av, envp);
+	is_dir(path, av[0], errno);
 	ft_array_free(av);
 	(path != NULL) ? free(path) : 0;
 	return (-1);
-}
-
-int			start_builtins(int status, t_cmd *cmd, t_tfrk *lst)
-{
-	if (lst->prev == NULL && lst->next == NULL)
-	{
-		if (ft_strncmp(cmd->av[0], "cd", 3) == 0)
-			return (msh_cd(ft_array_len(cmd->av), cmd->av));
-		else if (ft_strncmp(cmd->av[0], "export", 7) == 0)
-			return (add_to_lst(ft_array_len(cmd->av), cmd->av));
-		else if (ft_strncmp(cmd->av[0], "unset", 6) == 0)
-			return (unset_parent(ft_array_len(cmd->av), cmd->av));
-		else if (ft_strncmp(cmd->av[0], "exit", 5) == 0)
-		{
-			if (is_exit_arg(cmd))
-				g_all.step = MSH_EXIT;
-			else
-				return (256);
-		}
-	}
-	return (status);
 }

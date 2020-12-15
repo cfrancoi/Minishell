@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:15:46 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/11 17:03:38 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/15 16:20:11 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	msh_last_check(t_cmd *cmd)
 	t_cmd	*save;
 
 	save = NULL;
-	if ((ft_strlen(cmd->av[0]) == 0 && cmd->sep == MSH_EOF))
+	if (ft_strlen(cmd->av[0]) == 0)
 		return (-1);
 	last = cmd->sep;
 	while (cmd)

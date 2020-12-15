@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:01:14 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/09 16:57:32 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/15 15:49:32 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ static int	msh_treat_line(char *line, t_cmd **ptr)
 	if (line)
 		free(line);
 	if (ret == -1 && *ptr != NULL)
+	{
 		free_cmd(*ptr, 1);
+		*ptr = NULL;
+	}
 	if (ret != -1)
 		if (msh_push_cmd(ptr) == MSH_EXIT)
 			ret = 0;
