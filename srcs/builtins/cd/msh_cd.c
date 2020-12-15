@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 15:26:35 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/14 13:39:16 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/15 11:47:48 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,20 @@ static int	is_relativ_path(char *ptr)
 	char		*cwd;
 	DIR			*fdir;
 
-	if ((cwd = getcwd(NULL, 0)) == NULL)
+	cwd = NULL;
+	fdir = NULL;
+	if ((cwd = getcwd(NULL, 0)) == NULL
+		|| (cwd = ft_strjoinf(cwd, "/", 1)) == NULL
+		|| (cwd = ft_strjoinf(cwd, ptr, 1)) == NULL
+		|| (fdir = opendir(cwd)) == NULL)
+
+	{
+		if (fdir)
+			free(fdir);
+		if (cwd)
+			free(cwd);
 		return (-1);
-	if ((cwd = ft_strjoinf(cwd, "/", 1)) == NULL)
-		return (-1);
-	if ((cwd = ft_strjoinf(cwd, ptr, 1)) == NULL)
-		return (-1);
-	if ((fdir = opendir(cwd)) == NULL)
-		return (-1);
+	}
 	free(fdir);
 	free(cwd);
 	return (1);

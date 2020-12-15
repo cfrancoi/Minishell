@@ -43,3 +43,6 @@ Return : 0
 Return : 0
 Return : 0
 Return : 1
+OLDPWD=/home/user42/cor
+PWD=/home/user42/cor/Minishell
+Return : 0

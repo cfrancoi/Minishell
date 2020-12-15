@@ -22,3 +22,5 @@ cd $OLDPWD
 echo "Return : $?"
 cd "full shit"
 echo "Return : $?"
+env | grep PWD;
+echo "Return : $?"

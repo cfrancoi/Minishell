@@ -6,39 +6,4 @@ Minishell
 MshT
 srcs
 Testeur.sh
-Return : 0
-log
-log1
-log2
-Makefile
-Minishell
-MshT
-srcs
-Testeur.sh
-Return : 0
-.
-..
-.git
-.gitignore
-log
-log1
-log2
-Makefile
-Minishell
-MshT
-srcs
-Testeur.sh
-.Testeur.sh.swp
-Return : 0
-un long message'/home/user42/cor/Minishell'
-Return : 0
-
-Return : 0
-un
-Return : 0
-deux
-Return : 0
-undeux-n troisReturn : 0
-Return : 0
-Return : 0
-Return : 0
+log  log1  log2  Makefile  Minishell*  MshT  srcs/  Testeur.sh
