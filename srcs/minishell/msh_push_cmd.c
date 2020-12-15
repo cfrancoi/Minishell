@@ -6,7 +6,7 @@
 /*   By: cfrancoi <cfrancoi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 15:48:44 by cfrancoi          #+#    #+#             */
-/*   Updated: 2020/12/15 13:59:44 by cfrancoi         ###   ########lyon.fr   */
+/*   Updated: 2020/12/15 15:30:05 by cfrancoi         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,29 +49,25 @@ static t_cmd	*get_next_cmd(t_cmd *ptr)
 
 int				msh_push_cmd(t_cmd **ptr)
 {
-	t_cmd	*cmd;
 	t_tfrk	*lst;
 	int		msh;
 
-	cmd = *ptr;
-	while (cmd != NULL)
+	while (*ptr != NULL)
 	{
-		if ((lst = crt_lst(cmd)) == NULL)
+		if ((lst = crt_lst(*ptr)) == NULL)
 			return (MSH_EXIT);
 		msh = start_fork(lst);
+		free_tfrk(lst);
 		if (msh == MSH_EXIT || msh == MSH_SIGINT)
 		{
-			free_tfrk(lst);
-			*ptr = cmd;
 			if (msh == MSH_SIGINT)
 			{
-				free_cmd(cmd, 1);
-			 	*ptr = NULL;
+				free_cmd(*ptr, 1);
+				*ptr = NULL;
 			}
 			return (msh);
 		}
-		free_tfrk(lst);
-		cmd = get_next_cmd(cmd);
+		*ptr = get_next_cmd(*ptr);
 		g_all.step = MSH_STCMD;
 	}
 	*ptr = NULL;
